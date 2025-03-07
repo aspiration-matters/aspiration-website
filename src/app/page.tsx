@@ -1,101 +1,253 @@
-import Image from "next/image";
+"use client"
+
+import type React from "react"
+
+import { useState, useEffect } from "react"
+import { Menu, X } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+} from "@/components/ui/navigation-menu"
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState("home")
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  // Navigation items with Home as first item
+  const navItems = [
+    { name: "Home", href: "#home" },
+    { name: "About Us", href: "#about" },
+    { name: "Our Story", href: "#story" },
+    { name: "Event Gallery", href: "#gallery" },
+    { name: "Blogs", href: "#blogs" },
+    { name: "Courses", href: "#courses" },
+    { name: "Testimonials", href: "#testimonials" },
+    { name: "Contact", href: "#contact" },
+  ]
+
+  // Handle scroll event to change navbar appearance and track active section
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      }
+
+      // Determine which section is currently in view
+      const sections = navItems.map((item) => item.href.substring(1))
+      const currentSection = sections.find((section) => {
+        const element = document.getElementById(section)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          return rect.top <= 100 && rect.bottom >= 100
+        }
+        return false
+      })
+
+      if (currentSection) {
+        setActiveSection(currentSection)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [navItems])
+
+  // Smooth scroll function
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault()
+    const element = document.querySelector(href)
+    if (element) {
+      setMobileMenuOpen(false)
+      element.scrollIntoView({ behavior: "smooth" })
+      setActiveSection(href.substring(1))
+    }
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-100/80 to-white">
+      {/* Enhanced Navigation Bar */}
+      <header
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+          isScrolled
+            ? "bg-gradient-to-r from-purple-200/60 via-blue-200/60 to-white/60 backdrop-blur-md shadow-lg"
+            : "bg-gradient-to-r from-purple-200/40 via-blue-200/40 to-white/40 backdrop-blur-sm",
+        )}
+      >
+        <div className="container mx-auto px-4">
+          <div className="flex h-20 items-center justify-between">
+            {/* Logo */}
+            <div className="text-2xl font-bold flex items-center">
+              <img src="/logo.png" alt="Logo" className="h-auto w-auto max-w-full max-h-32" />
+            </div>
+
+            {/* Desktop Navigation - Using shadcn NavigationMenu */}
+            <div className="hidden md:block">
+              <NavigationMenu className="bg-white/30 backdrop-blur-md rounded-full border border-white/50 shadow-lg p-1.5">
+                <NavigationMenuList className="flex space-x-2">
+                  {navItems.map((item) => {
+                    const isActive = activeSection === item.href.substring(1)
+                    return (
+                      <NavigationMenuItem key={item.name}>
+                        <NavigationMenuLink
+                          href={item.href}
+                          onClick={(e) => scrollToSection(e as any, item.href)}
+                          className={cn(
+                            "px-6 py-2.5 rounded-full transition-all duration-300 font-medium",
+                            "hover:bg-white/80 hover:text-purple-700 hover:shadow-md",
+                            isActive
+                              ? "bg-gradient-to-r from-purple-200/80 to-blue-200/80 text-purple-800 shadow-md"
+                              : "text-purple-700",
+                          )}
+                        >
+                          <span>{item.name}</span>
+                        </NavigationMenuLink>
+                      </NavigationMenuItem>
+                    )
+                  })}
+                </NavigationMenuList>
+              </NavigationMenu>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <Button
+              variant="outline"
+              size="icon"
+              className="md:hidden bg-white/70 text-purple-700 hover:bg-white hover:text-purple-800 rounded-full border-purple-200 shadow-md"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </Button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Mobile Navigation - Enhanced for better visibility */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-gradient-to-b from-purple-200/90 via-blue-200/90 to-white/90 backdrop-blur-md shadow-xl border-t border-white/50 rounded-b-2xl">
+            <div className="container mx-auto px-4 py-3">
+              <nav className="flex flex-col space-y-2">
+                {navItems.map((item) => {
+                  const isActive = activeSection === item.href.substring(1)
+                  return (
+                    <Button
+                      key={item.name}
+                      variant={isActive ? "default" : "ghost"}
+                      className={cn(
+                        "justify-start font-medium rounded-xl h-12",
+                        isActive
+                          ? "bg-gradient-to-r from-purple-200 to-blue-200 text-purple-900 shadow-md"
+                          : "text-purple-700 hover:bg-white/60 hover:text-purple-800",
+                        "hover:translate-x-1 transition-all",
+                      )}
+                      onClick={(e) => scrollToSection(e as any, item.href)}
+                    >
+                      {item.name}
+                    </Button>
+                  )
+                })}
+              </nav>
+            </div>
+          </div>
+        )}
+      </header>
+
+      {/* Home Section - New first section */}
+      <section
+        id="home"
+        className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-100 via-blue-100/80 to-white"
+      >
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
+            Welcome to Our Website
+          </h1>
+          <p className="text-xl md:text-2xl text-purple-700 mb-8 max-w-3xl mx-auto">
+            Discover our amazing services and learn more about what we offer
+          </p>
+          <Button
+            className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white px-8 py-6 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+            onClick={(e) => scrollToSection(e as any, "#about")}
+          >
+            Explore More
+          </Button>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section
+        id="about"
+        className="min-h-screen flex items-center justify-center pt-20 bg-gradient-to-br from-white via-blue-100/80 to-purple-100"
+      >
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
+            About Us
+          </h2>
+          <p className="text-xl text-purple-700 mt-4 max-w-3xl mx-auto">
+            Learn more about our company and our mission to provide exceptional services
+          </p>
+        </div>
+      </section>
+
+      <section
+        id="story"
+        className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 via-blue-100/80 to-white"
+      >
+        <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
+          Our Story
+        </h2>
+      </section>
+
+      <section
+        id="gallery"
+        className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-blue-100/80 to-purple-100"
+      >
+        <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
+          Event Gallery
+        </h2>
+      </section>
+
+      <section
+        id="blogs"
+        className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 via-blue-100/80 to-white"
+      >
+        <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
+          Blogs
+        </h2>
+      </section>
+
+      <section
+        id="courses"
+        className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-blue-100/80 to-purple-100"
+      >
+        <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
+          Courses
+        </h2>
+      </section>
+
+      <section
+        id="testimonials"
+        className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 via-blue-100/80 to-white"
+      >
+        <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
+          Testimonials
+        </h2>
+      </section>
+
+      <section
+        id="contact"
+        className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-blue-100/80 to-purple-100"
+      >
+        <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
+          Contact
+        </h2>
+      </section>
     </div>
-  );
+  )
 }
+
