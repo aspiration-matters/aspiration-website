@@ -6,6 +6,10 @@ import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+// import { GlobeDemo } from "@/app/globe/_components/Globedemo";
+import { GlobeDemo } from "./globe/_components/Globedemo";
+
+
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -159,7 +163,8 @@ export default function Home() {
       </header>
 
       {/* Home Section - New first section */}
-      <section
+
+      {/* <section
         id="home"
         className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-100 via-blue-100/80 to-white"
       >
@@ -177,7 +182,24 @@ export default function Home() {
             Explore More
           </Button>
         </div>
-      </section>
+      </section> */}
+
+
+
+
+
+<section
+  id="home"
+  className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-100 via-blue-100/80 to-white"
+>
+  <div className="container mx-auto px-6 text-end">
+  
+    {/* Add GlobeDemo here */}
+    <div className="mt-8">
+      <GlobeDemo />
+    </div>
+  </div>
+</section>
 
       {/* About Section */}
       <section
@@ -250,4 +272,8 @@ export default function Home() {
     </div>
   )
 }
+
+
+
+
 
