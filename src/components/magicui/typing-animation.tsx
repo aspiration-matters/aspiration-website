@@ -79,7 +79,7 @@
       <MotionComponent
         ref={elementRef}
         className={cn(
-          "text-5xl font-bold leading-[5rem] tracking-[-0.02em]",
+          "text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[2.5rem] sm:leading-[3rem] md:leading-[3.5rem] lg:leading-[4rem] tracking-tight sm:tracking-normal md:tracking-[-0.002em]",
           className,
         )}
         {...props}
