@@ -9,7 +9,13 @@
                   import { Button } from "@/components/ui/button"
                   import { GlobeDemo } from "./globe/_components/Globedemo"
                   import { TypingAnimation } from "@/components/magicui/typing-animation";
-                import { BoxReveal } from "@/components/magicui/box-reveal";
+                  import { BoxReveal } from "@/components/magicui/box-reveal";
+                  import { motion } from "framer-motion"
+                  import Image from "next/image";
+                  import Link from "next/link";
+                  import { TypeAnimation } from "react-type-animation";
+                  import { ShineBorder } from "@/components/magicui/shine-border";
+                  import { MagicCard } from "@/components/magicui/magic-card";
 
                   import {
                     NavigationMenu,
@@ -22,6 +28,8 @@
                     const [isScrolled, setIsScrolled] = useState(false)
                     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
                     const [activeSection, setActiveSection] = useState("home")
+                    const previewText = `We are a forward-thinking company dedicated to revolutionizing the digital landscape. Our team of passionate innovators works tirelessly to create solutions that make a difference...`;
+
 
                     // Navigation items with Home as first item
                     const navItems = [
@@ -91,7 +99,7 @@
                             <div className="flex h-20 items-center justify-between">
                               {/* Logo */}
                               <div className="text-2xl font-bold flex items-center">
-                                <img src="/logo.png" alt="Logo" className="h-auto w-auto max-w-full max-h-32" />
+                                <img src="/logo.png" alt="Logo" className="h-auto w-auto max-w-full max-h-36" />
                               </div>
 
                               {/* Desktop Navigation - Using shadcn NavigationMenu */}
@@ -218,12 +226,18 @@
 
               <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
                 <Button
+                  // className="mt-8 sm:mt-12 lg:mt-[5.0rem] bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
+                  //     hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
+                  //     text-white font-bold py-3 sm:py-4 lg:py-5 px-6 sm:px-8 lg:px-10 rounded-lg transition-all duration-300
+                  //     text-sm sm:text-base lg:text-lg w-full sm:w-auto"
                   className="mt-8 sm:mt-12 lg:mt-[5.0rem] bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
                       hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
-                      text-white font-bold py-3 sm:py-4 lg:py-5 px-6 sm:px-8 lg:px-10 rounded-lg transition-all duration-300
-                      text-sm sm:text-base lg:text-lg w-full sm:w-auto"
+                      text-white font-bold py-5 sm:py-6 lg:py-7 px-8 sm:px-10 lg:px-12 
+                      rounded-lg transition-all duration-300 text-base sm:text-lg lg:text-xl 
+                      w-full sm:w-[250px] lg:w-[200px] h-[40px] sm:h-[50px] lg:h-[50px]"
+
                   onClick={(e) => {
-                    e.preventDefault()
+                    e.preventDefault() 
                     const aboutSection = document.querySelector("#about")
                     if (aboutSection) {
                       aboutSection.scrollIntoView({ behavior: "smooth" })
@@ -269,25 +283,75 @@
               <GlobeDemo />
             </div>
           </div>
-
                         </section> 
 
 
                         {/* About Section */}
-                        <section
-                          id="about"
-                          // className="min-h-screen flex items-center justify-center pt-20 bg-gradient-to-br from-white via-blue-100/80 to-purple-100"
-                            className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm"
-                        >
-                          <div className="container mx-auto px-4 text-center">
-                            <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
-                              About Us
-                            </h2>
-                            <p className="text-xl text-purple-700 mt-4 max-w-3xl mx-auto">
-                              Learn more about our company and our mission to provide exceptional services
-                            </p>
-                          </div>
-                        </section>
+
+              
+<section id="about" className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm">
+      <div className="container mx-auto px-4 py-20">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="relative group"
+          >
+          
+         
+            
+            {/* Image container with glass effect */}
+            <div className="relative p-0.5 overflow-hidden rounded-[2.5rem] bg-white/10 backdrop-blur-sm border border-white/20 shadow-2xl">
+              <div className="relative overflow-hidden rounded-[2.4rem]">
+                <Image
+                  src="/image2.png"
+                  alt="Team working together"
+                  width={800}
+                  height={600}
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
+                />
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="space-y-6"
+          >
+            <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
+              About Us
+            </h2>
+            <div className="prose prose-lg">
+              <TypeAnimation
+                sequence={[previewText]}
+                wrapper="p"
+                speed={50}
+                className="text-gray-700 leading-relaxed"
+              />
+            </div>
+<Button
+  asChild
+  className="inline-flex items-center justify-center w-32 h-12 bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
+    hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
+    text-white font-bold rounded-lg transition-all duration-300
+    shadow-[0_4px_20px_-4px_rgba(147,51,234,0.6)] hover:shadow-[0_8px_25px_-5px_rgba(147,51,234,0.9)]"
+>
+  <Link href="/about">Read More!</Link>
+</Button>
+
+          </motion.div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+
 
                         <section
                           id="story"
@@ -348,15 +412,4 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+ 
