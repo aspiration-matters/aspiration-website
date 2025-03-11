@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion } from "framer-motion";
@@ -7,7 +8,7 @@ import Link from "next/link";
 import { TypeAnimation } from "react-type-animation";
 
 
-export default function AboutPage() {
+export default function OurStoryPage() {
     const fullText = `Our journey is rooted in a deep passion for transformation and growth. We started with a vision—to empower individuals and organizations to break free from limitations and embrace their true potential. Every step we take is driven by a commitment to inspire, uplift, and create lasting impact. We believe that success is not just about reaching the top but about the journey of self-discovery, resilience, and continuous learning. With the right mindset and guidance, anyone can redefine their path and turn aspirations into achievements. The road to greatness begins within, and we are here to walk that journey with you….`;
   
     return (
@@ -18,13 +19,7 @@ export default function AboutPage() {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            {/* <Link
-              href="/"
-              className="inline-flex items-center px-6 py-3 mb-8 text-purple-700 bg-white rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200"
-            >
-              <ArrowLeft className="mr-2 h-5 w-3" />
-              Back to Home
-            </Link> */}
+       
             <Link
   href="/"
   className="inline-flex items-center px-6 py-3 mb-8 text-purple-800 font-extrabold bg-white rounded-full 
@@ -63,7 +58,7 @@ export default function AboutPage() {
               className="space-y-6"
             >
               <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600">
-                About Our Journey
+                About Our story
               </h1>
           
 <div className="prose prose-lg font-playfair">
