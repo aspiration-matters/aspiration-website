@@ -10,6 +10,7 @@
                       import { GlobeDemo } from "./globe/_components/Globedemo"
                       import { TypingAnimation } from "@/components/magicui/typing-animation";
                       import { BoxReveal } from "@/components/magicui/box-reveal";
+                      import { SpinningText } from "@/components/magicui/spinning-text";
                     
                     
                 
@@ -187,28 +188,38 @@
                               // className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-100 via-blue-100/80 to-white"
                                 className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm"
                             >
-                              
-                              {/* <div className="container mx-auto px-10 text-end"> */}
+                           
                               <div className="container mx-auto px-4 sm:px-6 lg:px-10 text-end ">
-                          {/* <h1
-                            className="absolute text-center  ext-xl sm:text-2xl md:text-4xl lg:text-4xl xl:text-4xl  absolute top-63 right-48 2xl:text-[4rem] 
-                                        font-bold tracking-tighter
-                                        bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text" > */}                  
-                                        <h1 className="absolute text-center hidden lg:block text-3xl xl:text-4xl 2xl:text-[4rem] font-bold tracking-tighter bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text top-60 left-275 right-0">
+                             
+{/* 
+                      <h1 className="absolute text-center hidden lg:block text-3xl xl:text-4xl 2xl:text-[4rem] font-bold tracking-tighter bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text top-60 left-275 right-0">
                   <TypingAnimation>Aspiration Matters</TypingAnimation> 
-                    </h1>     
+                    </h1>      */}
+{/* 
+                    <SpinningText reverse className="text-3xl" duration={4} radius={10}>
+      Aspiration matters • Apsiration matters • Aspiration matters •
+    </SpinningText> */}
+    {/* <SpinningText 
+  reverse 
+  className="text-3xl mt-10 ml-10" 
+  duration={4} 
+  radius={12}
+>
+  Aspiration matters • Aspiration matters • Aspiration matters •
+</SpinningText> */}
 
 
-
-
-
-
-
-                                                                                                              
-
+<SpinningText 
+  reverse 
+  className="text-2xl absolute top-[550px]  left-[1490px] right-[40]" 
+  duration={150} 
+  radius={18}
+>
+  Aspiration matters • Aspiration matters • Aspiration matters •
+</SpinningText>
                     <h1 className="text-center lg:hidden text-md sm:text-lg md:text-xl font-bold tracking-tighter bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text mb-6 -mt-40">
                   <TypingAnimation>Aspiration Matters</TypingAnimation>
-              </h1>
+                   </h1>
 
       <div className="hidden sm:block w-full max-w-lg mx-auto lg:mx-0 lg:ml-6 mt-8 lg:mt-15">
                   <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
@@ -288,11 +299,13 @@
                     Get Started
                   </Button>
                 </div>
+                
 
                 {/* Globe Demo - Responsive sizing */}
                 <div className="mt-8 sm:mt-12 w-full max-w-[300px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] mx-auto">
                   <GlobeDemo />
                 </div>
+
               </div>
              </section> 
 
@@ -316,8 +329,6 @@
         <main>
           <OurStory />
         </main>
-        
-
                             <section
                               id="gallery"
                               className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-blue-100/80 to-purple-100"
@@ -326,6 +337,7 @@
                                 Event Gallery
                               </h2>
                             </section>
+
 
                             <section
                               id="blogs"
