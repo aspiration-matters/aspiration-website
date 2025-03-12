@@ -118,9 +118,9 @@
 
  <div className="mt-20 relative h-[600px] md:h-[700px]">
             {/* <img 
-    src="/camera2.png" 
+    src="/birds.png" 
     alt="Camera"
-    className="absolute -left-20 top-10 transform -translate-y-1/2 w-auto h-[20%] lg:h-[30%]" 
+    className="absolute left-10 top-50 transform -translate-y-1/2 w-auto h-[20%] lg:h-[40%]" 
   />  */}
 
             {/* Bottom-left image (smallest) */}

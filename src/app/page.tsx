@@ -11,6 +11,7 @@
                       import { TypingAnimation } from "@/components/magicui/typing-animation";
                       import { BoxReveal } from "@/components/magicui/box-reveal";
                       import { SpinningText } from "@/components/magicui/spinning-text";
+                      import { EventGallery } from "@/components/event-gallery"
                     
                     
                 
@@ -329,14 +330,19 @@
         <main>
           <OurStory />
         </main>
-                            <section
+                            {/* <section
                               id="gallery"
                               className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-blue-100/80 to-purple-100"
                             >
                               <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
                                 Event Gallery
                               </h2>
-                            </section>
+                            </section> */}
+
+    {/* event gallery */}
+  <main className="min-h-screen">
+      <EventGallery />
+    </main>
 
 
                             <section
