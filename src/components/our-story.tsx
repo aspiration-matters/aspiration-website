@@ -88,19 +88,12 @@
             {/* Section Title */}
 
 
-            {/* <motion.h2
-   initial={{ opacity: 0, y: -20 }}
-  animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-transition={{ duration: 0.6 }}
- className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute top-20 left-0 md:left-10"
->
-Our Story
-</motion.h2> */}
+   
 <motion.h2
   initial={{ opacity: 0, y: -20 }}
   animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
   transition={{ duration: 0.6 }}
-  className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute top-20 left-0 md:left-10 flex items-center gap-3"
+  className="text-4xl font-bold font-[Montserrat] text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute top-20 left-0 md:left-10 flex items-center gap-3"
 >
   Our Story <Feather className="w-8 h-8 text-purple-600" />
 </motion.h2>

@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { TypeAnimation } from "react-type-animation";
+import { Crown } from "lucide-react";
 
 
 export default function AboutPage() {
@@ -18,13 +19,6 @@ export default function AboutPage() {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            {/* <Link
-              href="/"
-              className="inline-flex items-center px-6 py-3 mb-8 text-purple-700 bg-white rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200"
-            >
-              <ArrowLeft className="mr-2 h-5 w-3" />
-              Back to Home
-            </Link> */}
             <Link
   href="/"
   className="inline-flex items-center px-6 py-3 mb-8 text-purple-800 font-extrabold bg-white rounded-full 
@@ -62,9 +56,11 @@ export default function AboutPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="space-y-6"
             >
-              <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600">
-                About Our Journey
-              </h1>
+          
+              <h1 className="flex items-center gap-2 text-3xl md:text-4xl font-bold font-[Montserrat] bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600">
+
+  About Our Journey <Crown className="w-8 h-8 text-yellow-500" /> 
+</h1>
           
 <div className="prose prose-lg font-playfair">
   <TypeAnimation
@@ -74,7 +70,6 @@ export default function AboutPage() {
     className="text-gray-800 leading-relaxed text-lg md:text-xl"
   />
 </div>
-
             </motion.div>
           </div>
         </div>

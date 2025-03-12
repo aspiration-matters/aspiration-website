@@ -10,19 +10,14 @@
                       import { GlobeDemo } from "./globe/_components/Globedemo"
                       import { TypingAnimation } from "@/components/magicui/typing-animation";
                       import { BoxReveal } from "@/components/magicui/box-reveal";
-                      import { motion } from "framer-motion"
-                      import Image from "next/image";
-                      import Link from "next/link";
-                      import { TypeAnimation } from "react-type-animation";
-                      import { ShineBorder } from "@/components/magicui/shine-border";
-                      import { useTheme } from "next-themes";
-                      import { Card } from '@/components/ui/card';
-                      import OurStory from "@/components/our-story";
-                      import { ArrowRight } from "lucide-react"
-                      import { Users } from "lucide-react"; 
-
+                    
+                    
                 
-                      
+                      import { useTheme } from "next-themes";
+                      import OurStory from "@/components/our-story";
+                      import  Philosophy from "@/components/ philosophy-section";
+                      import   About from "@/components/about-us";
+                    
                       
                       import {
                         NavigationMenu,
@@ -35,7 +30,7 @@
                         const [isScrolled, setIsScrolled] = useState(false)
                         const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
                         const [activeSection, setActiveSection] = useState("home")
-                        const previewText = `We are a group of professionals who are aiming to support individuals and organizations to identify their skill gaps and overcome stagnancy in their careers. We believe that every person has huge potential that is waiting to be tapped. With our holistically designed signature courses, people can learn life skills and ace their career objectives by identifying the treasure within and channeling it correctly.  Aspiration matters in life, “to reach for and touch the sky”. If the foundation is built on values and belief systems then the person has the power to up the game because it’s in themselves. We strive to bring out the best in each individual and help them transform their lives....`;
+                      
                         const theme = useTheme();
 
 
@@ -45,7 +40,7 @@
                         const navItems = [
                           { name: "Home", href: "#home" },
                           { name: "About Us", href: "#about" },
-                          { name: "Philosopy", href: "#Philosopy" },
+                          { name: "Philosophy", href: "#philosophy" },
                           { name: "Our Story", href: "#story" },
                           { name: "Event Gallery", href: "#gallery" },
                           { name: "Blogs", href: "#blogs" },
@@ -199,9 +194,17 @@
                             className="absolute text-center  ext-xl sm:text-2xl md:text-4xl lg:text-4xl xl:text-4xl  absolute top-63 right-48 2xl:text-[4rem] 
                                         font-bold tracking-tighter
                                         bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text" > */}                  
-                                        <h1 className="absolute text-center hidden lg:block text-3xl xl:text-4xl 2xl:text-[4rem] font-bold tracking-tighter bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text top-69 left-275 right-0">
+                                        <h1 className="absolute text-center hidden lg:block text-3xl xl:text-4xl 2xl:text-[4rem] font-bold tracking-tighter bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text top-60 left-275 right-0">
                   <TypingAnimation>Aspiration Matters</TypingAnimation> 
-                    </h1>                                                                                               
+                    </h1>     
+
+
+
+
+
+
+
+                                                                                                              
 
                     <h1 className="text-center lg:hidden text-md sm:text-lg md:text-xl font-bold tracking-tighter bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text mb-6 -mt-40">
                   <TypingAnimation>Aspiration Matters</TypingAnimation>
@@ -237,10 +240,7 @@
 
                   <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
                     <Button
-                      // className="mt-8 sm:mt-12 lg:mt-[5.0rem] bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
-                      //     hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
-                      //     text-white font-bold py-3 sm:py-4 lg:py-5 px-6 sm:px-8 lg:px-10 rounded-lg transition-all duration-300
-                      //     text-sm sm:text-base lg:text-lg w-full sm:w-auto"
+
                       className="mt-8 sm:mt-12 lg:mt-[5.0rem] bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
                           hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
                           text-white font-bold py-5 sm:py-6 lg:py-7 px-8 sm:px-10 lg:px-12 
@@ -294,118 +294,29 @@
                   <GlobeDemo />
                 </div>
               </div>
-                            </section> 
+             </section> 
 
-                            {/* About Section */}
+            
 
-                            <section id="about" 
-          className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm">
-          <div className="container mx-auto px-4 py-20">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="relative group"
-              >
-                <Card>
-                <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
-                    <div className="relative overflow-hidden rounded-[2rem] bg-white/5">
-
-                      <img
-                        src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
-                        alt="Team working together"
-                        className="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
-                      />
-                    </div>
-                </Card>
-              </motion.div>
-
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="space-y-5"
-              >
-                {/* <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700">
-                About Us
-                </h2> */}
-                {/* <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 font-[Playfair Display]">
-    About us
-</h2> */}
-
-<h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 font-[Playfair Display] flex items-center gap-3">
-    About us <Users className="w-8 h-8 text-purple-600" />
-</h2>
-
-
-
-    
-    <div className="prose prose-lg font-playfair">
-      <TypeAnimation
-        sequence={[previewText]}
-        wrapper="p"
-        speed={50}
-        className="text-gray-800 leading-relaxed text-lg md:text-xl"
-      />
-    </div>
-              
-    <button
-      className="flex items-center justify-center w-36 h-10 bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
-        hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
-        text-white font-bold rounded-lg transition-all duration-300
-        shadow-[0_4px_20px_-4px_rgba(147,51,234,0.6)] hover:shadow-[0_8px_25px_-5px_rgba(147,51,234,0.9)]"
-    >
-      <Link href="/about" className="flex items-center gap-x-2">
-        Read More <ArrowRight className="h-5 w-5" />
-      </Link>
-    </button>
-
-              </motion.div>
-            </div>
-          </div>
-        </section>         
-
-
-
-
-
-        <section
-        id="Philosopy"
-    className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 via-blue-100/80 to-white"
-    >
-    <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
-      Our Philosopy
-    </h2>
-    </section>
-
-
-
-
-
-    {/* 
-    <section
-    id="story"
-    className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 via-blue-100/80 to-white"
-    >
-    <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
-      Our Story
-    </h2>
-    </section> */}
-
-
-
-
-
-    {/* our story section */}
+{/* about us section */}
 
         <main>
-    
-          <OurStory />
+          <About />
         </main>
 
+{/* our-philosopy section */}
 
+    <main>
+          <Philosophy />
+        </main>
+
+  
+{/* our story section */}
+
+        <main>
+          <OurStory />
+        </main>
+        
 
                             <section
                               id="gallery"

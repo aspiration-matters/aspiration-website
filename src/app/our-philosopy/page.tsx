@@ -6,11 +6,20 @@ import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { TypeAnimation } from "react-type-animation";
-import { Trophy } from "lucide-react";
+import { Gem } from "lucide-react";
 
 
 export default function OurStoryPage() {
-    const fullText = `Our journey is rooted in a deep passion for transformation and growth. We started with a vision—to empower individuals and organizations to break free from limitations and embrace their true potential. Every step we take is driven by a commitment to inspire, uplift, and create lasting impact. We believe that success is not just about reaching the top but about the journey of self-discovery, resilience, and continuous learning. With the right mindset and guidance, anyone can redefine their path and turn aspirations into achievements. The road to greatness begins within, and we are here to walk that journey with you….`;
+    const fullText = `You have heard the famous adage “desire is the root cause of all achievements and accomplishments”  and “our attitude decides our altitude”.
+Yes, how we think and aspire decides our motivation level and pace of achievement. It also sets the success we reap in our endeavours. The willpower to win, the desire to succeed, and the urge to reach our full potential depend upon one’s aspirations.
+While behaviuor of human beings is rapidly evolving with all-pervasive technology, the human factor still plays a pivotal role in every organization and system.
+In the prevailing high-pressure work environment, human skills and emotional strengthening have become vital. It is our ability to recognise and understand emotions and our inherent potential in ourselves and others and use this awareness to manage our behaviours and relationships and that is absolutely essential to achieve success in business.
+Hence, by holistically strengthening our inner well-being, we can accelerate our performances.
+We at aspiration matters carefully craft capsules, training sessions, and courses that will help individuals to enhance their human skill quotient, and emotional intelligence, preserve inner well-being and bring out true potential. We guide and train professionals and individuals to aspire and achieve greater heights in life.
+All of us are blessed with unimaginable potential, we at aspiration matters provide mentoring, group training, and consultancy to help individuals discover their true potential and gain the winning edge.
+Our mantra is – 
+
+“Power up! discover the winning edge, it’s in you”`;
   
     return (
       <div className="min-h-screen bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90">
@@ -58,12 +67,16 @@ export default function OurStoryPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="space-y-6"
             >
-             <h1 className="flex items-center gap-2 text-3xl md:text-4xl   font-bold font-[Montserrat] bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600">
-
-  About Our Story   <Trophy className="w-8 h-8 text-white drop-shadow-lg" />
+              {/* <h1 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600">
+              Our Brand Story
+              </h1> */}
+              <h1 className="flex items-center gap-2 text-3xl md:text-4xl font-bold font-[Montserrat] bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600">
+   
+  Our Brand Story<Gem className="w-8 h-8 text-white drop-shadow-lg" />
 </h1>
           
-<div className="prose prose-lg font-playfair">
+
+<div className="prose prose-lg font-playfair max-w-[6000px]">
   <TypeAnimation
     sequence={[fullText]}
     wrapper="p"
