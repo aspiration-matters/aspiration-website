@@ -192,22 +192,7 @@
                            
                               <div className="container mx-auto px-4 sm:px-6 lg:px-10 text-end ">
                              
-{/* 
-                      <h1 className="absolute text-center hidden lg:block text-3xl xl:text-4xl 2xl:text-[4rem] font-bold tracking-tighter bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text top-60 left-275 right-0">
-                  <TypingAnimation>Aspiration Matters</TypingAnimation> 
-                    </h1>      */}
-{/* 
-                    <SpinningText reverse className="text-3xl" duration={4} radius={10}>
-      Aspiration matters • Apsiration matters • Aspiration matters •
-    </SpinningText> */}
-    {/* <SpinningText 
-  reverse 
-  className="text-3xl mt-10 ml-10" 
-  duration={4} 
-  radius={12}
->
-  Aspiration matters • Aspiration matters • Aspiration matters •
-</SpinningText> */}
+
 
 
 <SpinningText 
@@ -330,16 +315,10 @@
         <main>
           <OurStory />
         </main>
-                            {/* <section
-                              id="gallery"
-                              className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-blue-100/80 to-purple-100"
-                            >
-                              <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
-                                Event Gallery
-                              </h2>
-                            </section> */}
+                         
 
     {/* event gallery */}
+    
   <main className="min-h-screen">
       <EventGallery />
     </main>

@@ -93,28 +93,13 @@
   initial={{ opacity: 0, y: -20 }}
   animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
   transition={{ duration: 0.6 }}
-  className="text-4xl  top-40 font-bold font-[Montserrat] text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute top-20 left-0 md:left-10 flex items-center gap-3"
+  className="text-3xl  top-40 font-bold font-playfair text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute top-20 left-0 md:left-10 flex items-center gap-3"
 >
   Our Story <Feather className="w-8 h-8 text-purple-600" />
 </motion.h2>
 
 
-
-
-{/* <motion.h2
-  initial={{ opacity: 0, y: -20 }}
-  animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-  transition={{ duration: 0.6 }}
-  className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute top-0 left-0 md:left-10 flex items-center gap-3"
->
-  Our Story <AutoStoriesIcon sx={{ fontSize: 40, color: "#9333ea" }} />
-</motion.h2> */}
-
-
-
-            {/* <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 top-0 left-0 md:left-10">
-                Our Story
-              </h2> */}
+          
 
  <div className="mt-20 relative h-[600px] md:h-[700px]">
             {/* <img 

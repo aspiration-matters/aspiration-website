@@ -1,4 +1,8 @@
- @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+@import "tailwindcss";
+
+
 
 @plugin "tailwindcss-animate";
 
@@ -123,7 +127,9 @@
   body {
     @apply bg-background text-foreground;
   }
-}
+} 
+
+
 
 
 
@@ -142,5 +148,36 @@
 }
 
  
+@layer utilities {
+  .pause-animation {
+    animation-play-state: paused;
+  }
+}
 
+
+@keyframes scroll-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.33%);
+  }
+}
+
+@keyframes scroll-right {
+  from {
+    transform: translateX(-33.33%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-rtl {
+  animation: scroll-left 40s linear infinite;
+}
+
+.animate-scroll-ltr {
+  animation: scroll-right 40s linear infinite;
+}
 

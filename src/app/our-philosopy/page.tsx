@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { TypeAnimation } from "react-type-animation";
 import { Gem } from "lucide-react";
+import { BorderBeam } from "@/components/magicui/border-beam";
 
 
 export default function OurStoryPage() {
@@ -43,14 +44,18 @@ Our mantra is –
           </motion.div>
   
           <div className="grid md:grid-cols-2 gap-12 items-center">
+            
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
               className="relative"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 rounded-[2.5rem] blur-xl opacity-20"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 rounded-[2.5rem] blur-xl opacity-20">
+             
+              </div>
               <div className="relative overflow-hidden rounded-[2.5rem] border-2 border-white/20 shadow-2xl bg-white/10 backdrop-blur-sm">
+          
                 <Image
                   src="/image2.png"
                   alt="Team working together"
@@ -67,9 +72,7 @@ Our mantra is –
               transition={{ duration: 0.5, delay: 0.2 }}
               className="space-y-6"
             >
-              {/* <h1 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600">
-              Our Brand Story
-              </h1> */}
+           
               <h1 className="flex items-center gap-2 text-3xl md:text-4xl font-bold font-[Montserrat] bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600">
    
   Our Brand Story<Gem className="w-8 h-8 text-white drop-shadow-lg" />

@@ -6,16 +6,12 @@ import { ArrowRight, Users, Lightbulb, Target } from "lucide-react"
 import { TypeAnimation } from "react-type-animation"
 import { Card } from "@/components/ui/card"
 import { useInView } from "react-intersection-observer"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfinity } from "@fortawesome/free-solid-svg-icons";
-import { Atom } from "lucide-react";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faInfinity } from "@fortawesome/free-solid-svg-icons";
+import { BorderBeam } from "@/components/magicui/border-beam";
+import { Infinity } from "lucide-react";
 
-// This component would need to be created separately
-const ShineBorder = ({ shineColor }: { shineColor: string[] }) => {
-  return (
-    <div className="absolute inset-0 rounded-[2rem] p-[2px] bg-gradient-to-r from-transparent via-purple-500/20 to-transparent animate-shine overflow-hidden" />
-  )
-}
+
 const Philosophy = () => {
     const [ref, inView] = useInView({
         triggerOnce: true,
@@ -42,8 +38,10 @@ const Philosophy = () => {
             className="relative group"
           >
             <Card>
-              <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
+            <BorderBeam duration={2} size={500} />
+              
               <div className="relative overflow-hidden rounded-[2rem] bg-white/5">
+             
                 <img
                   src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
                   alt="Team working together"
@@ -61,8 +59,11 @@ const Philosophy = () => {
           >
     
 
-<h2 className="text-4xl font-bold font-[Montserrat] text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 font-[Playfair Display] flex items-center gap-3">
+{/* <h2 className="text-3xl font-bold font-playfair text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 font-[Playfair Display] flex items-center gap-3">
   Our Philosophy <Atom className="w-8 h-8 text-purple-600" />
+</h2> */}
+<h2 className="text-3xl font-bold font-playfair text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 flex items-center gap-3">
+  Our Philosophy <Infinity className="w-8 h-8 text-purple-600" />
 </h2>
 
             <div className="space-y-6">

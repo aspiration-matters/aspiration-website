@@ -8,8 +8,7 @@ import { useInView } from "react-intersection-observer";
 import { Users, ArrowRight } from "lucide-react";
 import { TypeAnimation } from "react-type-animation";
 import { Card } from "@/components/ui/card";
-import {ShineBorder} from "@/components/magicui/shine-border";
-
+import { BorderBeam } from "@/components/magicui/border-beam";
 
 const  About = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -29,7 +28,8 @@ const  About = () => {
                             className="relative group"
                           >
                             <Card>
-                            <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
+                            <BorderBeam duration={2} size={500} />
+
                                 <div className="relative overflow-hidden rounded-[2rem] bg-white/5">
             
                                   <img
@@ -50,13 +50,14 @@ const  About = () => {
                           >
               
             
-            <h2 className="text-4xl font-bold font-[Montserrat]  text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 font-[Playfair Display] flex items-center gap-3">
+            {/* <h2 className="text-4xl font-bold font-[Montserrat]  text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700  flex items-center gap-3">
                 About us <Users className="w-8 h-8 text-purple-600" />
-            </h2>
-            {/* <h2 className="text-4xl font-bold font-[Montserrat] text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 font-[Playfair Display] flex items-center gap-3">
-  About us <UserRound className="w-8 h-8 text-purple-600" />
-</h2> */}
-            
+            </h2> */}
+            <h2 className="text-3xl font-bold font-playfair text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 flex items-center gap-3">
+    About Us <Users className="w-8 h-8 text-purple-600" />
+</h2>
+
+     
             
                 <div className="prose prose-lg font-playfair">
                   <TypeAnimation
@@ -88,3 +89,6 @@ const  About = () => {
 };
 
 export default About;
+
+
+
