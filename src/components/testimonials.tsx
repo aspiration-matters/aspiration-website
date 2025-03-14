@@ -24,20 +24,20 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: "Sarah Johnson",
+    name: "amr",
     role: "Marketing Director",
     company: "TechVision Inc.",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "image2.jpeg",
     review:
-      "The attention to detail and the quality of the work exceeded our expectations. The team was responsive, professional, and delivered on time.",
-    rating: 5,
+      "hii guys",
+    rating: 4,
   },
   {
     id: 2,
     name: "Michael Chen",
     role: "Tech Entrepreneur",
     company: "Innovate Labs",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "image2.jpeg",
     review:
       "Working with this team transformed our business. Their innovative approach and technical expertise helped us achieve results we didn't think were possible.",
     rating: 5,
@@ -47,7 +47,7 @@ const testimonials: Testimonial[] = [
     name: "Emily Rodriguez",
     role: "Product Manager",
     company: "Nexus Solutions",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "image2.jpeg",
     review:
       "I've worked with many agencies, but none have delivered the level of quality and service that this team has. They truly understand our vision and bring it to life.",
     rating: 4,
@@ -57,7 +57,7 @@ const testimonials: Testimonial[] = [
     name: "David Thompson",
     role: "CEO",
     company: "Innovate Inc.",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "image2.jpeg",
     review:
       "The ROI we've seen from our collaboration has been incredible. Their strategic insights and execution capabilities have been instrumental to our growth.",
     rating: 5,
@@ -67,7 +67,7 @@ const testimonials: Testimonial[] = [
     name: "Aisha Patel",
     role: "Creative Director",
     company: "Design Forward",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "image2.jpeg",
     review:
       "Their creative solutions and attention to brand consistency made all the difference. The final product was exactly what we needed and more.",
     rating: 5,
@@ -127,7 +127,17 @@ const testimonials: Testimonial[] = [
     name: "James ",
     role: "Operation",
     company: "Global Systems",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "image2.jpeg",
+    review:
+      "The team's ability to understand complex requirements and deliver elegant solutions is remarkable.",
+    rating: 4,
+  },
+  {
+    id: 12,
+    name: "James ",
+    role: "Operation",
+    company: "Global Systems",
+    image: "image2.jpeg",
     review:
       "The team's ability to understand complex requirements and deliver elegant solutions is remarkable.",
     rating: 4,
