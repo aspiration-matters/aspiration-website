@@ -9,6 +9,9 @@ import { Users, ArrowRight } from "lucide-react";
 import { TypeAnimation } from "react-type-animation";
 import { Card } from "@/components/ui/card";
 import { BorderBeam } from "@/components/magicui/border-beam";
+import { Work_Sans } from 'next/font/google';
+
+const workSans = Work_Sans({ subsets: ['latin'], weight: ['600'] });
 
 const  About = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -49,14 +52,20 @@ const  About = () => {
                             className="space-y-5"
                           >
               
-            
-            {/* <h2 className="text-4xl font-bold font-[Montserrat]  text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700  flex items-center gap-3">
+{/*             
+            <h2 className="text-4xl font-bold font-[Montserrat]  text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700  flex items-center gap-3">
                 About us <Users className="w-8 h-8 text-purple-600" />
             </h2> */}
-            <h2 className="text-3xl font-bold font-playfair text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 flex items-center gap-3">
-    About Us <Users className="w-8 h-8 text-purple-600" />
-</h2>
 
+            {/* <h2 className="text-3xl font-bold font-playfair text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 flex items-center gap-3">
+    About Us <Users className="w-8 h-8 text-purple-600" />
+</h2> */}
+
+
+
+<h2 className={`${workSans.className} text-3xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 flex items-center gap-3`}>
+      About Us <Users className="w-8 h-8 text-purple-600" />
+    </h2>
      
             
                 <div className="prose prose-lg font-playfair">

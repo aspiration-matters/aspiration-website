@@ -6,10 +6,12 @@ import { ArrowRight, Users, Lightbulb, Target } from "lucide-react"
 import { TypeAnimation } from "react-type-animation"
 import { Card } from "@/components/ui/card"
 import { useInView } from "react-intersection-observer"
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faInfinity } from "@fortawesome/free-solid-svg-icons";
+
 import { BorderBeam } from "@/components/magicui/border-beam";
 import { Infinity } from "lucide-react";
+import { Work_Sans } from 'next/font/google';
+
+const workSans = Work_Sans({ subsets: ['latin'], weight: ['600'] });
 
 
 const Philosophy = () => {
@@ -62,9 +64,15 @@ const Philosophy = () => {
 {/* <h2 className="text-3xl font-bold font-playfair text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 font-[Playfair Display] flex items-center gap-3">
   Our Philosophy <Atom className="w-8 h-8 text-purple-600" />
 </h2> */}
-<h2 className="text-3xl font-bold font-playfair text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 flex items-center gap-3">
+{/* <h2 className={`${workSans.className}text-3xl  font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 flex items-center gap-3`}>
   Our Philosophy <Infinity className="w-8 h-8 text-purple-600" />
-</h2>
+</h2> */}
+
+
+<h2 className={`${workSans.className} text-3xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 flex items-center gap-3`}>
+Our Philosophy :
+    </h2>
+     
 
             <div className="space-y-6">
               <div className="space-y-2">

@@ -8,6 +8,9 @@
     import { useInView } from "react-intersection-observer"
     import { ArrowRight } from "lucide-react"
     import { Feather } from "lucide-react";
+    import { Work_Sans } from 'next/font/google';
+    
+    const workSans = Work_Sans({ subsets: ['latin'], weight: ['600'] });
  
    
 
@@ -93,13 +96,13 @@
   initial={{ opacity: 0, y: -20 }}
   animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
   transition={{ duration: 0.6 }}
-  className="text-3xl  top-40 font-bold font-playfair text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute top-20 left-0 md:left-10 flex items-center gap-3"
+  className={`${workSans.className} text-3xl  top-40 font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute top-20 left-0 md:left-10 flex items-center gap-3`}
 >
   Our Story <Feather className="w-8 h-8 text-purple-600" />
 </motion.h2>
 
 
-          
+
 
  <div className="mt-20 relative h-[600px] md:h-[700px]">
  

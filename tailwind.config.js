@@ -283,6 +283,8 @@
           playfair: ["Playfair Display", "serif"],
           montserrat: ["Montserrat", "sans-serif"],
           poppins: ["Poppins", "sans-serif"],
+          comfortaa: ["Comfortaa", "sans-serif"],
+          lora: ["Lora", "serif"],
         },
       },
     },

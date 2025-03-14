@@ -9,6 +9,10 @@ import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useMobile } from "@/app/hooks/use-mobile"
 
+ import { Work_Sans } from 'next/font/google';
+    
+    const workSans = Work_Sans({ subsets: ['latin'], weight: ['600'] });
+
 // Define the testimonial type
 interface Testimonial {
   id: number
@@ -177,35 +181,42 @@ export default function TestimonialsSection() {
     <section
       id="testimonials"
       className="relative min-h-screen flex flex-col items-center justify-center  overflow-hidden  bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm py-16 px-4 md:px-8"
-    // className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden py-16 px-4 md:px-8 "
+    
 
     >
-      {/* Background Elements */}
-      {/* <div className="absolute inset-0 -z-10 justify-center bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-[0.03]" />
-        <div className="absolute -top-40 -left-40 w-80 h-80 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
-        <div className="absolute top-0 -right-20 w-80 h-80 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
-        <div className="absolute bottom-40 right-20 w-80 h-80 bg-indigo-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000" />
-      </div> */}
+  
 
       <div className="max-w-[1400px] w-full mx-auto z-10">
-        {" "}
+        {/* {" "} */}
         {/* Increased max width */}
         <div className="text-center mb-12">
-          {" "}
-          {/* Reduced margin */}
-          <div className="inline-block mb-3">
-            <div className="flex items-center justify-center gap-1 bg-purple-100 text-purple-700 px-4 py-1.5 rounded-full text-sm font-medium">
-              <Star className="h-4 w-4 fill-purple-500 text-purple-500" />
-              <span>Trusted by 10,000+ clients worldwide</span>
-            </div>
-          </div>
-          <h2 className="text-3xl  mt-1 md:text-4xl font-bold font-playfair text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 mb-4">
-            What Our Clients Say
-          </h2>
-          <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-            Don't just take our word for it. Here's what our clients have to say about their experience working with us.
-          </p>
+          {/* {" "} */}
+{/* <h2
+  className={`${workSans.className} text-3xl md:text-4xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute top-36 left-1/2 transform -translate-x-1/2 text-center`}
+>
+  What Our Clients Say
+</h2>
+
+          <p className="text-lg text-black-700 max-w-2xl mx-auto -mt-3">
+  Don't just take our word for it. Here's what our clients have to say about their experience working with us.
+</p> */}
+
+
+<h2
+  className={`${workSans.className} text-3xl md:text-4xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute top-34 left-1/2 transform -translate-x-1/2 text-center`}
+>
+  What Our Clients Say
+</h2>
+
+<p className="text-lg text-black-700 max-w-2xl mx-auto -mt-15">
+  Don't just take our word for it. Here's what our clients have to say about their experience working with us.
+</p>
+
+
+
+
+
+
         </div>
         <div className="relative">
           {/* Carousel Navigation */}

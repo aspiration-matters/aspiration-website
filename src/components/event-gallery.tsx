@@ -6,8 +6,11 @@ import React from 'react';
 import { useState } from "react";
 import { X, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import { BorderBeam } from "@/components/magicui/border-beam";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPhotoFilm } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faPhotoFilm } from "@fortawesome/free-solid-svg-icons";
+import { Work_Sans } from 'next/font/google';
+
+const workSans = Work_Sans({ subsets: ['latin'], weight: ['600'] });
 
 // Sample images for the gallery
 const galleryImages = [
@@ -126,11 +129,23 @@ export function EventGallery() {
     
 
 <div className="w-full max-w-7xl mx-auto mb-12 text-center px-4">
-  <h2 className="text-3xl md:text-4xl  font-bold font-playfair text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
+  {/* <h2 className="text-3xl md:text-4xl  font-bold font-playfair text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
 
  flex items-center justify-center gap-3 mb-4">
     Event Gallery <FontAwesomeIcon icon={faPhotoFilm} className="text-purple-600 text-2xl" />
-  </h2>
+  </h2> */}
+
+
+{/* <h2 className={`${workSans.className} text-3xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute  items-center justify-center gap-3`}>
+Event Gallery :
+    </h2> */}
+    <h2
+  className={`${workSans.className} text-3xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute top-0 left-1/2 transform -translate-x-1/2 mt-28`}
+>
+  Event Gallery :
+</h2>
+
+     
 
 
 

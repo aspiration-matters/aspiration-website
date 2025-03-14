@@ -7,6 +7,11 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+
+
+ import { Work_Sans } from 'next/font/google';
+    
+    const workSans = Work_Sans({ subsets: ['latin'], weight: ['600'] });
 import {
   Carousel,
   CarouselContent,
@@ -83,11 +88,15 @@ export default function Blog() {
         id="blogs"
         className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm py-20"
       >
-        <h2 className="text-3xl md:text-4xl font-bold font-playfair text-transparent bg-clip-text 
+        {/* <h2 className={`${workSans.className}text-3xl md:text-4xl font-medium text-transparent bg-clip-text 
           bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
-          flex items-center justify-center gap-3 mb-16">
-          Food For Thought
-        </h2>
+          flex items-center justify-center gap-3  `}>
+          Food For Thought :
+        </h2> */}
+
+        <h2 className={`${workSans.className} text-3xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 flex items-center gap-3 mb-16`}>
+        Food For Thought :
+    </h2>
 
         <div className="w-full max-w-7xl mx-auto relative px-4">
           <Carousel
