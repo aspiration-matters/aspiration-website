@@ -1,29 +1,26 @@
-"use client"
 
-import Link from "next/link"
-import { motion } from "framer-motion"
-import { ArrowRight, Users, Lightbulb, Target } from "lucide-react"
-import { TypeAnimation } from "react-type-animation"
-import { Card } from "@/components/ui/card"
-import { useInView } from "react-intersection-observer"
+"use client";
 
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { ArrowRight, Lightbulb, Target } from "lucide-react";
+import { TypeAnimation } from "react-type-animation";
+import { Card } from "@/components/ui/card";
+import { useInView } from "react-intersection-observer";
 import { BorderBeam } from "@/components/magicui/border-beam";
-import { Infinity } from "lucide-react";
 import { Work_Sans } from 'next/font/google';
 
 const workSans = Work_Sans({ subsets: ['latin'], weight: ['600'] });
 
-
 const Philosophy = () => {
-    const [ref, inView] = useInView({
-        triggerOnce: true,
-        threshold: 0.1,
-    })
-  const visionText =
-    "To build a community of inspired individuals and organizations who strive for the betterment of themselves and society for human connection, collaboration, and co-creation. So, they develop the power to uplift each other."
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+  
+  const visionText = "To build a community of inspired individuals and organizations who strive for the betterment of themselves and society for human connection, collaboration, and co-creation. So, they develop the power to uplift each other.";
 
-  const missionText =
-    "Our mission is to help individuals uncover their inner-self by assisting them to unfold their true potential and capitalize on it to accelerate their performance. We aim to build an inspiring community of high-performing professionals who can take accountability for striving to create an influential and supportive culture for society."
+  const missionText = "Our mission is to help individuals uncover their inner-self by assisting them to unfold their true potential and capitalize on it to accelerate their performance. We aim to build an inspiring community of high-performing professionals who can take accountability for striving to create an influential and supportive culture for society.";
 
   return (
     <section
@@ -39,15 +36,13 @@ const Philosophy = () => {
             transition={{ duration: 0.5 }}
             className="relative group"
           >
-            <Card>
-            <BorderBeam duration={2} size={500} />
-              
-              <div className="relative overflow-hidden rounded-[2rem] bg-white/5">
-             
+            <Card className="p-0 overflow-hidden rounded-[2rem]">
+              <BorderBeam duration={2} size={500} />
+              <div className="relative overflow-hidden bg-white/5">
                 <img
                   src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
                   alt="Team working together"
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
+                  className="w-full aspect-[16/10] object-cover transform group-hover:scale-105 transition duration-500"
                 />
               </div>
             </Card>
@@ -59,20 +54,9 @@ const Philosophy = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="space-y-8"
           >
-    
-
-{/* <h2 className="text-3xl font-bold font-playfair text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 font-[Playfair Display] flex items-center gap-3">
-  Our Philosophy <Atom className="w-8 h-8 text-purple-600" />
-</h2> */}
-{/* <h2 className={`${workSans.className}text-3xl  font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 flex items-center gap-3`}>
-  Our Philosophy <Infinity className="w-8 h-8 text-purple-600" />
-</h2> */}
-
-
-<h2 className={`${workSans.className} text-3xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 flex items-center gap-3`}>
-Our Philosophy :
-    </h2>
-     
+            <h2 className={`${workSans.className} text-4xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 flex items-center gap-3`}>
+              Our Philosophy
+            </h2>
 
             <div className="space-y-6">
               <div className="space-y-2">
@@ -118,7 +102,7 @@ Our Philosophy :
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 export default Philosophy;
