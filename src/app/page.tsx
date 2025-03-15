@@ -19,12 +19,10 @@
                     
                     
                 
-                      import { useTheme } from "next-themes";
+                      // import { useTheme } from "next-themes";
                       import OurStory from "@/components/our-story";
                       import  Philosophy from "@/components/ philosophy-section";
                       import   About from "@/components/about-us";
-                    
-                      
                       import {
                         NavigationMenu,
                         NavigationMenuItem,
@@ -37,7 +35,7 @@
                         const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
                         const [activeSection, setActiveSection] = useState("home")
                       
-                        const theme = useTheme();
+                        // const theme = useTheme();
 
 
                   
@@ -344,15 +342,12 @@
           <TestimonialsSection />
         </main>
 
-                          
-
-
+                      
 
         <main>                    
           <ContactPage />
         </main>
-
-
+       
 
                           </div>
                         )

@@ -60,7 +60,7 @@ export default function OurStoryPage() {
             >
              <h1 className="flex items-center gap-2 text-3xl md:text-4xl   font-bold font-[Montserrat] bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600">
 
-  About Our Story   <Trophy className="w-8 h-8 text-yellow-500" />
+  About Our Story   <Trophy className="w-8 h-8 text-white drop-shadow-lg" />
 </h1>
           
 <div className="prose prose-lg font-playfair">

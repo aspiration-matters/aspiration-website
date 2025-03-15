@@ -98,7 +98,7 @@
   transition={{ duration: 0.6 }}
   className={`${workSans.className} text-3xl  top-40 font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute top-20 left-0 md:left-10 flex items-center gap-3`}
 >
-  Our Story <Feather className="w-8 h-8 text-purple-600" />
+  Our Story <Feather className="w-8 h-8 text-indigo-400 animate-spin-slow" />
 </motion.h2>
 
 

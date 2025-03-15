@@ -5,9 +5,9 @@
 import React from 'react';
 import { useState } from "react";
 import { X, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+
 import { BorderBeam } from "@/components/magicui/border-beam";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faPhotoFilm } from "@fortawesome/free-solid-svg-icons";
+import { Camera } from "lucide-react";
 import { Work_Sans } from 'next/font/google';
 
 const workSans = Work_Sans({ subsets: ['latin'], weight: ['600'] });
@@ -129,21 +129,19 @@ export function EventGallery() {
     
 
 <div className="w-full max-w-7xl mx-auto mb-12 text-center px-4">
-  {/* <h2 className="text-3xl md:text-4xl  font-bold font-playfair text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
 
- flex items-center justify-center gap-3 mb-4">
-    Event Gallery <FontAwesomeIcon icon={faPhotoFilm} className="text-purple-600 text-2xl" />
-  </h2> */}
-
-
-{/* <h2 className={`${workSans.className} text-3xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute  items-center justify-center gap-3`}>
-Event Gallery :
-    </h2> */}
-    <h2
-  className={`${workSans.className} text-3xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute top-0 left-1/2 transform -translate-x-1/2 mt-28`}
+    {/* <h2
+  className={`${workSans.className} text-4xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute top-0 left-1/2 transform -translate-x-1/2 mt-28`}
 >
-  Event Gallery :
+  Event Gallery 
+</h2> */}
+<h2
+  className={`${workSans.className} text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute top-0 left-1/2 transform -translate-x-1/2 mt-28 flex items-center gap-5 drop-shadow-2xl`}
+>
+  <Camera className="w-8 h-8 text-indigo-400 animate-spin-slow" />
+  Event Gallery
 </h2>
+
 
      
 
@@ -211,7 +209,7 @@ Event Gallery :
 
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute -top-14 right-0 text-black hover:text-purple-300 transition-colors"
+              className="absolute -top-7 right-4 text-black hover:text-purple-300 transition-colors"
               aria-label="Close"
             >
               <X size={28} className="stroke-[1.5px]" />
@@ -238,6 +236,8 @@ Event Gallery :
                   aria-label="Previous image"
                 >
                   <ChevronLeft className="w-6 h-6 text-white" />
+            
+
                 </button>
 
                 <button

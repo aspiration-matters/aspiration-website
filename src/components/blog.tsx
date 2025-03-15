@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Sprout } from "lucide-react";
 
 
  import { Work_Sans } from 'next/font/google';
@@ -95,7 +96,7 @@ export default function Blog() {
         </h2> */}
 
         <h2 className={`${workSans.className} text-3xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 flex items-center gap-3 mb-16`}>
-        Food For Thought :
+        Food For Thought <Sprout className="w-8 h-8 text-indigo-400 animate-spin-slow" />
     </h2>
 
         <div className="w-full max-w-7xl mx-auto relative px-4">

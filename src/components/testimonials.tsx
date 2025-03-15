@@ -190,16 +190,8 @@ export default function TestimonialsSection() {
         {/* {" "} */}
         {/* Increased max width */}
         <div className="text-center mb-12">
-          {/* {" "} */}
-{/* <h2
-  className={`${workSans.className} text-3xl md:text-4xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute top-36 left-1/2 transform -translate-x-1/2 text-center`}
->
-  What Our Clients Say
-</h2>
+        
 
-          <p className="text-lg text-black-700 max-w-2xl mx-auto -mt-3">
-  Don't just take our word for it. Here's what our clients have to say about their experience working with us.
-</p> */}
 
 
 <h2

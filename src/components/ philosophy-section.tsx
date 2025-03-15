@@ -54,7 +54,7 @@ const Philosophy = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="space-y-8"
           >
-            <h2 className={`${workSans.className} text-4xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 flex items-center gap-3`}>
+            <h2 className={`${workSans.className} text-3xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 flex items-center gap-3`}>
               Our Philosophy
             </h2>
 

@@ -51,7 +51,7 @@ const About = () => {
             className="space-y-5"
           >
             <h2 className={`${workSans.className} text-3xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 flex items-center gap-3`}>
-              About Us <Users className="w-8 h-8 text-purple-600" />
+              About us <Users className="w-8 h-8 text-purple-600" />
             </h2>
      
             <div className="prose prose-lg font-playfair">
