@@ -13,7 +13,8 @@
                       import { SpinningText } from "@/components/magicui/spinning-text";
                       import { EventGallery } from "@/components/event-gallery"
                       import Blog from "@/components/blog"; 
-                      import  TestimonialsSection  from "@/components/testimonials"
+                      import  TestimonialsSection  from "@/components/testimonials" 
+                      import  ContactPage from "@/components/contact-us" 
 
                     
                     
@@ -343,14 +344,13 @@
           <TestimonialsSection />
         </main>
 
-                            <section
-                              id="contact"
-                              className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm"
-                            >
-                              <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
-                                Contact
-                              </h2>
-                            </section>
+                          
+
+
+
+        <main>                    
+          <ContactPage />
+        </main>
 
 
 
