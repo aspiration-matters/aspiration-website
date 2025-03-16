@@ -45,19 +45,14 @@ export default function SignupPage() {
         className="w-full max-w-lg relative"
       >
 
-{/* <BorderBeam duration={8} size={100} /> */}
-<div className="absolute inset-0 rounded-2xl">
-          <BorderBeam duration={8} size={100} className="rounded-2xl" />
-        </div>
-<Card className="relative z-10">
+
+
+        <Card className="relative z-10 overflow-hidden">
+        <BorderBeam duration={8} size={100} />
           <CardHeader>
-           {/* <CardTitle className="text-2xl">Create an Account</CardTitle> */}
-             
-            {/* <CardTitle className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-              Create an Account
-            </CardTitle> */}
+          
             <div className="flex justify-center">
-  <CardTitle className="text-2xl ">
+  <CardTitle className="text-2xl  font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700">
     Create an Account
   </CardTitle>
 
@@ -119,7 +114,8 @@ export default function SignupPage() {
                     required
                   />
                 </div>
-                <Button type="submit" className="w-full">
+                <Button type="submit" className="w-full bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
+        hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 ">
                   Sign Up
                 </Button>
               </div>
