@@ -15,6 +15,7 @@
                       import Blog from "@/components/blog"; 
                       import  TestimonialsSection  from "@/components/testimonials" 
                       import  ContactPage from "@/components/contact-us" 
+                      import  CoursePage from "@/components/course" 
 
                     
                     
@@ -328,14 +329,22 @@
           <Blog />
         </main>
 
-                            <section
+                            {/* <section
                               id="courses"
                               className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-blue-100/80 to-purple-100"
                             >
                               <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
-                                Courses
+                                Courses CoursePage
                               </h2>
-                            </section>
+                            </section> */}
+
+            <main>                    
+          <CoursePage />
+        </main>
+
+
+
+
 
 
         <main>                    
