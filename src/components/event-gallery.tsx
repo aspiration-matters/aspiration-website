@@ -130,11 +130,7 @@ export function EventGallery() {
 
 <div className="w-full max-w-7xl mx-auto mb-12 text-center px-4">
 
-    {/* <h2
-  className={`${workSans.className} text-4xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute top-0 left-1/2 transform -translate-x-1/2 mt-28`}
->
-  Event Gallery 
-</h2> */}
+
 <h2
   className={`${workSans.className} text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute top-0 left-1/2 transform -translate-x-1/2 mt-28 flex items-center gap-5 drop-shadow-2xl`}
 >
