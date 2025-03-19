@@ -210,7 +210,7 @@ import { useCart } from "@/context/cart-context"
 import Link from "next/link"
 import { useState } from "react"
 import { courses } from "@/data/courses"
-import { PaymentDialog } from "@/components/ui/payment-dialog"
+import  {PaymentDialog}  from "@/components/ui/payment-dialog"
 
 export function CartItems() {
   const [selectedCourse, setSelectedCourse] = useState<typeof courses[0] | null>(null)

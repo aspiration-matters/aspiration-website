@@ -307,6 +307,12 @@
 
 //new
 
+
+
+
+
+
+
 "use client"
 
 import { useState } from "react"
@@ -477,3 +483,79 @@ export function PaymentDialog({ open, onOpenChange, amount }: PaymentDialogProps
   )
 }
 
+
+
+// "use client"
+
+// import { useState } from "react";
+// import { loadStripe } from "@stripe/stripe-js";
+// import { Elements, useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+// import { Button } from "@/components/ui/button";
+// import { toast } from "sonner";
+// import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+
+
+// const stripePromise = loadStripe("your-publishable-key-here");
+
+// function CheckoutForm({ amount }: { amount: number }) {
+//   const stripe = useStripe();
+//   const elements = useElements();
+//   const [loading, setLoading] = useState(false);
+
+//   const handleSubmit = async (e: React.FormEvent) => {
+//     e.preventDefault();
+//     setLoading(true);
+
+//     if (!stripe || !elements) return;
+
+//     // Call backend to create a PaymentIntent
+//     const res = await fetch("/api/create-payment-intent", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({ amount }),
+//     });
+
+//     const { clientSecret } = await res.json();
+
+//     const result = await stripe.confirmCardPayment(clientSecret, {
+//       payment_method: {
+//         card: elements.getElement(CardElement)!,
+//       },
+//     });
+
+//     if (result.error) {
+//       toast.error("Payment Failed", { description: result.error.message });
+//     } else {
+//       toast.success("Payment Successful!", { description: "Course added to My Learning." });
+//       // Redirect to "My Learning" section
+//     }
+//     setLoading(false);
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit} className="space-y-4">
+//       <CardElement className="p-3 border rounded-md" />
+//       <Button type="submit" className="w-full" disabled={loading}>
+//         {loading ? "Processing..." : `Pay ₹${amount}`}
+//       </Button>
+//     </form>
+//   );
+// }
+
+// export default function PaymentDialog({ open, onOpenChange, amount }: { open: boolean; onOpenChange: (open: boolean) => void; amount: number }) {
+//   return (
+//     <Dialog open={open} onOpenChange={onOpenChange}>
+//       <DialogContent className="sm:max-w-[600px]">
+//         <DialogHeader>
+//           <DialogTitle>Complete Payment</DialogTitle>
+//         </DialogHeader>
+//         <div className="px-4 py-2 bg-muted rounded-lg mb-4">
+//           <span className="text-lg font-semibold">₹{amount}</span>
+//         </div>
+//         <Elements stripe={stripePromise}>
+//           <CheckoutForm amount={amount} />
+//         </Elements>
+//       </DialogContent>
+//     </Dialog>
+//   );
+// }
