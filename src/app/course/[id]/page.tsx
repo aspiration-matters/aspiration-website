@@ -14,6 +14,7 @@ import { useCart } from "@/context/cart-context"
 import { toast } from "sonner"
 import Link from "next/link"
 
+
 export default function CoursePage() {
   const params = useParams()
   const router = useRouter()
@@ -84,7 +85,7 @@ export default function CoursePage() {
       <div className="container mx-auto px-4 py-6">
         <div className="flex items-center gap-2 mb-4">
           <Button variant="ghost" size="sm" asChild>
-            <Link href="/">
+            <Link href="/course-platform">
               <ChevronLeft className="h-4 w-4 mr-1" />
               Back to courses
             </Link>
@@ -279,4 +280,3 @@ export default function CoursePage() {
     </CourseLayout>
   )
 }
-

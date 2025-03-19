@@ -35,10 +35,11 @@ export default function ContactPage() {
               </div>
             </div>
             <div className="flex items-center gap-3 group p-4 rounded-lg transition-all duration-300 hover:bg-white/50 hover:shadow-lg cursor-pointer">
-              <FaPhone className="w-5 h-5 text-purple-600 flex-shrink-0 group-hover:scale-110 transition-transform" />
+              {/* <FaPhone className="w-5 h-5 -scale-x-100 text-purple-600 flex-shrink-0 group-hover: transition-transform" /> */}
+              <FaPhone className="w-5 h-5 -scale-x-100 text-purple-600 flex-shrink-0 transition-transform group-hover:scale-110 group-hover:-scale-x-100" />
               <div>
                 <p className="font-medium text-lg group-hover:text-purple-600 transition-colors">Mobile:</p>
-                <p className="text-muted-foreground group-hover:text-gray-700 transition-colors">+91 8500865284</p>
+                <p className=" text-muted-foreground group-hover:text-gray-700 transition-colors">+91 8500865284</p>
               </div>
             </div>
             <div className="flex items-center gap-3 group p-4 rounded-lg transition-all duration-300 hover:bg-white/50 hover:shadow-lg cursor-pointer">
@@ -76,7 +77,8 @@ export default function ContactPage() {
                     value="whatsapp"
                     className="rounded-md data-[state=active]:bg-green-500 data-[state=active]:text-white py-3 transition-all duration-300"
                   >
-                    <FaPhone className="h-4 w-4 mr-2" />
+                    <FaPhone className="h-4 w-4  -scale-x-100 mr-2" />
+                    {/* <FaPhone className="w-5 h-5 text-purple-600 flex-shrink-0 group-hover:scale-110 transition-transform" /> */}
                     WhatsApp
                   </TabsTrigger>
                 </TabsList>
@@ -124,7 +126,7 @@ export default function ContactPage() {
                   <form className="space-y-6">
                     <div className="space-y-2">
                       <div className="relative">
-                        <FaUser className="absolute left-3 top-3.5 h-5 w-5 text-green-500" />
+                        <FaUser className="absolute left-3 -scale-x-100 top-3.5 h-5 w-5 text-green-500" />
                         <Input
                           id="whatsapp-name"
                           placeholder="Your name"
@@ -134,7 +136,7 @@ export default function ContactPage() {
                     </div>
                     <div className="space-y-2">
                       <div className="relative">
-                        <FaPhone className="absolute left-3 top-3.5 h-5 w-5 text-green-500" />
+                        <FaPhone className="absolute left-3  -scale-x-100 top-3.5 h-5 w-5 text-green-500" />
                         <Input
                           id="whatsapp-number"
                           type="tel"
@@ -176,9 +178,13 @@ export default function ContactPage() {
               className="transform hover:scale-110 transition-transform"
             >
               <Button size="icon" variant="ghost" className="h-10 w-10 rounded-full bg-white/80 hover:bg-white">
-                <FaInstagram className="h-6 w-6 text-purple-600" />
+                {/* <FaInstagram className="h-6 w-6 text-purple-600" /> */}
+                <div className="h-7 w-7 bg-gradient-to-br from-yellow-500 via-pink-500 to-purple-600 rounded-full flex items-center justify-center">
+  <FaInstagram className="h-7 w-7 text-white" />
+</div>
               </Button>
-            </a>
+
+            </a> 
             <a
               href="https://www.linkedin.com/in/kumarineelima/"
               target="_blank"
@@ -186,7 +192,10 @@ export default function ContactPage() {
               className="transform hover:scale-110 transition-transform"
             >
               <Button size="icon" variant="ghost" className="h-10 w-10 rounded-full bg-white/80 hover:bg-white">
-                <FaLinkedin className="h-8 w-8 text-purple-600" />
+                {/* <FaLinkedin className="h-8 w-8 text-purple-600" /> */}
+                <div className="h-7 w-7 bg-gradient-to-br from-[#0077B5] to-[#004182] rounded-full flex items-center justify-center">
+  <FaLinkedin className="h-7 w-7 text-white" />
+</div>
               </Button>
             </a>
             <a
@@ -196,7 +205,11 @@ export default function ContactPage() {
               className="transform hover:scale-110 transition-transform"
             >
               <Button size="icon" variant="ghost" className="h-10 w-10 rounded-full bg-white/80 hover:bg-white">
-                <FaYoutube className="h-8 w-8 text-purple-600" />
+                {/* <FaYoutube className="h-8 w-8 text-purple-600" /> */}
+                <div className="h-7 w-7 bg-gradient-to-br from-[#FF0000] to-[#C00000] rounded-full flex items-center justify-center">
+  <FaYoutube className="h-7 w-7 text-white" />
+</div>
+
               </Button>
             </a>
           </div>
