@@ -128,10 +128,23 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html, body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+
+} 
+
+/* @layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
   body {
     @apply bg-background text-foreground;
   }
-} 
+}  */
+
+
 
 
 .bg-grid-pattern {
@@ -187,5 +200,107 @@
 
 .animate-scroll-ltr {
   animation: scroll-right 40s linear infinite;
+}
+
+
+
+
+/* 
+.spinning-text {
+  top: 72%;
+}
+
+
+@media (min-width: 375px) and (max-width: 390px) { 
+  .spinning-text {
+    top: 76%;
+  }
+}
+
+
+@media (min-width: 391px) and (max-width: 430px) {
+  .spinning-text {
+    top: 67%;
+  }
+}
+
+
+@media (min-width: 360px) and (max-width: 412px) {
+  .spinning-text {
+    top: 71%;
+  }
+}
+
+
+@media (min-width: 768px) and (max-width: 1023px) { 
+  .spinning-text {
+    top: 80%;
+  }
+}
+
+
+@media (min-width: 1024px) { 
+  .spinning-text {
+    top: 55%;
+  }
+}
+ */
+
+
+
+
+
+ /* Default for small phones (iPhone SE, small Androids) */
+.spinning-text {
+  top: 74%; /* Moved iPhone SE down */
+}
+
+/* iPhone 12 Pro (Move up slightly) */
+@media (min-width: 375px) and (max-width: 390px) { 
+  .spinning-text {
+    top: 74%;
+  }
+}
+
+/* iPhone 12 Pro Max, Samsung Galaxy S8+, S20 Ultra (Move up slightly) */
+@media (min-width: 391px) and (max-width: 430px) {
+  .spinning-text {
+    top: 65%;
+  }
+}
+
+/* Samsung Galaxy S8+, S20 Ultra (Move up slightly) */
+@media (min-width: 360px) and (max-width: 412px) {
+  .spinning-text {
+    top: 69%;
+  }
+}
+
+/* Pixel Devices (Move up slightly) */
+@media (min-width: 412px) and (max-width: 415px) {
+  .spinning-text {
+    top: 66%;
+  }
+}
+
+/* Galaxy Z Fold (Move up slightly) */
+@media (min-width: 653px) and (max-width: 754px) {
+  .spinning-text {
+    top: 63%;
+  }
+}
+
+/* iPads and Tablets */
+@media (min-width: 768px) and (max-width: 1023px) { 
+  .spinning-text {
+    top: 78%;
+  }
+}
+
+/* Laptops and larger screens */
+@media (min-width: 1024px) { 
+  .spinning-text {
+    top: 55%;
+  }
 }
 
