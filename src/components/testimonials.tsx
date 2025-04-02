@@ -9,9 +9,9 @@ import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useMobile } from "@/app/hooks/use-mobile"
 
- import { Work_Sans } from 'next/font/google';
-    
-    const workSans = Work_Sans({ subsets: ['latin'], weight: ['600'] });
+import { Work_Sans } from 'next/font/google';
+
+const workSans = Work_Sans({ subsets: ['latin'], weight: ['600'] });
 
 // Define the testimonial type
 interface Testimonial {
@@ -181,28 +181,28 @@ export default function TestimonialsSection() {
     <section
       id="testimonials"
       className="relative min-h-screen flex flex-col items-center justify-center  overflow-hidden  bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm py-16 px-4 md:px-8"
-    
+
 
     >
-  
+
 
       <div className="max-w-[1400px] w-full mx-auto z-10">
         {/* {" "} */}
         {/* Increased max width */}
         <div className="text-center mb-12">
-        
 
 
 
-<h2
-  className={`${workSans.className} text-3xl md:text-4xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute top-34 left-1/2 transform -translate-x-1/2 text-center`}
->
-  What Our Clients Say
-</h2>
 
-<p className="text-lg text-black-700 max-w-2xl mx-auto -mt-15">
-  Don't just take our word for it. Here's what our clients have to say about their experience working with us.
-</p>
+          <h2
+            className={`${workSans.className} text-3xl md:text-4xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute top-34 left-1/2 transform -translate-x-1/2 text-center`}
+          >
+            What Our Clients Say
+          </h2>
+
+          <p className="text-lg text-black-700 max-w-2xl mx-auto -mt-15">
+            Don't just take our word for it. Here's what our clients have to say about their experience working with us.
+          </p>
 
 
 
@@ -349,4 +349,6 @@ function TestimonialCard({ testimonial, delay }: TestimonialCardProps) {
     </motion.div>
   )
 }
+
+
 

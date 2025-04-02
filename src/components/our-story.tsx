@@ -394,9 +394,6 @@ const OurStory = () => {
         {/* Section Title */}
 
     
-
-
-
         <motion.h2
   initial={{ opacity: 0, y: -20 }}
   animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}

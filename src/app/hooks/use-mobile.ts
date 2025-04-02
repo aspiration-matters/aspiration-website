@@ -4,25 +4,57 @@
 // import { useState, useEffect } from "react"
 
 // export const useMobile = () => {
-//   const [isMobile, setIsMobile] = useState(false)
+//     const [isMobile, setIsMobile] = useState(false)
 
-//   useEffect(() => {
-//     const handleResize = () => {
-//       setIsMobile(window.innerWidth < 768) // Adjust breakpoint as needed
-//     }
+//     useEffect(() => {
+//         const handleResize = () => {
+//             setIsMobile(window.innerWidth < 768) // Adjust breakpoint as needed
+//         }
 
-//     // Set initial value
-//     handleResize()
+//         // Set initial value
+//         handleResize()
 
-//     // Listen for window resize events
-//     window.addEventListener("resize", handleResize)
+//         // Listen for window resize events
+//         window.addEventListener("resize", handleResize)
 
-//     // Clean up event listener on unmount
-//     return () => {
-//       window.removeEventListener("resize", handleResize)
-//     }
-//   }, [])
+//         // Clean up event listener on unmount
+//         return () => {
+//             window.removeEventListener("resize", handleResize)
+//         }
+//     }, [])
 
-//   return isMobile
+//     return isMobile
 // }
+
+
+
+"use client"
+
+import { useState, useEffect } from "react"
+
+export const useMobile = () => {
+    const [isMobile, setIsMobile] = useState(false)
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768) // Adjust breakpoint as needed
+        }
+
+        // Set initial value
+        handleResize()
+
+        // Add event listener
+        window.addEventListener("resize", handleResize)
+
+        // Remove event listener on cleanup
+        return () => window.removeEventListener("resize", handleResize)
+    }, [])
+
+    return isMobile
+}
+
+
+
+
+
 
