@@ -78,8 +78,7 @@ export default function TestimonialsSection() {
 
 
 
-  // const itemsPerPage = isMobile ? 1 : Math.min(4, testimonials.length)
-  // const totalPages = Math.ceil(testimonials.length / itemsPerPage)
+
 
   const [itemsPerPage, setItemsPerPage] = useState(4)
 
@@ -114,8 +113,6 @@ export default function TestimonialsSection() {
   }
 
 
-  // if (!mounted) return null
-  // if (loading) return <div className="text-center py-20">Loading testimonials...</div>
   if (loading) {
     return (
       <div className="flex justify-center items-center py-20">
