@@ -1,7 +1,4 @@
 
-  
-
-
 // const config = {
 //   darkMode: ["class"],
 //   content: [
@@ -17,10 +14,26 @@
 //       center: true,
 //       padding: "2rem",
 //       screens: {
-//         "2xl": "1400px",
+//         xs: "360px",
+//         sm: "640px",
+//         md: "768px",
+//         lg: "1024px",
+//         xl: "1280px",
+//         "2xl": "1536px",
+//         "3xl": "1920px",
+//         "4xl": "2560px",
+//         "5xl": "3440px",
+//         "6xl": "3840px",
 //       },
 //     },
 //     extend: {
+//       screens: {
+//         xs: "360px",
+//         "3xl": "1920px",
+//         "4xl": "2560px",
+//         "5xl": "3440px",
+//         "6xl": "3840px",
+//       },
 //       colors: {
 //         border: "hsl(var(--border))",
 //         input: "hsl(var(--input))",
@@ -70,10 +83,15 @@
 //           from: { height: "var(--radix-accordion-content-height)" },
 //           to: { height: "0" },
 //         },
+//         "spin-slow": {
+//           from: { transform: "rotate(0deg)" },
+//           to: { transform: "rotate(360deg)" },
+//         },
 //       },
 //       animation: {
 //         "accordion-down": "accordion-down 0.2s ease-out",
 //         "accordion-up": "accordion-up 0.2s ease-out",
+//         "spin-slow": "spin-slow 10s linear infinite",
 //       },
 //     },
 //   },
@@ -82,9 +100,6 @@
 
 // module.exports = config
 // export default config
-
-
-
 
 
 
@@ -123,6 +138,13 @@ const config = {
         "4xl": "2560px",
         "5xl": "3440px",
         "6xl": "3840px",
+      },
+      spacing: {
+        // Custom logo heights
+        18: "4.5rem",  // 72px
+        22: "5.5rem",  // 88px
+        26: "6.5rem",  // 104px
+        30: "7.5rem",  // 120px
       },
       colors: {
         border: "hsl(var(--border))",
@@ -186,9 +208,8 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} 
+}
 
 module.exports = config
 export default config
-
 

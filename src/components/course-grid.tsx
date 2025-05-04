@@ -1,8 +1,6 @@
 
 
-"use client" 
-
-
+"use client"
 import { useState, useEffect } from "react"
 import { CourseCard } from "@/components/course-card"
 import { courses as allCoursesData } from "@/data/courses"
@@ -68,63 +66,3 @@ export function CourseGrid({ purchasedOnly = false, searchQuery = "" }: CourseGr
 
 
 
-
-
-// ///something
-
-// import React from 'react';
-// import { courses } from '../data/courses';
-// import { CourseVideo } from './CourseVideo';
-
-// interface CourseGridProps {
-//   purchasedOnly?: boolean;
-//   searchQuery?: string;
-// }
-
-// export const CourseGrid: React.FC<CourseGridProps> = ({ purchasedOnly = false, searchQuery = '' }) => {
-//   const filteredCourses = courses.filter(course => {
-//     const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-//       course.instructor.toLowerCase().includes(searchQuery.toLowerCase()) ||
-//       course.description.toLowerCase().includes(searchQuery.toLowerCase());
-    
-//     return purchasedOnly ? course.purchased && matchesSearch : matchesSearch;
-//   });
-
-//   return (
-//     <div className="grid grid-cols-1 gap-8">
-//       {filteredCourses.map(course => (
-//         <div key={course.id} className="bg-white rounded-xl shadow-lg overflow-hidden">
-//           <div className="p-6">
-//             <h3 className="text-2xl font-bold text-gray-900 mb-4">{course.title}</h3>
-//             <div className="flex items-center gap-4 mb-6">
-//               <img
-//                 src={`https://ui-avatars.com/api/?name=${encodeURIComponent(course.instructor)}&background=random`}
-//                 alt={course.instructor}
-//                 className="w-10 h-10 rounded-full"
-//               />
-//               <div>
-//                 <p className="text-sm font-medium text-gray-900">{course.instructor}</p>
-//                 <p className="text-sm text-gray-500">{course.duration}</p>
-//               </div>
-//             </div>
-//             <CourseVideo course={course} />
-//             <div className="mt-6">
-//               <h4 className="font-semibold text-gray-900 mb-2">Course Description</h4>
-//               <p className="text-gray-600">{course.description}</p>
-//             </div>
-//             <div className="mt-4 flex flex-wrap gap-2">
-//               {course.tags.map(tag => (
-//                 <span
-//                   key={tag}
-//                   className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
-//                 >
-//                   {tag}
-//                 </span>
-//               ))}
-//             </div>
-//           </div>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };

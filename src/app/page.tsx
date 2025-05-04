@@ -17,6 +17,8 @@ import Blog from "@/components/blog";
 import TestimonialsSection from "@/components/testimonials"
 import ContactPage from "@/components/contact-us"
 import CoursePage from "@/components/course"
+import Image from "next/image"
+
 
 
 
@@ -110,7 +112,17 @@ export default function Home() {
           <div className="flex h-20 items-center justify-between">
             {/* Logo */}
             <div className="text-2xl font-bold flex items-center">
-              <img src="/logo.png" alt="Logo" className="h-auto w-auto max-w-full max-h-36" />
+
+              <Image
+                src="/logo.png"
+                alt="Logo"
+                width={300}
+                height={80}
+                className="h-22 sm:h-22 md:h-20 lg:h-24 xl:h-32 w-auto"
+                priority
+              />
+
+
             </div>
 
             {/* Desktop Navigation - Using shadcn NavigationMenu */}

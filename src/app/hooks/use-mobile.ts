@@ -14,44 +14,44 @@
 //         // Set initial value
 //         handleResize()
 
-//         // Listen for window resize events
+//         // Add event listener
 //         window.addEventListener("resize", handleResize)
 
-//         // Clean up event listener on unmount
-//         return () => {
-//             window.removeEventListener("resize", handleResize)
-//         }
+//         // Remove event listener on cleanup
+//         return () => window.removeEventListener("resize", handleResize)
 //     }, [])
 
 //     return isMobile
 // }
 
-
-
 "use client"
 
 import { useState, useEffect } from "react"
 
-export const useMobile = () => {
+export function useMobile(breakpoint = 768) {
     const [isMobile, setIsMobile] = useState(false)
 
     useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 768) // Adjust breakpoint as needed
+        // Check if window is defined (browser environment)
+        if (typeof window === "undefined") return
+
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < breakpoint)
         }
 
-        // Set initial value
-        handleResize()
+        // Initial check
+        checkMobile()
 
-        // Add event listener
-        window.addEventListener("resize", handleResize)
+        // Add event listener for window resize
+        window.addEventListener("resize", checkMobile)
 
-        // Remove event listener on cleanup
-        return () => window.removeEventListener("resize", handleResize)
-    }, [])
+        // Cleanup
+        return () => window.removeEventListener("resize", checkMobile)
+    }, [breakpoint])
 
     return isMobile
 }
+
 
 
 

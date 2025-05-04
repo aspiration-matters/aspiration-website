@@ -83,11 +83,11 @@ export function EventGallery() {
         secondRow: []
       };
     }
-    
+
     const midPoint = Math.ceil(images.length / 2);
     const firstRowImages = images.slice(0, midPoint);
     const secondRowImages = images.slice(midPoint);
-    
+
     // Triple the images in each row for smooth infinite scroll
     return {
       firstRow: [...firstRowImages, ...firstRowImages, ...firstRowImages],
@@ -120,30 +120,30 @@ export function EventGallery() {
   };
 
   return (
-  
 
-    
+
+
     <section id="gallery"
-    className="relative min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm py-16 px-0 overflow-hidden">
-     
-    
-
-<div className="w-full max-w-7xl mx-auto mb-12 text-center px-4">
-
-
-<h2
-  className={`${workSans.className} text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute top-0 left-1/2 transform -translate-x-1/2 mt-28 flex items-center gap-5 drop-shadow-2xl`}
->
-  <Camera className="w-8 h-8 text-indigo-400 animate-spin-slow" />
-  Event Gallery
-</h2>
-
-
-     
+      className="relative min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm py-16 px-0 overflow-hidden">
 
 
 
-        
+      <div className="w-full max-w-7xl mx-auto mb-12 text-center px-4">
+
+
+        <h2
+          className={`${workSans.className} text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 absolute top-0 left-1/2 transform -translate-x-1/2 mt-28 flex items-center gap-5 drop-shadow-2xl`}
+        >
+          <Camera className="w-8 h-8 text-indigo-400 animate-spin-slow" />
+          Event Gallery
+        </h2>
+
+
+
+
+
+
+
         <p className="text-gray-600 max-w-2xl mx-auto">
           Explore our collection of memorable moments captured during our events
         </p>
@@ -195,12 +195,12 @@ export function EventGallery() {
           className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm"
           onClick={() => setSelectedImage(null)}
         >
-  
+
           <div
             className="relative max-w-5xl max-h-[90vh] w-full animate-in fade-in zoom-in-95 duration-300"
             onClick={(e) => e.stopPropagation()}
           >
-          
+
 
 
             <button
@@ -218,9 +218,9 @@ export function EventGallery() {
                   alt={selectedImage.alt}
                   className="w-full h-auto max-h-[70vh] object-contain rounded-lg"
                 />
-                     
-                     <BorderBeam duration={2} size={1000} />
-    
+
+                <BorderBeam duration={2} size={1000} />
+
 
                 {/* Carousel navigation buttons */}
                 <button
@@ -232,7 +232,7 @@ export function EventGallery() {
                   aria-label="Previous image"
                 >
                   <ChevronLeft className="w-6 h-6 text-white" />
-            
+
 
                 </button>
 
@@ -290,41 +290,35 @@ function GalleryImage({
         <img
           src={image.src || "/placeholder.svg"}
           alt={image.alt}
-          className={`w-full h-full object-cover transition-transform duration-700 ${
-            isHovered ? "scale-110" : ""
-          }`}
+          className={`w-full h-full object-cover transition-transform duration-700 ${isHovered ? "scale-110" : ""
+            }`}
           loading="lazy"
         />
 
         <div
-          className={`absolute inset-0 bg-gradient-to-t from-purple-900/70 via-blue-900/30 to-transparent transition-opacity duration-300 ${
-            isHovered ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute inset-0 bg-gradient-to-t from-purple-900/70 via-blue-900/30 to-transparent transition-opacity duration-300 ${isHovered ? "opacity-100" : "opacity-0"
+            }`}
         ></div>
 
         <div
-          className={`absolute inset-0 bg-gradient-to-tr from-white via-white/0 to-white/0 transition-opacity duration-500 transform -translate-x-full ${
-            isHovered ? "opacity-30 translate-x-0" : "opacity-0"
-          }`}
+          className={`absolute inset-0 bg-gradient-to-tr from-white via-white/0 to-white/0 transition-opacity duration-500 transform -translate-x-full ${isHovered ? "opacity-30 translate-x-0" : "opacity-0"
+            }`}
         ></div>
 
         <div
-          className={`absolute inset-0 rounded-xl transition-opacity duration-300 ${
-            isHovered ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute inset-0 rounded-xl transition-opacity duration-300 ${isHovered ? "opacity-100" : "opacity-0"
+            }`}
         >
           <div
-            className={`absolute -inset-0.5 rounded-xl bg-gradient-to-br from-purple-500 via-blue-500 to-indigo-500 blur-md transition-opacity duration-500 ${
-              isHovered ? "opacity-30" : "opacity-0"
-            }`}
+            className={`absolute -inset-0.5 rounded-xl bg-gradient-to-br from-purple-500 via-blue-500 to-indigo-500 blur-md transition-opacity duration-500 ${isHovered ? "opacity-30" : "opacity-0"
+              }`}
           ></div>
         </div>
 
         <div
-          className={`absolute inset-0 flex items-center justify-center transition-all duration-300 transform ${
-            isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          }`}
-          
+          className={`absolute inset-0 flex items-center justify-center transition-all duration-300 transform ${isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+
         >
           <span className="px-5 py-2.5 bg-white/20 backdrop-blur-md rounded-full text-white text-sm font-medium border border-white/30 shadow-lg flex items-center gap-2">
             <ExternalLink className="w-4 h-4" />

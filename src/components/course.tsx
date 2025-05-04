@@ -1,4 +1,8 @@
 
+
+
+//reposniev
+
 "use client"
 
 import { useEffect, useRef, useState } from "react"
@@ -14,7 +18,7 @@ export default function CoursePage() {
   const isInView = useInView(quoteRef, { once: true })
   const [typedText, setTypedText] = useState("")
 
-const quoteText = `Desire is the root cause of all achievements\nand accomplishments, have a strong desire\nto achieve what you want..!`;
+  const quoteText = `Desire is the root cause of all achievements\nand accomplishments, have a strong desire\nto achieve what you want..!`
 
   useEffect(() => {
     // Auto-play video when component mounts
@@ -39,32 +43,40 @@ const quoteText = `Desire is the root cause of all achievements\nand accomplishm
   }, [])
 
   return (
-    <section id="courses" className="h-screen flex flex-col">
+    <section id="courses" className="min-h-screen md:h-screen flex flex-col">
       {/* Top Section - Video Background with Quote and Button */}
       <div className="flex-1 relative overflow-hidden">
         {/* Video Background - Moved down by adding padding-top */}
-        <div className="absolute inset-0 pt-20">
-          <video ref={videoRef} className="w-full h-full  bg-black object-cover" loop muted playsInline>
-            <source
-              src="/video.mp4"
-              type="video/mp4"
-            />
+        <div className="absolute inset-0 pt-10 md:pt-20">
+          <video ref={videoRef} className="w-full h-full bg-black object-cover" loop muted playsInline>
+            <source src="/video.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
 
-       
-<div className="relative z-10 h-full flex items-start pt-20">
-          <div className="container mx-auto px-12">
+        <div className="relative z-10 h-full flex items-start pt-10 md:pt-20">
+          <div className="container mx-auto px-4 md:px-12">
             <motion.div
               ref={quoteRef}
-              className="max-w-lg pt-30 -ml-24"
+              className="max-w-lg mx-auto md:mx-0 md:pt-30 md:-ml-24"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.8 }}
             >
+              {/* <motion.h3
+                className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 md:mb-8 leading-tight text-center md:text-left"
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                Unleash Your Potential,
+                <br />
+                Elevate Your Success
+                <br />
+                The Power Lies Within You!
+              </motion.h3> */}
               <motion.h3
-                className="text-3xl md:text-4xl font-bold text-white mb-8 leading-tight"
+                className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 md:mb-8 leading-tight text-center md:text-left"
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -76,51 +88,69 @@ const quoteText = `Desire is the root cause of all achievements\nand accomplishm
                 The Power Lies Within You!
               </motion.h3>
 
-              <motion.div
+
+              {/* <motion.div
+                className="flex justify-center md:justify-start"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
                 <Button
                   asChild
-                  className=" bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
-        hover:from-purple-700 hover:via-purple-500 hover:to-purple-900  text-white px-8 py-6 rounded-md text-lg font-medium"
+                  className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
+                  hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 text-white 
+                  px-6 py-5 md:px-8 md:py-6 rounded-md text-base md:text-lg font-medium"
                 >
-                  <Link href="/signup">Explore Courses</Link>
+                  <Link href="/course-platform">Explore Courses</Link>
+                </Button>
+              </motion.div> */}
+              <motion.div
+                className="flex justify-center md:justify-start"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                <Button
+                  asChild
+                  className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
+      hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 text-white 
+      px-6 py-5 md:px-8 md:py-6 rounded-md text-base md:text-lg font-medium"
+                >
+                  <Link href="/course-platform">Explore Courses</Link>
                 </Button>
               </motion.div>
+
             </motion.div>
-          </div> 
-         </div>
+          </div>
+        </div>
       </div>
-      
 
       {/* Bottom Section - Instructor and Quote */}
       <div className="flex-1 bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm flex flex-col lg:flex-row">
         {/* Left side - Instructor Image and Info */}
-        <div className="w-full lg:w-1/2 flex flex-col items-center  justify-center ml-[100px] ">
-          <div className="flex flex-col items-center -mt-6">
-            <div className="relative w-56 h-72 mb-4">
+        <div className="w-full lg:w-1/2 flex flex-col items-center justify-center py-8 lg:py-0 lg:ml-[100px]">
+          <div className="flex flex-col items-center lg:-mt-6">
+            <div className="relative w-44 h-56 md:w-56 md:h-72 mb-4">
               <Image src="/instructor.png" alt="Neelima Kumari" fill className="object-contain" priority />
             </div>
-            {/* <h3 className="text-2xl font-bold text-center mb-1">Neelima Kumari</h3> */}
             <Link href="/instructors/neelima-kumari" className="group transition-all duration-300">
-              <h3 className="text-2xl font-bold text-center mb-1 group-hover:text-purple-700">Neelima Kumari</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-center mb-1 group-hover:text-purple-700">
+                Neelima Kumari
+              </h3>
               <div className="h-0.5 w-0 group-hover:w-full bg-purple-600 transition-all duration-300 mx-auto"></div>
             </Link>
-            <p className="text-gray-700 text-center">Founder & Lead Trainer at Aspiration Matters</p>
+            <p className="text-gray-700 text-center text-sm md:text-base">
+              Founder & Lead Trainer at Aspiration Matters
+            </p>
           </div>
         </div>
 
         {/* Right side - Quote with typing effect */}
-        <div className="w-full lg:w-1/2 flex flex-col justify-center -ml-55">
+        <div className="w-full lg:w-1/2 flex flex-col justify-center px-6 py-8 lg:py-0 lg:-ml-55">
           <blockquote className="relative">
-        
-            <p className="text-2xl md:text-3xl text-gray-800 leading-relaxed mb-6 whitespace-pre-line">
-  "{typedText}"
-</p>
-
-            {/* <footer className="text-left text-gray-700 font-medium text-xl">- Neelima Kumari</footer> */}
+            <p className="text-xl md:text-2xl lg:text-3xl text-gray-800 leading-relaxed mb-6 whitespace-pre-line text-center lg:text-left">
+              "{typedText}"
+            </p>
           </blockquote>
         </div>
       </div>

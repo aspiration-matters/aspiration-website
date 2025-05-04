@@ -37,7 +37,7 @@ const About = () => {
               <BorderBeam duration={2} size={500} />
               <div className="relative aspect-video sm:aspect-square md:aspect-[4/3] lg:aspect-[16/9] overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
+                  src="http://davxwabdnxl03.cloudfront.net/about-section/image1.jpg"
                   alt="Team working together"
                   className="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
                 />

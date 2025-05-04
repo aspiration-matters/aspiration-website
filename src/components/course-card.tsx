@@ -1,6 +1,5 @@
 
 
-
 // "use client"
 
 // import { useState, useRef, useEffect } from "react"
@@ -13,7 +12,6 @@
 // import { useCart } from "@/context/cart-context"
 // import type { Course } from "@/context/cart-context"
 // import { Badge } from "@/components/ui/badge"
-// import { cn } from "@/lib/utils"
 
 // interface CourseCardProps {
 //   course: Course & {
@@ -50,9 +48,7 @@
 //         const isLastInRow = (index + 1) % 4 === 0
 
 //         const topPosition = cardRect.top + window.scrollY - hoverCardRect.height / 2 + cardRect.height / 2
-//         const leftPosition = isLastInRow
-//           ? cardRect.left - hoverCardRect.width - 16
-//           : cardRect.right + 16
+//         const leftPosition = isLastInRow ? cardRect.left - hoverCardRect.width - 16 : cardRect.right + 16
 
 //         setHoverPosition({
 //           top: topPosition,
@@ -86,26 +82,18 @@
 //       onMouseEnter={() => setIsHovered(true)}
 //       onMouseLeave={() => setIsHovered(false)}
 //     >
-//       <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-[1.02] bg-white">
+//       <Card className="overflow-hidden transition-all duration-300  hover:scale-[1.02] bg-white">
 //         <div className="aspect-video relative">
-//           <Image
-//             src={course.thumbnail || "/placeholder.svg"}
-//             alt={course.title}
-//             fill
-//             className={cn(
-//               "object-cover",
-//               isHovered && course.videoPreview ? "opacity-0" : "opacity-100"
-//             )}
-//           />
+//           {/* Show either the image or video based on hover state, but no opacity transitions */}
+//           {(!isHovered || !course.videoPreview) && (
+//             <Image src={course.thumbnail || "/placeholder.svg"} alt={course.title} fill className="object-cover" />
+//           )}
 
-//           {course.videoPreview && (
+//           {isHovered && course.videoPreview && (
 //             <video
 //               ref={videoRef}
 //               src={course.videoPreview}
-//               className={cn(
-//                 "absolute inset-0 w-full h-full object-cover transition-opacity duration-300",
-//                 isHovered ? "opacity-100" : "opacity-0"
-//               )}
+//               className="absolute inset-0 w-full h-full object-cover"
 //               muted
 //               loop
 //               playsInline
@@ -124,7 +112,9 @@
 //         </CardContent>
 //         <CardFooter className="p-4 pt-0 flex justify-between items-center bg-white">
 //           <div className="flex flex-col">
-//             <span className="text-2xl font-bold">₹{course.price}</span>
+//             <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+//               ₹{course.price}
+//             </span>
 //             <span className="text-sm text-muted-foreground line-through">₹{course.originalPrice}</span>
 //           </div>
 //           {course.purchased ? (
@@ -165,10 +155,7 @@
 //       {isHovered && (
 //         <div
 //           ref={hoverCardRef}
-//           className={cn(
-//             "fixed z-50 bg-white rounded-lg shadow-xl border border-purple-100 p-6 w-80",
-//             "transition-all duration-200 opacity-0 group-hover:opacity-100"
-//           )}
+//           className="fixed z-50 bg-white rounded-lg shadow-xl border border-purple-100 p-6 w-80 group-hover:opacity-100"
 //           style={{
 //             top: `${hoverPosition.top}px`,
 //             left: `${hoverPosition.left}px`,
@@ -176,14 +163,7 @@
 //         >
 //           {course.videoPreview && (
 //             <div className="relative mb-4 aspect-video rounded-md overflow-hidden">
-//               <video 
-//                 src={course.videoPreview} 
-//                 className="w-full h-full object-cover" 
-//                 autoPlay 
-//                 muted 
-//                 loop 
-//                 playsInline 
-//               />
+//               <video src={course.videoPreview} className="w-full h-full object-cover" autoPlay muted loop playsInline />
 //               <div className="absolute inset-0 flex items-center justify-center">
 //                 <Play className="w-12 h-12 text-white opacity-70" />
 //               </div>
@@ -314,11 +294,16 @@ export function CourseCard({ course, index }: CourseCardProps) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <Card className="overflow-hidden transition-all duration-300  hover:scale-[1.02] bg-white">
-        <div className="aspect-video relative">
+      <Card className="overflow-hidden transition-all duration-300 hover:scale-[1.02] bg-white p-0">
+        <div className="aspect-video relative overflow-hidden">
           {/* Show either the image or video based on hover state, but no opacity transitions */}
           {(!isHovered || !course.videoPreview) && (
-            <Image src={course.thumbnail || "/placeholder.svg"} alt={course.title} fill className="object-cover" />
+            <Image
+              src={course.thumbnail || "/placeholder.svg"}
+              alt={course.title}
+              fill
+              className="object-cover w-full h-full"
+            />
           )}
 
           {isHovered && course.videoPreview && (
@@ -442,6 +427,3 @@ export function CourseCard({ course, index }: CourseCardProps) {
     </div>
   )
 }
-
-
-

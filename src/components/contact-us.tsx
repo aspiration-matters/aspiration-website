@@ -16,42 +16,42 @@ const workSans = Work_Sans({ subsets: ['latin'], weight: ['600'] });
 export default function ContactPage() {
   return (
     <section id="contact"
-    className="min-h-screen flex flex-col justify-between bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 p-4 md:p-8">
-    <div className="w-full max-w-7xl mx-auto grid md:grid-cols-2 gap-8 flex-grow flex items-center">
-      {/* Left Column - Contact Info */}
-      <div className="flex items-center justify-center h-full">
-        <div className="space-y-8 max-w-md">
-          <h2 className={`${workSans.className} text-3xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 mb-8 flex items-center gap-3`}>
-            Contact us here.. <FaCommentDots className="w-6 h-6 text-purple-600 animate-bounce" />
-          </h2>
+      className="min-h-screen flex flex-col justify-between bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 p-4 md:p-8">
+      <div className="w-full max-w-7xl mx-auto grid md:grid-cols-2 gap-8 flex-grow flex items-center">
+        {/* Left Column - Contact Info */}
+        <div className="flex items-center justify-center h-full">
+          <div className="space-y-8 max-w-md">
+            <h2 className={`${workSans.className} text-3xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 mb-8 flex items-center gap-3`}>
+              Contact us here.. <FaCommentDots className="w-6 h-6 text-purple-600 animate-bounce" />
+            </h2>
 
-          <div className="space-y-6">
-            <div className="flex items-start gap-3 group p-4 rounded-lg transition-all duration-300 hover:bg-white/50 hover:shadow-lg cursor-pointer">
-              <FaMapMarkerAlt className="w-5 h-5 text-purple-600 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform" />
-              <div>
-                <p className="font-medium text-lg group-hover:text-purple-600 transition-colors">Address:</p>
-                <p className="text-muted-foreground group-hover:text-gray-700 transition-colors">DNo. 47-9-14, Dwarka Nagar,</p>
-                <p className="text-muted-foreground group-hover:text-gray-700 transition-colors">Visakhapatnam - 530016</p>
+            <div className="space-y-6">
+              <div className="flex items-start gap-3 group p-4 rounded-lg transition-all duration-300 hover:bg-white/50 hover:shadow-lg cursor-pointer">
+                <FaMapMarkerAlt className="w-5 h-5 text-purple-600 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                <div>
+                  <p className="font-medium text-lg group-hover:text-purple-600 transition-colors">Address:</p>
+                  <p className="text-muted-foreground group-hover:text-gray-700 transition-colors">DNo. 47-9-14, Dwarka Nagar,</p>
+                  <p className="text-muted-foreground group-hover:text-gray-700 transition-colors">Visakhapatnam - 530016</p>
+                </div>
               </div>
-            </div>
-            <div className="flex items-center gap-3 group p-4 rounded-lg transition-all duration-300 hover:bg-white/50 hover:shadow-lg cursor-pointer">
-              {/* <FaPhone className="w-5 h-5 -scale-x-100 text-purple-600 flex-shrink-0 group-hover: transition-transform" /> */}
-              <FaPhone className="w-5 h-5 -scale-x-100 text-purple-600 flex-shrink-0 transition-transform group-hover:scale-110 group-hover:-scale-x-100" />
-              <div>
-                <p className="font-medium text-lg group-hover:text-purple-600 transition-colors">Mobile:</p>
-                <p className=" text-muted-foreground group-hover:text-gray-700 transition-colors">+91 8500865284</p>
+              <div className="flex items-center gap-3 group p-4 rounded-lg transition-all duration-300 hover:bg-white/50 hover:shadow-lg cursor-pointer">
+                {/* <FaPhone className="w-5 h-5 -scale-x-100 text-purple-600 flex-shrink-0 group-hover: transition-transform" /> */}
+                <FaPhone className="w-5 h-5 -scale-x-100 text-purple-600 flex-shrink-0 transition-transform group-hover:scale-110 group-hover:-scale-x-100" />
+                <div>
+                  <p className="font-medium text-lg group-hover:text-purple-600 transition-colors">Mobile:</p>
+                  <p className=" text-muted-foreground group-hover:text-gray-700 transition-colors">+91 8500865284</p>
+                </div>
               </div>
-            </div>
-            <div className="flex items-center gap-3 group p-4 rounded-lg transition-all duration-300 hover:bg-white/50 hover:shadow-lg cursor-pointer">
-              <FaEnvelope className="w-5 h-5 text-purple-600 flex-shrink-0 group-hover:scale-110 transition-transform" />
-              <div>
-                <p className="font-medium text-lg group-hover:text-purple-600 transition-colors">Email:</p>
-                <p className="text-muted-foreground group-hover:text-gray-700 transition-colors">aspirationmatters@gmail.com</p>
+              <div className="flex items-center gap-3 group p-4 rounded-lg transition-all duration-300 hover:bg-white/50 hover:shadow-lg cursor-pointer">
+                <FaEnvelope className="w-5 h-5 text-purple-600 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                <div>
+                  <p className="font-medium text-lg group-hover:text-purple-600 transition-colors">Email:</p>
+                  <p className="text-muted-foreground group-hover:text-gray-700 transition-colors">aspirationmatters@gmail.com</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
 
         {/* Right Column - Contact Form */}
@@ -180,11 +180,11 @@ export default function ContactPage() {
               <Button size="icon" variant="ghost" className="h-10 w-10 rounded-full bg-white/80 hover:bg-white">
                 {/* <FaInstagram className="h-6 w-6 text-purple-600" /> */}
                 <div className="h-7 w-7 bg-gradient-to-br from-yellow-500 via-pink-500 to-purple-600 rounded-full flex items-center justify-center">
-  <FaInstagram className="h-7 w-7 text-white" />
-</div>
+                  <FaInstagram className="h-7 w-7 text-white" />
+                </div>
               </Button>
 
-            </a> 
+            </a>
             <a
               href="https://www.linkedin.com/in/kumarineelima/"
               target="_blank"
@@ -194,8 +194,8 @@ export default function ContactPage() {
               <Button size="icon" variant="ghost" className="h-10 w-10 rounded-full bg-white/80 hover:bg-white">
                 {/* <FaLinkedin className="h-8 w-8 text-purple-600" /> */}
                 <div className="h-7 w-7 bg-gradient-to-br from-[#0077B5] to-[#004182] rounded-full flex items-center justify-center">
-  <FaLinkedin className="h-7 w-7 text-white" />
-</div>
+                  <FaLinkedin className="h-7 w-7 text-white" />
+                </div>
               </Button>
             </a>
             <a
@@ -207,8 +207,8 @@ export default function ContactPage() {
               <Button size="icon" variant="ghost" className="h-10 w-10 rounded-full bg-white/80 hover:bg-white">
                 {/* <FaYoutube className="h-8 w-8 text-purple-600" /> */}
                 <div className="h-7 w-7 bg-gradient-to-br from-[#FF0000] to-[#C00000] rounded-full flex items-center justify-center">
-  <FaYoutube className="h-7 w-7 text-white" />
-</div>
+                  <FaYoutube className="h-7 w-7 text-white" />
+                </div>
 
               </Button>
             </a>
