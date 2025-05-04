@@ -1,16 +1,10 @@
 
-
-//18 updated
-
-
-
-
 "use client"
 
 import type React from "react"
 import { createContext, useContext, useState, useEffect } from "react"
 
-// Extend the Window interface to include our custom property
+
 declare global {
   interface Window {
     purchasedCourseIds?: string[]
@@ -68,7 +62,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }, [])
 
-  // Save cart to localStorage when it changes
+
   useEffect(() => {
     try {
       localStorage.setItem("courseCart", JSON.stringify(cartItems))

@@ -1,5 +1,4 @@
 
-
 "use client"
 
 import type React from "react"
@@ -12,6 +11,7 @@ import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useMobile } from "@/app/hooks/use-mobile"
 import { Work_Sans } from "next/font/google"
+import toast from "react-hot-toast"
 import {
   Dialog,
   DialogContent,
@@ -26,151 +26,79 @@ import { Textarea } from "@/components/ui/textarea"
 
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["600"] })
 
-// Define the testimonial type
 interface Testimonial {
-  id: number
+  id: string
   name: string
   role: string
   company: string
-  image: string
+  image_url: string
   review: string
-  rating: number
+  rating: string
 }
 
-// Sample testimonial data - this would come from your admin panel
-const testimonials: Testimonial[] = [
-  {
-    id: 1,
-    name: "amr",
-    role: "Marketing Director",
-    company: "TechVision Inc.",
-    image: "image2.jpeg",
-    review: "hii guys",
-    rating: 4,
-  },
-  {
-    id: 2,
-    name: "Michael Chen",
-    role: "Tech Entrepreneur",
-    company: "Innovate Labs",
-    image: "image2.jpeg",
-    review:
-      "Working with this team transformed our business. Their innovative approach and technical expertise helped us achieve results we didn't think were possible.",
-    rating: 5,
-  },
-  {
-    id: 3,
-    name: "Emily Rodriguez",
-    role: "Product Manager",
-    company: "Nexus Solutions",
-    image: "image2.jpeg",
-    review:
-      "I've worked with many agencies, but none have delivered the level of quality and service that this team has. They truly understand our vision and bring it to life.",
-    rating: 4,
-  },
-  {
-    id: 4,
-    name: "David Thompson",
-    role: "CEO",
-    company: "Innovate Inc.",
-    image: "image2.jpeg",
-    review:
-      "The ROI we've seen from our collaboration has been incredible. Their strategic insights and execution capabilities have been instrumental to our growth.",
-    rating: 5,
-  },
-  {
-    id: 5,
-    name: "Aisha Patel",
-    role: "Creative Director",
-    company: "Design Forward",
-    image: "image2.jpeg",
-    review:
-      "Their creative solutions and attention to brand consistency made all the difference. The final product was exactly what we needed and more.",
-    rating: 5,
-  },
-  {
-    id: 6,
-    name: "James Wilson",
-    role: "Operations Manager",
-    company: "Global Systems",
-    image: "image2.jpeg",
-    review:
-      "The team's ability to understand complex requirements and deliver elegant solutions is remarkable. They've become an extension of our team.",
-    rating: 4,
-  },
-  {
-    id: 7,
-    name: "James Wilson",
-    role: "Operations Manager",
-    company: "Global Systems",
-    image: "image2.jpeg",
-    review:
-      "The team's ability to understand complex requirements and deliver elegant solutions is remarkable. They've become an extension of our team.",
-    rating: 4,
-  },
-  {
-    id: 8,
-    name: "James Wilson",
-    role: "Operations Manager",
-    company: "",
-    image: "image2.jpeg",
-    review:
-      "The team's ability to understand complex requirements and deliver elegant solutions is remarkable. They've become an extension of our team.",
-    rating: 4,
-  },
-  {
-    id: 9,
-    name: "James Wilson",
-    role: "Operations Manager",
-    company: "",
-    image: "image2.jpeg",
-    review:
-      "The team's ability to understand complex requirements and deliver elegant solutions is remarkable. They've become an extension of our team.",
-    rating: 4,
-  },
-  {
-    id: 10,
-    name: "Wilson",
-    role: " Manager",
-    company: "Global Systems",
-    image: "image3.jpeg",
-    review:
-      "The team's ability to understand complex requirements and deliver elegant solutions is remarkable. They've become an extension of our team.",
-    rating: 4,
-  },
-  {
-    id: 11,
-    name: "James ",
-    role: "Operation",
-    company: "Global Systems",
-    image: "image2.jpeg",
-    review: "The team's ability to understand complex requirements and deliver elegant solutions is remarkable.",
-    rating: 4,
-  },
-  {
-    id: 12,
-    name: "James ",
-    role: "Operation",
-    company: "Global Systems",
-    image: "image2.jpeg",
-    review: "The team's ability to understand complex requirements and deliver elegant solutions is remarkable.",
-    rating: 4,
-  },
-]
+
 
 export default function TestimonialsSection() {
+
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([])
+  const [loading, setLoading] = useState(true)
   const [activeIndex, setActiveIndex] = useState(0)
   const [isRatingModalOpen, setIsRatingModalOpen] = useState(false)
   const isMobile = useMobile()
-  const itemsPerPage = isMobile ? 1 : Math.min(4, testimonials.length)
-  const totalPages = Math.ceil(testimonials.length / itemsPerPage)
   const containerRef = useRef<HTMLDivElement>(null)
   const [mounted, setMounted] = useState(false)
 
-  // Fix hydration mismatch by only rendering after component mounts
+
   useEffect(() => {
     setMounted(true)
+
+    const fetchTestimonials = async () => {
+      try {
+        const res = await fetch("http://127.0.0.1:8080/testimonial/verified")
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch testimonials")
+        }
+        const json = await res.json()
+        console.log("Testimonials fetched:", json)
+        setTestimonials(json.data || [])
+
+
+        // const json = await res.json()
+        // setTestimonials(json.data)
+      } catch (err: any) {
+        toast.error(err.message || "An error occurred while fetching testimonials")
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchTestimonials()
   }, [])
+
+
+
+  // const itemsPerPage = isMobile ? 1 : Math.min(4, testimonials.length)
+  // const totalPages = Math.ceil(testimonials.length / itemsPerPage)
+
+  const [itemsPerPage, setItemsPerPage] = useState(4)
+
+  useEffect(() => {
+    const updateItemsPerPage = () => {
+      if (typeof window !== "undefined") {
+        setItemsPerPage(window.innerWidth < 768 ? 1 : Math.min(4, testimonials.length))
+      }
+    }
+    updateItemsPerPage()
+    window.addEventListener("resize", updateItemsPerPage)
+    return () => window.removeEventListener("resize", updateItemsPerPage)
+  }, [testimonials.length])
+
+  // const totalPages = Math.ceil(testimonials.length / itemsPerPage)
+  const safeItemsPerPage = Math.max(1, itemsPerPage)
+  const totalPages = Math.ceil(testimonials.length / safeItemsPerPage)
+  const startIndex = activeIndex * safeItemsPerPage
+
 
   const nextSlide = () => {
     setActiveIndex((prev) => (prev === totalPages - 1 ? 0 : prev + 1))
@@ -180,15 +108,22 @@ export default function TestimonialsSection() {
     setActiveIndex((prev) => (prev === 0 ? totalPages - 1 : prev - 1))
   }
 
-  // Calculate visible testimonials
   const getVisibleTestimonials = () => {
     const startIndex = activeIndex * itemsPerPage
     return testimonials.slice(startIndex, startIndex + itemsPerPage)
   }
 
-  // Don't render until client-side to prevent hydration mismatch
-  if (!mounted) return null
 
+  // if (!mounted) return null
+  // if (loading) return <div className="text-center py-20">Loading testimonials...</div>
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center py-20">
+        <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-white border-opacity-50" />
+
+      </div>
+    )
+  }
   return (
     <section
       id="testimonials"
@@ -287,6 +222,7 @@ export default function TestimonialsSection() {
 
       {/* Rating Modal - Smaller Form */}
       <RatingModal isOpen={isRatingModalOpen} onClose={() => setIsRatingModalOpen(false)} />
+
     </section>
   )
 }
@@ -325,7 +261,9 @@ function TestimonialCard({ testimonial, delay }: TestimonialCardProps) {
           {/* Profile section - Moved to top */}
           <div className="flex items-center mb-4 mt-2">
             <Avatar className="h-12 w-12 border-2 border-white shadow-md ring-2 ring-purple-100">
-              <AvatarImage src={testimonial.image || "/placeholder.svg"} alt={testimonial.name} />
+              {/* <AvatarImage src={testimonial.image || "/placeholder.svg"} alt={testimonial.name} /> */}
+              <AvatarImage src={testimonial.image_url || "/placeholder.svg"} alt={testimonial.name} />
+
               <AvatarFallback className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-white">
                 {testimonial.name
                   .split(" ")
@@ -354,7 +292,8 @@ function TestimonialCard({ testimonial, delay }: TestimonialCardProps) {
                 key={i}
                 className={cn(
                   "h-4 w-4 mr-0.5 drop-shadow-sm",
-                  i < testimonial.rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300",
+                  i < Number(testimonial.rating)
+                    ? "fill-yellow-400 text-yellow-400" : "text-gray-300",
                 )}
               />
             ))}
@@ -379,80 +318,106 @@ function TestimonialCard({ testimonial, delay }: TestimonialCardProps) {
 interface RatingModalProps {
   isOpen: boolean
   onClose: () => void
+
 }
 
-function RatingModal({ isOpen, onClose }: RatingModalProps) {
-  const [name, setName] = useState("")
-  const [role, setRole] = useState("")
-  const [company, setCompany] = useState("")
-  const [review, setReview] = useState("")
-  const [rating, setRating] = useState(0)
-  const [hoveredRating, setHoveredRating] = useState(0)
-  const [image, setImage] = useState<File | null>(null)
-  const [imagePreview, setImagePreview] = useState<string | null>(null)
-  const fileInputRef = useRef<HTMLInputElement>(null)
-  const [mounted, setMounted] = useState(false)
+export function RatingModal({ isOpen, onClose }: RatingModalProps) {
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    role: '',
+    company: '',
+    review: '',
+    rating: 0,
+    image: null as File | null,
+  });
 
-  // Prevent hydration mismatch by only rendering after component mounts
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  const [hoveredRating, setHoveredRating] = useState(0);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0]
-      setImage(file)
-
-      // Create preview
-      const reader = new FileReader()
-      reader.onloadend = () => {
-        setImagePreview(reader.result as string)
-      }
-      reader.readAsDataURL(file)
+    const file = e.target.files?.[0];
+    if (file) {
+      setFormData((prev) => ({ ...prev, image: file }));
+      const previewUrl = URL.createObjectURL(file);
+      setImagePreview(previewUrl);
     }
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-
-    // Here you would typically send the data to your backend
-    console.log({
-      name,
-      role,
-      company,
-      review,
-      rating,
-      image,
-    })
-
-    // Reset form and close modal
-    resetForm()
-    onClose()
-  }
+  };
 
   const resetForm = () => {
-    setName("")
-    setRole("")
-    setCompany("")
-    setReview("")
-    setRating(0)
-    setHoveredRating(0)
-    setImage(null)
-    setImagePreview(null)
-  }
+    setFormData({
+      name: '',
+      role: '',
+      company: '',
+      review: '',
+      rating: 0,
+      image: null,
+    });
+    setImagePreview(null);
+  };
 
-  // Don't render until client-side to prevent hydration mismatch
-  if (!mounted) return null
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const payload = new FormData();
+    payload.append('name', formData.name);
+    payload.append('role', formData.role);
+    payload.append('company', formData.company);
+    payload.append('review', formData.review);
+    payload.append('rating', formData.rating.toString());
+    if (formData.image) {
+      payload.append('image', formData.image);
+    }
+
+    try {
+      const res = await fetch('http://127.0.0.1:8080/testimonial/', {
+        method: 'POST',
+        body: payload,
+      });
+
+      if (res.status === 200) {
+        const data = await res.json();
+        toast.success(data.message || 'Thanks for your testimonial!', {
+          style: { background: '#9F7AEA', color: 'white' },
+          position: 'bottom-center',
+        });
+        resetForm();
+        onClose();
+      } else if (res.status === 400) {
+        const data = await res.json();
+        toast.error(data.message || 'Invalid input. Please try again.', {
+          style: { background: '#9F7AEA', color: 'white' },
+          position: 'bottom-center',
+        });
+      } else {
+        toast.error('Server error. Please try again later.', {
+          style: { background: '#9F7AEA', color: 'white' },
+          position: 'bottom-center',
+        });
+      }
+    } catch (error) {
+      toast.error('Network error. Please check your connection.', {
+        style: { background: '#9F7AEA', color: 'white' },
+        position: 'bottom-center',
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="sm:max-w-[450px] p-0 overflow-hidden bg-white/90 backdrop-blur-md rounded-2xl border-0 shadow-2xl">
-        {/* Premium gradient header that matches the page theme */}
         <div className="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-700 p-5 relative overflow-hidden">
-          {/* Decorative elements */}
           <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-10 -mt-10"></div>
           <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-800/20 rounded-full blur-xl -ml-10 -mb-10"></div>
-
           <DialogHeader className="relative z-10">
             <DialogTitle className="text-xl font-bold text-white">Share Your Experience</DialogTitle>
             <DialogDescription className="text-purple-100 text-xs mt-1">
@@ -464,56 +429,55 @@ function RatingModal({ isOpen, onClose }: RatingModalProps) {
         <form onSubmit={handleSubmit} className="p-5 space-y-3 bg-gradient-to-b from-purple-50/50 to-white/80">
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1">
-              <Label htmlFor="name" className="text-xs font-medium text-purple-800">
-                Name
-              </Label>
+              <Label htmlFor="name" className="text-xs font-medium text-purple-800">Name</Label>
               <Input
                 id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
                 placeholder="Your name"
                 required
                 className="border-purple-100 focus:border-purple-500 focus:ring-purple-500 h-8 text-sm bg-white/80"
               />
             </div>
             <div className="space-y-1">
-              <Label htmlFor="role" className="text-xs font-medium text-purple-800">
-                Role
-              </Label>
+              <Label htmlFor="role" className="text-xs font-medium text-purple-800">Role</Label>
               <Input
                 id="role"
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
+                name="role"
+                value={formData.role}
+                onChange={handleChange}
                 placeholder="Your position"
                 className="border-purple-100 focus:border-purple-500 focus:ring-purple-500 h-8 text-sm bg-white/80"
               />
             </div>
           </div>
+
           <div className="space-y-1">
-            <Label htmlFor="company" className="text-xs font-medium text-purple-800">
-              Company
-            </Label>
+            <Label htmlFor="company" className="text-xs font-medium text-purple-800">Company</Label>
             <Input
               id="company"
-              value={company}
-              onChange={(e) => setCompany(e.target.value)}
+              name="company"
+              value={formData.company}
+              onChange={handleChange}
               placeholder="Your company"
               className="border-purple-100 focus:border-purple-500 focus:ring-purple-500 h-8 text-sm bg-white/80"
             />
           </div>
+
           <div className="space-y-1">
-            <Label htmlFor="review" className="text-xs font-medium text-purple-800">
-              Review
-            </Label>
+            <Label htmlFor="review" className="text-xs font-medium text-purple-800">Review</Label>
             <Textarea
               id="review"
-              value={review}
-              onChange={(e) => setReview(e.target.value)}
+              name="review"
+              value={formData.review}
+              onChange={handleChange}
               placeholder="Share your experience with us..."
               required
               className="min-h-[80px] border-purple-100 focus:border-purple-500 focus:ring-purple-500 text-sm bg-white/80"
             />
           </div>
+
           <div className="space-y-1">
             <Label className="text-xs font-medium text-purple-800">Rating</Label>
             <div className="flex items-center gap-1 bg-white/60 p-2 rounded-lg">
@@ -521,36 +485,37 @@ function RatingModal({ isOpen, onClose }: RatingModalProps) {
                 <button
                   key={i}
                   type="button"
-                  onClick={() => setRating(i + 1)}
+                  onClick={() => setFormData((prev) => ({ ...prev, rating: i + 1 }))}
                   onMouseEnter={() => setHoveredRating(i + 1)}
                   onMouseLeave={() => setHoveredRating(0)}
                   className="focus:outline-none transition-transform hover:scale-110"
                 >
                   <Star
                     className={cn(
-                      "h-6 w-6 transition-colors duration-200",
-                      (hoveredRating ? i < hoveredRating : i < rating)
-                        ? "fill-yellow-400 text-yellow-400 drop-shadow-md"
-                        : "text-gray-300",
+                      'h-6 w-6 transition-colors duration-200',
+                      (hoveredRating ? i < hoveredRating : i < formData.rating)
+                        ? 'fill-yellow-400 text-yellow-400 drop-shadow-md'
+                        : 'text-gray-300'
                     )}
                   />
                 </button>
               ))}
             </div>
           </div>
+
           <div className="space-y-1">
             <Label className="text-xs font-medium text-purple-800">Profile Image</Label>
             <div className="flex items-center gap-3 bg-white/60 p-2 rounded-lg">
               {imagePreview ? (
                 <div className="relative">
                   <Avatar className="h-14 w-14 border-2 border-white shadow-md ring-2 ring-purple-100">
-                    <AvatarImage src={imagePreview || "/placeholder.svg"} alt="Preview" />
+                    <AvatarImage src={imagePreview || '/placeholder.svg'} alt="Preview" />
                   </Avatar>
                   <button
                     type="button"
                     onClick={() => {
-                      setImage(null)
-                      setImagePreview(null)
+                      setFormData((prev) => ({ ...prev, image: null }));
+                      setImagePreview(null);
                     }}
                     className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full p-1 shadow-md hover:bg-red-600 transition-colors"
                   >
@@ -558,39 +523,32 @@ function RatingModal({ isOpen, onClose }: RatingModalProps) {
                   </button>
                 </div>
               ) : (
-                <div
-                  onClick={() => fileInputRef.current?.click()}
-                  className="h-14 w-14 rounded-full bg-purple-100/50 flex items-center justify-center cursor-pointer hover:bg-purple-200/50 transition-colors border-2 border-dashed border-purple-300"
-                >
-                  <Upload className="h-5 w-5 text-purple-500" />
-                </div>
-              )}
-              <div className="flex-1">
                 <Button
                   type="button"
                   variant="outline"
                   onClick={() => fileInputRef.current?.click()}
                   className="w-full h-8 text-xs border-purple-200 text-purple-700 hover:bg-purple-100/50 hover:text-purple-800"
                 >
-                  {image ? "Change Image" : "Select from Gallery"}
+                  {formData.image ? "Change Image" : "Select from Gallery"}
                 </Button>
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                  className="hidden"
-                />
-              </div>
+              )}
+              <input
+                type="file"
+                ref={fileInputRef}
+                className="hidden"
+                onChange={handleImageChange}
+                accept="image/*"
+              />
             </div>
           </div>
+
           <DialogFooter className="pt-3 flex gap-2">
             <Button
               type="button"
               variant="outline"
               onClick={() => {
-                resetForm()
-                onClose()
+                resetForm();
+                onClose();
               }}
               className="h-9 flex-1 border-purple-200 text-purple-700 hover:bg-purple-100/50 hover:text-purple-800"
             >
@@ -600,11 +558,15 @@ function RatingModal({ isOpen, onClose }: RatingModalProps) {
               type="submit"
               className="h-9 flex-1 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 shadow-md hover:shadow-lg transition-all"
             >
-              Submit Review
+              {loading ? (
+                <div className="animate-spin w-5 h-5 border-4 border-t-4 border-purple-200 border-t-purple-600 rounded-full"></div>
+              ) : (
+                'Submit Review'
+              )}
             </Button>
           </DialogFooter>
         </form>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
