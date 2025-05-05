@@ -104,30 +104,6 @@ const OurStory = () => {
         </motion.h2>
 
 
-        <div className="relative hidden md:block">
-          <img
-            src="/flower.png"
-            alt="Flower"
-            className="hidden md:block fixed bottom-0 left-8 w-50 md:w-50"
-          />
-
-        </div>
-
-
-
-        {/* <div className="relative">
-  <motion.img
-    src="/ourstory.png"
-    alt="Our Story"
-    initial={{ opacity: 0, y: 20 }}
-    animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-    transition={{ duration: 0.6 }}
-    className="absolute top-[70px] left-[-20px] w-40 md:w-64"
-  />
-</div> */}
-
-
-
 
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
@@ -136,6 +112,7 @@ const OurStory = () => {
           className={`${workSans.className} text-2xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
   absolute top-0 max-sm:top-[-35px] left-1/2 transform -translate-x-1/2 flex items-center gap-3 sm:hidden`}
         >
+
           Our Story <Feather className="w-6 h-6 text-indigo-400 animate-spin-slow" />
         </motion.h2>
 

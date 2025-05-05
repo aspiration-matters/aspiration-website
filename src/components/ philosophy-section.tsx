@@ -17,7 +17,7 @@ const Philosophy = () => {
     triggerOnce: true,
     threshold: 0.1,
   });
-  
+
   const visionText = "To build a community of inspired individuals and organizations who strive for the betterment of themselves and society for human connection, collaboration, and co-creation. So, they develop the power to uplift each other.";
 
   const missionText = "Our mission is to help individuals uncover their inner-self by assisting them to unfold their true potential and capitalize on it to accelerate their performance. We aim to build an inspiring community of high-performing professionals who can take accountability for striving to create an influential and supportive culture for society.";
@@ -54,9 +54,21 @@ const Philosophy = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="space-y-8"
           >
-            <h2 className={`${workSans.className} text-3xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 flex items-center gap-3`}>
+            {/* <h2 className={`${workSans.className} text-3xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 flex items-center gap-3`}>
               Our Philosophy
-            </h2>
+              
+            </h2> */}
+
+            <div className="relative inline-block pb-3">
+              <h2 className={`${workSans.className} text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700`}>
+                Our Philosophy
+              </h2>
+              <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
+            </div>
+
+
+
+
 
             <div className="space-y-6">
               <div className="space-y-2">

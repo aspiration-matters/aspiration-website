@@ -472,7 +472,7 @@ export default function BlogPost() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="w-full overflow-hidden rounded-2xl shadow-xl mb-0"
+          className="w-full overflow-hidden rounded-2xl shadow-xl  mb-0"
         >
           <div className="relative h-[450px] w-full">
             <img
@@ -480,7 +480,7 @@ export default function BlogPost() {
               alt={blog.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/0" />
 
             <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-12">
               <motion.h1

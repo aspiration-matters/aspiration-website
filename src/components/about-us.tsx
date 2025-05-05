@@ -52,11 +52,24 @@ const About = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="space-y-4 sm:space-y-5 order-1 md:order-2"
           >
-            <h2
+            {/* <h2
               className={`${workSans.className} text-2xl sm:text-3xl lg:text-4xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 flex items-center gap-2 sm:gap-3`}
             >
               About us <Users className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-purple-600" />
-            </h2>
+            </h2> */}
+
+            <div className="relative inline-block pb-3">
+              <h2
+                className={`${workSans.className} text-3xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700`}
+              >
+                About us
+              </h2>
+
+              {/* Purple gradient line below */}
+              <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
+            </div>
+
+
 
             <div className="prose prose-sm sm:prose-base lg:prose-lg font-playfair max-w-none">
               <TypeAnimation
