@@ -155,10 +155,6 @@ const Philosophy = () => {
         setImageUrl(data?.data?.image1_url || null);
       } catch (err) {
         toast.error("Error loading philosophy section", {
-          style: {
-            background: "#ede9fe", // light purple
-            color: "#7e22ce",
-          },
         });
       } finally {
         setLoading(false);

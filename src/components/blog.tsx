@@ -1,4 +1,5 @@
 
+
 // "use client"
 
 // import { useState, useEffect } from "react"
@@ -84,9 +85,9 @@
 //     <main>
 //       <section
 //         id="blogs"
-//         className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm py-16"
+//         className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm py-12"
 //       >
-//         <div className="relative inline-block pb-3">
+//         <div className="relative inline-block pb-1 mb-4 mt-0">
 //           <h2
 //             className={`${workSans.className} text-3xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 flex items-center gap-3`}
 //           >
@@ -95,7 +96,7 @@
 //           </h2>
 
 //           {/* Purple gradient line below */}
-//           <div className="absolute bottom-[-4px] left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
+//           <div className="absolute bottom-[-2px] left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
 //         </div>
 
 //         <div className="w-full max-w-7xl mx-auto relative px-4">
@@ -114,11 +115,19 @@
 //                   ))}
 //                 </CarouselContent>
 
-//                 <Button variant="ghost" className="absolute left-4 top-1/2 -translate-y-1/2 z-30 h-10 w-10 rounded-full bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 shadow-sm" onClick={handlePrevious}>
+//                 <Button
+//                   variant="ghost"
+//                   className="absolute left-4 top-1/2 -translate-y-1/2 z-30 h-10 w-10 rounded-full bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 shadow-sm"
+//                   onClick={handlePrevious}
+//                 >
 //                   <ChevronLeft className="h-5 w-5" />
 //                 </Button>
 
-//                 <Button variant="ghost" className="absolute right-4 top-1/2 -translate-y-1/2 z-30 h-10 w-10 rounded-full bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 shadow-sm" onClick={handleNext}>
+//                 <Button
+//                   variant="ghost"
+//                   className="absolute right-4 top-1/2 -translate-y-1/2 z-30 h-10 w-10 rounded-full bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 shadow-sm"
+//                   onClick={handleNext}
+//                 >
 //                   <ChevronRight className="h-5 w-5" />
 //                 </Button>
 //               </Carousel>
@@ -135,8 +144,6 @@
 //             </>
 //           )}
 //         </div>
-
-
 //       </section>
 //     </main>
 //   )
@@ -154,7 +161,8 @@ import { Button } from "@/components/ui/button"
 import { Sprout } from "lucide-react"
 import { Work_Sans } from "next/font/google"
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel"
-import { Spinner } from "@/components/ui/spinner" // Make sure this path is correct
+import { Spinner } from "@/components/ui/spinner"
+import { toast } from "sonner" // Import toast from sonner
 
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["600"] })
 
@@ -191,7 +199,6 @@ export default function Blog() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [blogs, setBlogs] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     fetch("http://127.0.0.1:8080/blog/")
@@ -208,7 +215,13 @@ export default function Blog() {
       })
       .catch((err) => {
         console.error(err)
-        setError("Failed to load blogs. Please try again later.")
+        toast.error("Failed to load blogs. Please try again later.", {
+          style: {
+            background: "#FEE2E2",
+            color: "#B91C1C",
+            border: "1px solid #FCA5A5",
+          },
+        }) // Show a toast error
         setLoading(false)
       })
   }, [])
@@ -245,8 +258,6 @@ export default function Blog() {
         <div className="w-full max-w-7xl mx-auto relative px-4">
           {loading ? (
             <Spinner />
-          ) : error ? (
-            <p className="text-center text-red-600 text-lg">{error}</p>
           ) : (
             <>
               <Carousel setApi={setApi} opts={{ align: "start", loop: true }} className="w-full">

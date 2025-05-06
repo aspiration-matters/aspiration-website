@@ -1,8 +1,6 @@
 
 
 
-//reposniev
-
 "use client"
 
 import { useEffect, useRef, useState } from "react"
@@ -63,18 +61,7 @@ export default function CoursePage() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.8 }}
             >
-              {/* <motion.h3
-                className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 md:mb-8 leading-tight text-center md:text-left"
-                initial={{ opacity: 0 }}
-                animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                Unleash Your Potential,
-                <br />
-                Elevate Your Success
-                <br />
-                The Power Lies Within You!
-              </motion.h3> */}
+          
               <motion.h3
                 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 md:mb-8 leading-tight text-center md:text-left"
                 initial={{ opacity: 0 }}
@@ -88,22 +75,6 @@ export default function CoursePage() {
                 The Power Lies Within You!
               </motion.h3>
 
-
-              {/* <motion.div
-                className="flex justify-center md:justify-start"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-              >
-                <Button
-                  asChild
-                  className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
-                  hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 text-white 
-                  px-6 py-5 md:px-8 md:py-6 rounded-md text-base md:text-lg font-medium"
-                >
-                  <Link href="/course-platform">Explore Courses</Link>
-                </Button>
-              </motion.div> */}
               <motion.div
                 className="flex justify-center md:justify-start"
                 initial={{ opacity: 0, y: 20 }}

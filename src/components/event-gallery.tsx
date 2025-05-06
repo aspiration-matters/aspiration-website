@@ -5,7 +5,7 @@ import { X, ExternalLink, ChevronLeft, ChevronRight, Camera, RefreshCw } from "l
 import { BorderBeam } from "@/components/magicui/border-beam"
 import { Work_Sans } from "next/font/google"
 // Import toast from a common UI library if you don't have the custom hook
-import { toast } from "react-hot-toast" // Adjust this import based on your project's toast library
+import { toast } from "sonner"
 
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["600"] })
 

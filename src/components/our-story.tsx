@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Feather, ArrowRight } from 'lucide-react';
-import Toast from './Toast';
+import Toast from "./Toast";
 
 
 
@@ -394,3 +394,7 @@ function TypewriterText({ text, onComplete }: { text: string; onComplete: () => 
 }
 
 export default StorySection;
+
+
+
+

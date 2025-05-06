@@ -1,39 +1,74 @@
-"use client"
 
-import type React from "react"
+"use client"
 
 import { useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { motion } from "framer-motion"
+import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { useRouter } from "next/navigation";
-
-import { BorderBeam } from "@/components/magicui/border-beam";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { BorderBeam } from "@/components/magicui/border-beam"
+import { Loader2 } from "lucide-react"
 
 export default function SignupPage() {
-    const router = useRouter();
+  const router = useRouter()
   const [formData, setFormData] = useState({
     name: "",
-    phone:"",
+    phone: "",
     email: "",
     password: "",
   })
+  const [loading, setLoading] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
-    // Here you would typically handle the signup process
-   
-    router.push("/login");
+    setLoading(true)
 
+    const payload = {
+      user_name: formData.name,
+      email: formData.email,
+      password: formData.password,
+      phone_number: formData.phone,
+    }
+
+    try {
+      const res = await fetch("http://127.0.0.1:8080/user/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      })
+
+      if (res.status === 200) {
+        toast.success("Signup successful! Redirecting to login...")
+        setTimeout(() => {
+          router.push("/login")
+        }, 1000)
+      } else if (res.status === 400) {
+        const errData = await res.json().catch(() => ({}))
+        toast.error(errData?.message || "Signup failed. Please check your input.")
+      } else {
+        toast.error("Unexpected error occurred.")
+      }
+    } catch (err) {
+      toast.error("Network error. Please try again.")
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -44,27 +79,22 @@ export default function SignupPage() {
         transition={{ duration: 0.5 }}
         className="w-full max-w-lg relative"
       >
-
-
-
         <Card className="relative z-10 overflow-hidden">
-        <BorderBeam duration={8} size={100} />
-          <CardHeader>
-          
-            <div className="flex justify-center">
-  <CardTitle className="text-2xl  font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700">
-    Create an Account
-  </CardTitle>
-
-</div>
-<div className="flex justify-center">
-<CardDescription>explore our courses and start your learning journey</CardDescription>
-</div>
-            
-          </CardHeader>
-         
-          <CardContent>
           <BorderBeam duration={8} size={100} />
+          <CardHeader>
+            <div className="flex justify-center">
+              <CardTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700">
+                Create an Account
+              </CardTitle>
+            </div>
+            <div className="flex justify-center">
+              <CardDescription>
+                Explore our courses and start your learning journey
+              </CardDescription>
+            </div>
+          </CardHeader>
+
+          <CardContent>
             <form onSubmit={handleSubmit}>
               <div className="grid gap-4">
                 <div className="grid gap-2">
@@ -95,7 +125,6 @@ export default function SignupPage() {
                   <Input
                     id="phone"
                     name="phone"
-                    type="phone"
                     placeholder="Enter your phone number"
                     value={formData.phone}
                     onChange={handleChange}
@@ -114,13 +143,24 @@ export default function SignupPage() {
                     required
                   />
                 </div>
-                <Button type="submit" className="w-full bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
-        hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 ">
-                  Sign Up
+                <Button
+                  type="submit"
+                  className="w-full flex justify-center items-center gap-2 bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 hover:from-purple-700 hover:via-purple-500 hover:to-purple-900"
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 className="animate-spin w-5 h-5" />
+                      Signing Up...
+                    </>
+                  ) : (
+                    "Sign Up"
+                  )}
                 </Button>
               </div>
             </form>
           </CardContent>
+
           <CardFooter className="flex flex-col items-center gap-2">
             <div className="text-sm text-muted-foreground">
               Already have an account?{" "}
@@ -144,4 +184,3 @@ export default function SignupPage() {
     </div>
   )
 }
-

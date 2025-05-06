@@ -180,7 +180,8 @@ export default function CoursePage() {
                     <Button onClick={handleAddToCart} disabled={isInCart(course.id)}>
                       {isInCart(course.id) ? "Added to cart" : "Add to cart • ₹" + course.price}
                     </Button>
-                  </div>
+                    </div>
+                    
                 </div>
 
                 <Card>

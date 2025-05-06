@@ -9,7 +9,8 @@ import { Card } from "@/components/ui/card";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import { Work_Sans } from "next/font/google";
 import { useEffect, useState } from "react";
-import { toast } from "react-hot-toast";
+// import { toast } from "react-hot-toast";
+import { toast } from "sonner"
 
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["600"] });
 
@@ -29,11 +30,11 @@ const About = () => {
         setImageUrl(json?.data?.image1_url);
       } catch (error) {
         toast.error("Failed to load About section image", {
-          style: {
-            background: "#F3E8FF",
-            color: "#6B21A8",
-            border: "1px solid #E9D5FF",
-          },
+          // style: {
+          //   background: "#F3E8FF",
+          //   color: "#6B21A8",
+          //   border: "1px solid #E9D5FF",
+          // },
         });
       } finally {
         setLoading(false);
