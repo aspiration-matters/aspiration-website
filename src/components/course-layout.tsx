@@ -6,7 +6,7 @@ import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Home, ShoppingCart, Search, BookOpen } from "lucide-react"
+import { Home, ShoppingCart, Search } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -139,18 +139,17 @@ export function CourseLayout({
                     variant="ghost"
                     size="icon"
                     className={cn(
-                      "rounded-full hover:bg-primary/10 transition-colors p-1 w-14 h-14",
-                      pathname === "/profile" && "ring-2 ring-purple-500",
+                      "rounded-full p-1 w-14 h-14 bg-transparent shadow-none outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:ring-0 hover:bg-transparent"
                     )}
                   >
                     <Image
-                      src="/profile.png"
+                      src="/yourprofile.png"
                       alt="User"
-                      width={60}
-                      height={60}
+                      width={40}
+                      height={40}
                       className={cn(
-                        "rounded-full",
-                        pathname === "/profile" ? "ring-2 ring-purple-500" : "ring-2 ring-primary/20",
+                        "rounded-full ring-2 ring-purple-200 hover:ring-purple-500 transition duration-300",
+                        pathname === "/profile" && "ring-purple-800"
                       )}
                     />
                   </Button>

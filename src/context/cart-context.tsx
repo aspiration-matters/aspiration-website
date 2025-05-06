@@ -1,8 +1,12 @@
 
+
+
 "use client"
 
 import type React from "react"
 import { createContext, useContext, useState, useEffect } from "react"
+import { toast } from "sonner"
+import { jwtDecode } from "jwt-decode"
 
 declare global {
   interface Window {
@@ -20,55 +24,59 @@ export type Course = {
   duration: string
   description: string
   purchased?: boolean
-  videoUrl?: string
+  // videoUrl?: string
   tags: string[]
 }
 
 type CartContextType = {
   cartItems: Course[]
   addToCart: (course: Course) => void
-  removeFromCart: (courseId: string) => void
+  removeFromCart: (courseId: string) => Promise<void>
   isInCart: (courseId: string) => boolean
   cartCount: number
+  loading: boolean
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined)
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cartItems, setCartItems] = useState<Course[]>([])
+  const [loading, setLoading] = useState(false)
 
-  // Load cart from localStorage on client side
+  const getUserIdFromToken = () => {
+    const token = localStorage.getItem("token")
+    if (!token) return null
+    try {
+      const decoded: any = jwtDecode(token)
+      return decoded.user_id
+    } catch {
+      return null
+    }
+  }
+
+  const fetchCartItems = async () => {
+    const userId = getUserIdFromToken()
+    if (!userId) return
+    setLoading(true)
+    try {
+      const res = await fetch(`http://localhost:8080/cart/course?user_id=${userId}`)
+      const data = await res.json()
+
+      if (res.ok) {
+        setCartItems(data.data)
+      } else {
+        toast.error("Failed to load cart", { description: data.message || "Error occurred." })
+      }
+    } catch (err: any) {
+      toast.error("Network error", { description: err.message || "Unable to load cart." })
+    } finally {
+      setLoading(false)
+    }
+  }
+
   useEffect(() => {
-    try {
-      const savedCart = localStorage.getItem("courseCart")
-      if (savedCart) {
-        setCartItems(JSON.parse(savedCart))
-      }
-    } catch (error) {
-      console.error("Failed to load cart from localStorage:", error)
-    }
-
-    // Load purchased courses and update courses data
-    try {
-      const purchasedCourses = localStorage.getItem("purchasedCourses")
-      if (purchasedCourses) {
-        const purchasedIds = JSON.parse(purchasedCourses)
-        // We'll use this in the course components to check if a course is purchased
-        window.purchasedCourseIds = purchasedIds
-      }
-    } catch (error) {
-      console.error("Failed to load purchased courses:", error)
-    }
+    fetchCartItems()
   }, [])
-
-
-  useEffect(() => {
-    try {
-      localStorage.setItem("courseCart", JSON.stringify(cartItems))
-    } catch (error) {
-      console.error("Failed to save cart to localStorage:", error)
-    }
-  }, [cartItems])
 
   const addToCart = (course: Course) => {
     if (!isInCart(course.id)) {
@@ -76,8 +84,29 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
-  const removeFromCart = (courseId: string) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== courseId))
+  const removeFromCart = async (courseId: string) => {
+    const userId = getUserIdFromToken()
+    if (!userId) return
+
+    setLoading(true)
+    try {
+      const res = await fetch(`http://127.0.0.1:8080/cart/${userId}/${courseId}`, {
+        method: "DELETE",
+      })
+
+      const data = await res.json()
+
+      if (res.ok) {
+        setCartItems((prev) => prev.filter((item) => item.id !== courseId))
+        toast.success("Item removed", { description: "Course removed from cart." })
+      } else {
+        toast.error("Failed to remove", { description: data.message || "Something went wrong." })
+      }
+    } catch (err: any) {
+      toast.error("Network error", { description: err.message })
+    } finally {
+      setLoading(false)
+    }
   }
 
   const isInCart = (courseId: string) => {
@@ -92,6 +121,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         removeFromCart,
         isInCart,
         cartCount: cartItems.length,
+        loading,
       }}
     >
       {children}
@@ -106,4 +136,3 @@ export function useCart() {
   }
   return context
 }
-

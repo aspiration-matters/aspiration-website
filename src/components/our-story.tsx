@@ -5,9 +5,6 @@ import { motion } from 'framer-motion';
 import { Feather, ArrowRight } from 'lucide-react';
 import Toast from "./Toast";
 
-
-
-
 // TypeScript interface for the API response
 interface StoryImages {
   data: {
