@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState, useEffect } from "react"
@@ -6,9 +7,11 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { Calendar, Clock, Download, ExternalLink } from "lucide-react"
+import { Calendar, Clock, ExternalLink } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { jwtDecode } from "jwt-decode"
+import { toast } from "sonner"
 import { courses } from "@/data/courses"
 
 interface PurchaseRecord {
@@ -20,50 +23,56 @@ interface PurchaseRecord {
   course?: any
 }
 
+interface DecodedToken {
+  user_id: string
+}
+
 export default function PurchaseHistory() {
   const [purchaseHistory, setPurchaseHistory] = useState<PurchaseRecord[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Load purchased courses
-    try {
-      const purchasedCourses = localStorage.getItem("purchasedCourses")
-      if (purchasedCourses) {
-        const purchasedIds = JSON.parse(purchasedCourses)
+    const fetchPurchaseHistory = async () => {
+      try {
+        const token = localStorage.getItem("token")
+        if (!token) throw new Error("Login token not found")
 
-        // Generate purchase history from purchased courses
-        // In a real app, this would come from a database
-        const history: PurchaseRecord[] = purchasedIds.map((courseId: string, index: number) => {
-          // Generate a random date within the last 30 days
-          const date = new Date()
-          date.setDate(date.getDate() - Math.floor(Math.random() * 30))
+        const decoded = jwtDecode<DecodedToken>(token)
+        const userId = decoded.user_id
+        if (!userId) throw new Error("Invalid token: user_id not found")
 
-          // Find the course details
-          const course = courses.find((c) => c.id === courseId)
+        const res = await fetch(`http://127.0.0.1:8080/purchase/${userId}`)
+        if (!res.ok) throw new Error("Failed to fetch purchase history")
 
+        const json = await res.json()
+        const data = json.data || []
+
+        const enrichedData: PurchaseRecord[] = data.map((record: any) => {
+          const course = courses.find((c) => c.id === record.course_id)
           return {
-            id: `ORDER-${Date.now().toString().slice(-6)}-${index}`,
-            courseId,
-            date: date.toISOString(),
-            amount: course?.price || 0,
-            paymentMethod: Math.random() > 0.5 ? "Credit Card" : "UPI",
+            id: record.id,
+            courseId: record.course_id,
+            date: record.date,
+            amount: record.amount,
+            paymentMethod: record.payment_method,
             course,
           }
         })
 
-        // Sort by date (newest first)
-        history.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        // Sort by newest first
+        enrichedData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
-        setPurchaseHistory(history)
+        setPurchaseHistory(enrichedData)
+      } catch (err: any) {
+        toast.error(err.message || "Something went wrong")
+      } finally {
+        setLoading(false)
       }
-    } catch (error) {
-      console.error("Failed to load purchase history:", error)
-    } finally {
-      setLoading(false)
     }
+
+    fetchPurchaseHistory()
   }, [])
 
-  // Format date to a readable format
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
@@ -156,13 +165,6 @@ export default function PurchaseHistory() {
                       </div>
 
                       <div className="flex justify-between mt-4">
-                        <Button variant="outline" size="sm" asChild>
-                          <Link href="#" onClick={(e) => e.preventDefault()}>
-                            <Download className="h-4 w-4 mr-2" />
-                            Invoice
-                          </Link>
-                        </Button>
-
                         <Button size="sm" asChild>
                           <Link href={`/course/${purchase.courseId}`}>
                             <ExternalLink className="h-4 w-4 mr-2" />
@@ -181,4 +183,5 @@ export default function PurchaseHistory() {
     </CourseLayout>
   )
 }
+
 

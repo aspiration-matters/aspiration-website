@@ -128,7 +128,9 @@ export function EventGallery() {
   // Show loading state
   if (loading) {
     return (
-      <section className="relative min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm py-16 px-0 overflow-hidden">
+      <section
+        className="relative min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm py-16 px-0 overflow-hidden"
+      >
         <div className="flex flex-col items-center justify-center gap-4">
           <Camera className="w-12 h-12 text-indigo-400 animate-spin" />
           <p className="text-gray-600">Loading gallery images...</p>

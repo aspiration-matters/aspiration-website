@@ -2,7 +2,8 @@
 "use client"
 
 import Image from "next/image"
-import { Trash2, Clock, Tag, BookOpen, Loader2 } from "lucide-react"
+
+import { Trash2, Clock, Tag, BookOpen, Loader2, Key } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
@@ -14,9 +15,15 @@ import Link from "next/link"
 import { useState } from "react"
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 
+import { jwtDecode } from 'jwt-decode';
+
+interface CustomJwtPayload {
+  user_id: string;
+
+}
 export function CartItems() {
   const [selectedCourse, setSelectedCourse] = useState<any>(null)
-  const [showPayment, setShowPayment] = useState(false)
+
   const [loadingCourseId, setLoadingCourseId] = useState<string | null>(null)
   const [removingCourseId, setRemovingCourseId] = useState<string | null>(null)
 
@@ -38,8 +45,114 @@ export function CartItems() {
     }
   }
 
-  const handleCheckout = () => {
-    setShowPayment(true)
+  const loadRazorpayScript = () => {
+    return new Promise(
+      (resolve) => {
+        const script = document.createElement('script');
+        script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+        script.onload = () => resolve(true);
+        script.onerror = () => resolve(false);
+        document.body.appendChild(script);
+      }
+    )
+  }
+
+  const handleCheckout = async () => {
+
+    try {
+      // const courses_id = cartItems.map((value) => value.id);
+      cartItems.map((value, _index) => value.id)
+
+      const res = await fetch("http://127.0.0.1:8080/payment/order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(
+          {
+            courses_id: cartItems.map((value, _index) => value.id)
+          }
+        )
+      })
+
+      console.log("in oder course ids :", cartItems.map((value, _index) => value.id))
+      const data = await res.json();
+
+      const razorpayLoaded = await loadRazorpayScript();
+      if (!razorpayLoaded) {
+        alert("failed to load the razorpay sdk")
+        return;
+      }
+
+      const options = {
+        key: "rzp_live_eVu03NLvqZrPAw",
+        amount: data.amount,
+        currency: data.currency,
+        name: "Aspiration Matters",
+        description: "",
+        order_id: data.id,
+        handler: async function (response: any) {
+          console.log("Razorpay response:", response);
+
+          const token = localStorage.getItem('token');
+          let user_id = null;
+
+          if (token) {
+            const decodedToken = jwtDecode<CustomJwtPayload>(token);
+            user_id = decodedToken.user_id;
+          }
+
+          const course_ids = cartItems.map((value) => value.id);
+
+          console.log("Verifying:", course_ids);
+          console.log("User ID:", user_id);
+
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 sec timeout
+
+          try {
+            const verifyRes = await fetch("http://127.0.0.1:8080/payment/verify", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+                user_id: user_id,
+                course_ids: course_ids,
+              }),
+              signal: controller.signal,
+            });
+
+            clearTimeout(timeoutId);
+
+            const data = await verifyRes.json();
+            console.log("Server verification response:", data);
+
+            // You can also show a toast or redirect here
+          } catch (err) {
+            clearTimeout(timeoutId);
+            if (err === "AbortError") {
+              console.error("Verification request timed out");
+            } else {
+              console.error("Verification fetch failed:", err);
+            }
+          }
+        },
+
+        theme: {
+          color: "#c471ed"
+        }
+      }
+
+      const rzp = new (window as any).Razorpay(options)
+
+      rzp.open();
+    } catch (error) {
+      console.log(error)
+    } finally {
+
+    }
   }
 
   const handleCardDoubleClick = async (id: string) => {
@@ -71,12 +184,7 @@ export function CartItems() {
       <div className="text-center py-12">
         <h3 className="text-xl font-semibold mb-2 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Your cart is empty</h3>
         <p className="text-muted-foreground mb-6">Browse courses and add them to your cart</p>
-        {/* <Button
-          asChild
-          className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white shadow-sm"
-        >
-          <Link href="/course-platform">Browse Courses</Link>
-        </Button> */}
+
         <div className="flex justify-center w-full">
           <Button
             asChild
@@ -148,6 +256,7 @@ export function CartItems() {
             </Card>
           ))}
         </div>
+
 
         <div>
           <Card className="sticky top-24 overflow-hidden transition-all duration-300 hover:shadow-xl bg-white border-0">
@@ -258,3 +367,4 @@ export function CartItems() {
     </>
   )
 }
+

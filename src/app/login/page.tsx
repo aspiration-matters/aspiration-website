@@ -1,7 +1,7 @@
 
 
 
-//perfect
+// //perfect
 
 "use client"
 
@@ -16,8 +16,7 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { BorderBeam } from "@/components/magicui/border-beam"
 import { toast } from "sonner"
-import { Loader2 } from "lucide-react" // ✅ Used instead of Spinner
-
+import { Loader2 } from "lucide-react"
 export default function LoginPage() {
   const router = useRouter()
   const [formData, setFormData] = useState({
@@ -252,8 +251,12 @@ export default function LoginPage() {
   )
 }
 
+
+///testing
+
 // "use client"
 
+// import type React from "react"
 // import { useState, useEffect } from "react"
 // import Link from "next/link"
 // import { useRouter } from "next/navigation"
@@ -264,24 +267,25 @@ export default function LoginPage() {
 // import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 // import { BorderBeam } from "@/components/magicui/border-beam"
 // import { toast } from "sonner"
-// import { Loader2 } from "lucide-react" // Replaced Spinner
-
+// import { Loader2 } from "lucide-react"
 // export default function LoginPage() {
 //   const router = useRouter()
-//   const [formData, setFormData] = useState({ email: "", password: "" })
+//   const [formData, setFormData] = useState({
+//     email: "",
+//     password: "",
+//   })
 //   const [otp, setOtp] = useState("")
 //   const [timer, setTimer] = useState(300)
 //   const [isLoggedIn, setIsLoggedIn] = useState(false)
 //   const [loading, setLoading] = useState(false)
 //   const [errorMessage, setErrorMessage] = useState("")
 
-// Redirect if token exists
-// useEffect(() => {
-//   const token = localStorage.getItem("token")
-//   if (token) {
-//     router.push("/course-platform")
-//   }
-// }, [router])
+//   useEffect(() => {
+//     const token = localStorage.getItem("token")
+//     if (token) {
+//       router.push("/course-platform")
+//     }
+//   }, [router])
 
 //   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 //     const { name, value } = e.target
@@ -297,22 +301,26 @@ export default function LoginPage() {
 //     setLoading(true)
 
 //     if (isLoggedIn) {
+//       // ✅ OTP verification
 //       try {
 //         const response = await fetch("http://127.0.0.1:8080/user/verify-otp", {
 //           method: "POST",
-//           headers: { "Content-Type": "application/json" },
+//           headers: {
+//             "Content-Type": "application/json",
+//           },
 //           body: JSON.stringify({
 //             email: formData.email,
 //             otp,
 //             password: formData.password,
 //           }),
 //         })
-
 //         const data = await response.json()
+
 //         if (response.status === 200) {
 //           toast.success("Login successful")
 //           localStorage.setItem("token", data.token)
-//           router.push("")
+//           // ✅ Save token in localStorage
+//           router.push("/course-platform")
 //         } else {
 //           toast.error(data.message || "Invalid OTP or other error")
 //         }
@@ -321,14 +329,20 @@ export default function LoginPage() {
 //         setErrorMessage("Error verifying OTP")
 //       }
 //     } else {
+//       // ✅ Send OTP
 //       try {
 //         const response = await fetch("http://127.0.0.1:8080/user/send-otp", {
 //           method: "POST",
-//           headers: { "Content-Type": "application/json" },
-//           body: JSON.stringify(formData),
+//           headers: {
+//             "Content-Type": "application/json",
+//           },
+//           body: JSON.stringify({
+//             email: formData.email,
+//             password: formData.password,
+//           }),
 //         })
-
 //         const data = await response.json()
+
 //         if (response.status === 200) {
 //           toast.success("OTP sent successfully")
 //           setIsLoggedIn(true)
@@ -410,11 +424,36 @@ export default function LoginPage() {
 //                     className="w-full bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 hover:from-purple-700 hover:via-purple-500 hover:to-purple-900"
 //                     disabled={loading}
 //                   >
-//                     {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : "Log In"}
+//                     {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Log In"}
 //                   </Button>
 //                 </div>
 //               ) : (
 //                 <div className="grid gap-4">
+//                   <div className="grid gap-2">
+//                     <Label htmlFor="email">Email</Label>
+//                     <Input
+//                       id="email"
+//                       name="email"
+//                       placeholder="Enter your email"
+//                       value={formData.email}
+//                       onChange={handleChange}
+//                       required
+//                       disabled
+//                     />
+//                   </div>
+//                   <div className="grid gap-2">
+//                     <Label htmlFor="password">Password</Label>
+//                     <Input
+//                       id="password"
+//                       name="password"
+//                       type="password"
+//                       placeholder="Enter your password"
+//                       value={formData.password}
+//                       onChange={handleChange}
+//                       required
+//                       disabled
+//                     />
+//                   </div>
 //                   <div className="grid gap-2">
 //                     <Label htmlFor="otp">Enter OTP</Label>
 //                     <Input
@@ -427,15 +466,13 @@ export default function LoginPage() {
 //                       required
 //                     />
 //                   </div>
-//                   <div className="text-center text-sm text-purple-600">
-//                     Time left: {formatTime(timer)}
-//                   </div>
+//                   <div className="text-center text-sm text-purple-600">Time left: {formatTime(timer)}</div>
 //                   <Button
 //                     type="submit"
 //                     className="w-full bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 hover:from-purple-700 hover:via-purple-500 hover:to-purple-900"
 //                     disabled={loading || timer <= 0}
 //                   >
-//                     {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : "Submit OTP"}
+//                     {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Submit OTP"}
 //                   </Button>
 //                 </div>
 //               )}

@@ -1,5 +1,4 @@
 "use client"
-
 import { useState, useRef, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
@@ -12,7 +11,7 @@ import type { Course } from "@/context/cart-context"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 
-// Extended Course type with videoPreview
+
 interface VideoCourse extends Course {
   videoPreview?: string
 }
@@ -50,14 +49,12 @@ export function VideoCourseCard({ course, index }: CourseCardProps) {
         const hoverCardRect = hoverCardRef.current.getBoundingClientRect()
         const isLastInRow = (index + 1) % 4 === 0
 
-        // Calculate vertical center alignment
         const topPosition = cardRect.top + window.scrollY - hoverCardRect.height / 2 + cardRect.height / 2
 
-        // Calculate horizontal position
-        const leftPosition = isLastInRow
-          ? cardRect.left - hoverCardRect.width - 16 // 16px gap for last item
-          : cardRect.right + 16 // 16px gap for other items
 
+        const leftPosition = isLastInRow
+          ? cardRect.left - hoverCardRect.width - 16
+          : cardRect.right + 16
         setHoverPosition({
           top: topPosition,
           left: leftPosition,
