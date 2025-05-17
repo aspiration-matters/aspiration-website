@@ -44,6 +44,7 @@ export function EventGallery() {
       const response = await fetch("http://127.0.0.1:8080/eventgallery/")
 
       if (!response.ok) {
+        toast.error("failed to fetch")
         throw new Error(`Error: ${response.status}`)
       }
 
@@ -63,7 +64,7 @@ export function EventGallery() {
       console.error("Failed to fetch images:", error)
       setError("Could not load gallery images")
       // Use your project's toast notification system
-      toast.error("Could not load gallery images. Please try again later.")
+      toast.error("failed to fetch")
     } finally {
       setLoading(false)
     }

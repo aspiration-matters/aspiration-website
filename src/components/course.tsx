@@ -1,6 +1,4 @@
 
-
-
 "use client"
 
 import { useEffect, useRef, useState } from "react"
@@ -61,7 +59,7 @@ export default function CoursePage() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.8 }}
             >
-          
+
               <motion.h3
                 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 md:mb-8 leading-tight text-center md:text-left"
                 initial={{ opacity: 0 }}
@@ -104,7 +102,7 @@ export default function CoursePage() {
             <div className="relative w-44 h-56 md:w-56 md:h-72 mb-4">
               <Image src="/instructor.png" alt="Neelima Kumari" fill className="object-contain" priority />
             </div>
-            <Link href="/neelima-kumari" className="group transition-all duration-300">
+            <Link href="" className="group transition-all duration-300">
               <h3 className="text-xl md:text-2xl font-bold text-center mb-1 group-hover:text-purple-700">
                 Neelima Kumari
               </h3>

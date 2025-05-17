@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -30,12 +29,11 @@ const Philosophy = () => {
     const fetchPhilosophy = async () => {
       try {
         const res = await fetch("http://127.0.0.1:8080/philosopy");
-        if (!res.ok) throw new Error("Failed to fetch philosophy data");
+        if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
         setImageUrl(data?.data?.image1_url || null);
       } catch (err) {
-        toast.error("Error loading philosophy section", {
-        });
+        toast.error("failed to fetch")
       } finally {
         setLoading(false);
       }

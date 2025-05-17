@@ -26,16 +26,10 @@ const About = () => {
       try {
         const res = await fetch("http://127.0.0.1:8080/about");
         const json = await res.json();
-        if (!res.ok) throw new Error("Failed to fetch About data");
+        if (!res.ok) throw new Error("Failed to fetch About section data");
         setImageUrl(json?.data?.image1_url);
       } catch (error) {
-        toast.error("Failed to load About section image", {
-          // style: {
-          //   background: "#F3E8FF",
-          //   color: "#6B21A8",
-          //   border: "1px solid #E9D5FF",
-          // },
-        });
+        toast.error("failed to fetch")
       } finally {
         setLoading(false);
       }
@@ -52,6 +46,7 @@ const About = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+
           {/* Image Card */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}

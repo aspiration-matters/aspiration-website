@@ -42,7 +42,7 @@ export default function ForgotPasswordPage() {
         setErrorMessage("")
 
         try {
-            // Replace with your actual API endpoint
+
             const response = await fetch("http://127.0.0.1:8080/user/forgot-password", {
                 method: "POST",
                 headers: {

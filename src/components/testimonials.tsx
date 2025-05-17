@@ -1,8 +1,5 @@
 
 
-
-
-
 "use client"
 
 import type React from "react"
@@ -15,7 +12,7 @@ import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useMobile } from "@/app/hooks/use-mobile"
 import { Work_Sans } from "next/font/google"
-import toast from "react-hot-toast"
+import { toast } from "sonner"
 import {
   Dialog,
   DialogContent,
@@ -57,7 +54,9 @@ export default function TestimonialsSection() {
         const res = await fetch("http://127.0.0.1:8080/testimonial/verified")
 
         if (!res.ok) {
+          toast.error("failed to fetch")
           throw new Error("Failed to fetch testimonials")
+
         }
         const json = await res.json()
         console.log("Testimonials fetched:", json)
@@ -91,7 +90,7 @@ export default function TestimonialsSection() {
   // const totalPages = Math.ceil(testimonials.length / itemsPerPage)
   const safeItemsPerPage = Math.max(1, itemsPerPage)
   const totalPages = Math.ceil(testimonials.length / safeItemsPerPage)
-  const startIndex = activeIndex * safeItemsPerPage
+  // const startIndex = activeIndex * safeItemsPerPage
 
   const nextSlide = () => {
     setActiveIndex((prev) => (prev === totalPages - 1 ? 0 : prev + 1))
@@ -373,18 +372,13 @@ export function RatingModal({ isOpen, onClose }: RatingModalProps) {
 
       if (res.status === 200) {
         const data = await res.json()
-        toast.success(data.message || "Thanks for your testimonial!", {
-          style: { background: "#9F7AEA", color: "white" },
-          position: "bottom-center",
-        })
+        toast.success(data.message || "Thanks for your testimonial!")
         resetForm()
         onClose()
       } else if (res.status === 400) {
         const data = await res.json()
-        toast.error(data.message || "Invalid input. Please try again.", {
-          style: { background: "#9F7AEA", color: "white" },
-          position: "bottom-center",
-        })
+
+        toast.error(data.message || "Invalid input. Please try again.")
       } else {
         toast.error("Server error. Please try again later.", {
           style: { background: "#9F7AEA", color: "white" },
@@ -392,10 +386,7 @@ export function RatingModal({ isOpen, onClose }: RatingModalProps) {
         })
       }
     } catch (error) {
-      toast.error("Network error. Please check your connection.", {
-        style: { background: "#9F7AEA", color: "white" },
-        position: "bottom-center",
-      })
+      toast.error("Network error. Please check your connection.")
     } finally {
       setLoading(false)
     }
