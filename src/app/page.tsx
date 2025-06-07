@@ -1,4 +1,5 @@
 
+
 "use client"
 
 import type React from "react"
@@ -8,24 +9,21 @@ import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { GlobeDemo1 } from "./globe/_components/Globedemo"
-import { GlobeDemo2 } from "./globe/_components/globedemo2"
 
-import { BoxReveal } from "@/components/magicui/box-reveal";
-import { SpinningText } from "@/components/magicui/spinning-text";
+import { BoxReveal } from "@/components/magicui/box-reveal"
+import { SpinningText } from "@/components/magicui/spinning-text"
 import { EventGallery } from "@/components/event-gallery"
-import Blog from "@/components/blog";
+import Blog from "@/components/blog"
 import TestimonialsSection from "@/components/testimonials"
 import ContactPage from "@/components/contact-us"
 import CoursePage from "@/components/course"
 import Image from "next/image"
-
-
-
+import Head from "next/head"
 
 // import { useTheme } from "next-themes";
-import OurStory from "@/components/our-story";
-import Philosophy from "@/components/ philosophy-section";
-import About from "@/components/about-us";
+import OurStory from "@/components/our-story"
+import Philosophy from "@/components/ philosophy-section"
+import About from "@/components/about-us"
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -39,9 +37,6 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState("home")
 
   // const theme = useTheme();
-
-
-
 
   // Navigation items with Home as first item
   const navItems = [
@@ -98,21 +93,25 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-100/80 to-white">
-      {/* Enhanced Navigation Bar */}
+      <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+      {/* Enhanced Navigation Bar - Updated for iPad and mobile */}
       <header
-
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-          isScrolled
-            ? "bg-white/5 backdrop-blur-sm border-b border-white/10"
-            : "bg-transparent"
+          isScrolled ? "bg-white/5 backdrop-blur-sm border-b border-white/10" : "bg-transparent",
         )}
       >
         <div className="container mx-auto px-4">
           <div className="flex h-20 items-center justify-between">
             {/* Logo */}
             <div className="text-2xl font-bold flex items-center">
-
               <Image
                 src="/logo.png"
                 alt="Logo"
@@ -121,12 +120,10 @@ export default function Home() {
                 className="h-22 sm:h-22 md:h-20 lg:h-24 xl:h-32 w-auto"
                 priority
               />
-
-
             </div>
 
-            {/* Desktop Navigation - Using shadcn NavigationMenu */}
-            <div className="hidden md:block">
+            {/* Desktop Navigation - Updated for better tablet support */}
+            <div className="hidden lg:block">
               <NavigationMenu className="rounded-full border border-white/50 shadow-lg p-2">
                 <NavigationMenuList className="flex space-x-2">
                   {navItems.map((item) => {
@@ -136,7 +133,6 @@ export default function Home() {
                         <NavigationMenuLink
                           href={item.href}
                           onClick={(e) => scrollToSection(e as any, item.href)}
-
                           className={cn(
                             "px-6 py-2.5 rounded-full transition-all duration-300 font-medium",
                             "hover:bg-gradient-to-r hover:from-white/90 hover:to-purple-100/80 hover:text-purple-900 hover:shadow-lg hover:scale-105",
@@ -145,7 +141,6 @@ export default function Home() {
                               ? "bg-gradient-to-r from-purple-300 to-blue-300 text-purple-900 shadow-lg"
                               : "text-purple-900 bg-white shadow-md"
                           )}
-
                         >
                           <span>{item.name}</span>
                         </NavigationMenuLink>
@@ -156,25 +151,27 @@ export default function Home() {
               </NavigationMenu>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button - Updated for tablets and phones */}
             <Button
               variant="outline"
               size="icon"
-              className="md:hidden text-purple-700 hover:text-purple-800 rounded-full border-purple-200 shadow-md"
+              className="lg:hidden text-purple-700 hover:text-purple-800 rounded-full border-purple-200 shadow-md h-10 w-10 sm:h-12 sm:w-12"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {mobileMenuOpen ? (
+                <X size={20} className="sm:w-6 sm:h-6" />
+              ) : (
+                <Menu size={20} className="sm:w-6 sm:h-6" />
+              )}
             </Button>
           </div>
         </div>
 
-        {/* Mobile Navigation - Enhanced for better visibility */}
-        {mobileMenuOpen && (
-          // <div className="md:hidden backdrop-blur-md shadow-xl border-t border-white/50 rounded-b-2xl">
-          <div className="md:hidden w-full backdrop-blur-md shadow-xl border-t border-white/50 rounded-b-2xl">
-
-            <div className="container mx-auto px-4 py-3">
-              <nav className="flex flex-col space-y-2">
+        {/* Mobile Navigation - Enhanced for tablets and phones */}
+        {/* {mobileMenuOpen && (
+          <div className="lg:hidden w-full backdrop-blur-md bg-white/90 shadow-xl border-t border-white/50 rounded-b-2xl">
+            <div className="container mx-auto px-4 py-4 sm:py-6">
+              <nav className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3">
                 {navItems.map((item) => {
                   const isActive = activeSection === item.href.substring(1)
                   return (
@@ -182,7 +179,34 @@ export default function Home() {
                       key={item.name}
                       variant={isActive ? "default" : "ghost"}
                       className={cn(
-                        "justify-start font-medium rounded-xl h-12",
+                        "justify-center sm:justify-start font-medium rounded-xl h-10 sm:h-12 text-sm sm:text-base",
+                        isActive
+                          ? "bg-gradient-to-r from-purple-200 to-blue-200 text-purple-900 shadow-md"
+                          : "text-purple-700 hover:bg-white/60 hover:text-purple-800",
+                        "hover:translate-x-1 transition-all",
+                      )}
+                      onClick={(e) => scrollToSection(e as any, item.href)}
+                    >
+                      {item.name}
+                    </Button>
+                  )
+                })}
+              </nav>
+            </div>
+          </div>
+        )} */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden w-full backdrop-blur-md bg-white/90 shadow-xl border-t border-white/50 rounded-b-2xl">
+            <div className="container mx-auto px-4 py-4 sm:py-6">
+              <nav className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3">
+                {navItems.map((item) => {
+                  const isActive = activeSection === item.href.substring(1)
+                  return (
+                    <Button
+                      key={item.name}
+                      variant={isActive ? "default" : "ghost"}
+                      className={cn(
+                        "justify-center sm:justify-start font-medium rounded-xl h-12 sm:h-14 text-sm sm:text-base",
                         isActive
                           ? "bg-gradient-to-r from-purple-200 to-blue-200 text-purple-900 shadow-md"
                           : "text-purple-700 hover:bg-white/60 hover:text-purple-800",
@@ -200,113 +224,187 @@ export default function Home() {
         )}
       </header>
 
-      {/* Home Section - New first section */}
+      {/* Home Section - Updated for iPad and mobile centering */}
       <section
         id="home"
-        // className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-100 via-blue-100/80 to-white"
-        className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm"
+        className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm relative overflow-hidden"
       >
-
-        <div className="container mx-auto px-4 sm:px-6 lg:px-10 text-end ">
-
+        <div className="container mx-auto px-4 sm:px-6 lg:px-10">
+          {/* SpinningText - hidden on tablets and mobile */}
           <SpinningText
             reverse
-            className=" hidden sm:block md:block text-2xl absolute top-[550px]  left-[1490px] right-[40]"
+            className="hidden xl:block text-2xl absolute top-[550px] left-[1490px] right-[40]"
             duration={150}
             radius={18}
           >
             Aspiration matters • Aspiration matters • Aspiration matters •
           </SpinningText>
 
+          {/* Desktop Layout - Large screens only */}
+          <div className="hidden xl:block">
+            <div className="w-full max-w-lg mx-auto lg:mx-0 lg:ml-6 mt-8 lg:mt-15 text-end">
+              <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
+                <p className="text-3xl sm:text-4xl lg:text-[5.5rem] font-semibold">
+                  Power up{" "}
+                  <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text">
+                    !!
+                  </span>
+                </p>
+              </BoxReveal>
 
-          {/* <SpinningText 
-  reverse 
-  className="block lg:hidden text-xl sm:text-2xl absolute top-[74%] left-1/2 transform -translate-x-1/2 w-full text-center" 
-  duration={150} 
-  radius={11}
->
-  Aspiration matters • Aspiration matters • Aspiration matters •
-</SpinningText>  */}
+              <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
+                <h2 className="mt-2 sm:mt-4 text-2xl sm:text-3xl lg:text-[3rem] font-semibold">
+                  Discover{" "}
+                  <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text">
+                    the winning
+                  </span>
+                </h2>
+              </BoxReveal>
 
-          <SpinningText
-            reverse
-            className="spinning-text block lg:hidden text-xl sm:text-2xl absolute left-1/2 transform -translate-x-1/2 w-full text-center"
-            duration={150}
-            radius={11}
-          >
-            Aspiration matters • Aspiration matters • Aspiration matters •
-          </SpinningText>
+              <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
+                <h2 className="mt-2 sm:mt-4 text-2xl sm:text-3xl lg:text-[3rem] font-semibold">edge,</h2>
+              </BoxReveal>
 
+              <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
+                <h2 className="mt-2 sm:mt-4 text-2xl sm:text-3xl lg:text-[3rem] font-semibold">
+                  It's in you{" "}
+                  <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text">
+                    .
+                  </span>
+                </h2>
+              </BoxReveal>
 
+              <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
+                <Button
+                  className="mt-8 sm:mt-12 lg:mt-[5.0rem] bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
+                            hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
+                            text-white font-bold py-5 sm:py-6 lg:py-7 px-8 sm:px-10 lg:px-12 
+                            rounded-lg transition-all duration-300 text-base sm:text-lg lg:text-xl 
+                            w-full sm:w-[250px] lg:w-[200px] h-[40px] sm:h-[50px] lg:h-[50px]"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    const aboutSection = document.querySelector("#about")
+                    if (aboutSection) {
+                      aboutSection.scrollIntoView({ behavior: "smooth" })
+                      setActiveSection("about")
+                    }
+                  }}
+                >
+                  Get Started
+                </Button>
+              </BoxReveal>
+            </div>
 
-
-
-          <div className="hidden sm:block w-full max-w-lg mx-auto lg:mx-0 lg:ml-6 mt-8 lg:mt-15">
-            <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
-              <p className="text-3xl sm:text-4xl lg:text-[5.5rem] font-semibold">
-                Power up <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text">!!</span>
-              </p>
-            </BoxReveal>
-
-            <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
-              <h2 className="mt-2 sm:mt-4 text-2xl sm:text-3xl lg:text-[3rem] font-semibold">
-                Discover{" "}
-                <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text">
-                  the winning
-                </span>
-              </h2>
-            </BoxReveal>
-
-            <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
-              <h2 className="mt-2 sm:mt-4 text-2xl sm:text-3xl lg:text-[3rem] font-semibold">
-                edge,
-              </h2>
-            </BoxReveal>
-
-            <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
-              <h2 className="mt-2 sm:mt-4 text-2xl sm:text-3xl lg:text-[3rem] font-semibold">
-                It's in you <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text">.</span>
-              </h2>
-            </BoxReveal>
-
-            <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
-              <Button
-
-                className="mt-8 sm:mt-12 lg:mt-[5.0rem] bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
-                          hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
-                          text-white font-bold py-5 sm:py-6 lg:py-7 px-8 sm:px-10 lg:px-12 
-                          rounded-lg transition-all duration-300 text-base sm:text-lg lg:text-xl 
-                          w-full sm:w-[250px] lg:w-[200px] h-[40px] sm:h-[50px] lg:h-[50px]"
-
-                onClick={(e) => {
-                  e.preventDefault()
-                  const aboutSection = document.querySelector("#about")
-                  if (aboutSection) {
-                    aboutSection.scrollIntoView({ behavior: "smooth" })
-                    setActiveSection("about")
-                  }
-                }}
-              >
-                Get Started
-              </Button>
-            </BoxReveal>
+            {/* Globe Demo - large screen */}
+            <div className="mt-8 sm:mt-12 w-full max-w-[300px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] mx-auto">
+              <div className="bg-transparent">
+                <GlobeDemo1 />
+              </div>
+            </div>
           </div>
 
-          {/* Mobile Content */}
-          {/* <div className="sm:hidden text-center px-14">
-                  <h2 className="text-2xl font-semibold mb-4">
+          {/* iPad Layout - Tablet devices (sm to lg) */}
+          <div className="hidden sm:flex xl:hidden flex-col items-center justify-center h-full w-full min-h-screen">
+            <div className="flex flex-col items-center justify-center space-y-6 mb-8">
+              <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
+                <p className="text-4xl md:text-5xl lg:text-6xl font-semibold text-center">
+                  Power up{" "}
+                  <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text">
+                    !!
+                  </span>
+                </p>
+              </BoxReveal>
+
+              <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center">
+                  Discover{" "}
+                  <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text">
+                    the winning
+                  </span>
+                </h2>
+              </BoxReveal>
+
+              <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center">edge,</h2>
+              </BoxReveal>
+
+              <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center">
+                  It's in you{" "}
+                  <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text">
+                    .
+                  </span>
+                </h2>
+              </BoxReveal>
+
+              <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
+                <Button
+                  className="mt-8 bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
+                    hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
+                    text-white font-bold py-4 px-8 
+                    rounded-lg transition-all duration-300 text-lg
+                    w-[200px] h-[50px]"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    const aboutSection = document.querySelector("#about")
+                    if (aboutSection) {
+                      aboutSection.scrollIntoView({ behavior: "smooth" })
+                      setActiveSection("about")
+                    }
+                  }}
+                >
+                  Get Started
+                </Button>
+              </BoxReveal>
+            </div>
+
+            {/* Globe Demo - Centered for tablets with transparent background */}
+            <div className="w-full max-w-[400px] md:max-w-[500px] lg:max-w-[600px] mx-auto flex items-center justify-center">
+              <div className="bg-transparent backdrop-blur-none">
+                <GlobeDemo1 />
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile Layout - Small screens only */}
+          <div className="sm:hidden flex flex-col items-center justify-center h-full w-full px-0">
+            <div className="w-full flex flex-col items-center justify-center">
+              <div className="flex flex-col items-center justify-center space-y-4 mb-10">
+                <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
+                  <p className="text-3xl font-semibold text-center">
                     Power up{" "}
                     <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text">
                       !!
                     </span>
-                  </h2>
-                  <p className="text-lg mb-6">
-                    Discover the winning edge. It's in you.
                   </p>
+                </BoxReveal>
+
+                <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
+                  <h2 className="text-2xl font-semibold text-center">
+                    Discover{" "}
+                    <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text">
+                      the winning
+                    </span>{" "}
+                    edge,
+                  </h2>
+                </BoxReveal>
+
+                <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
+                  <h2 className="text-2xl font-semibold text-center">
+                    It's in you{" "}
+                    <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text">
+                      .
+                    </span>
+                  </h2>
+                </BoxReveal>
+
+                <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
                   <Button
-                    className="w-full bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
-                        hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
-                        text-white font-bold py-3 px-6 rounded-lg transition-all duration-300"
+                    className="mt-4 bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
+                      hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
+                      text-white font-bold py-3 px-6 
+                      rounded-lg transition-all duration-300 text-sm
+                      w-[140px] h-[36px]"
                     onClick={(e) => {
                       e.preventDefault()
                       const aboutSection = document.querySelector("#about")
@@ -318,46 +416,54 @@ export default function Home() {
                   >
                     Get Started
                   </Button>
-                </div> */}
+                </BoxReveal>
+              </div>
+            </div>
 
-
-          {/* Globe Demo - large screen */}
-          <div className="mt-8 sm:mt-12 w-full max-w-[300px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] mx-auto">
-            <GlobeDemo1 />
+            {/* Image positioned at the exact bottom for mobile */}
+            <div className="w-full max-w-[200px] mx-auto fixed bottom-4 left-0 right-0 flex justify-center">
+              <div className="relative bg-transparent">
+                <Image
+                  src="/asssp.png"
+                  alt="Aspiration Matters"
+                  width={200}
+                  height={200}
+                  className="w-full h-auto bg-transparent"
+                />
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <h1 className="text-black font-serif text-2xl font-black tracking-tight leading-none">Aspiration</h1>
+                  <h1
+                    className="text-black font-serif text-2xl font-black tracking-tight mt-1 
+                      bg-clip-text bg-gradient-to-b from-black to-black/80"
+                    style={{
+                      fontFamily: "'Playfair Display', serif",
+                    }}
+                  >
+                    Matters
+                  </h1>
+                </div>
+              </div>
+            </div>
           </div>
-
-          <div className="mt-4  sm:mt-12 w-full max-w-[300px] sm:max-w-[400px] md:max-w-[500px] mx-auto lg:hidden">
-            <GlobeDemo2 />
-          </div>
-
-
-
-
         </div>
       </section>
 
       {/* about us section */}
-
       <main>
         <About />
       </main>
 
       {/* our-philosopy section */}
-
       <main>
         <Philosophy />
       </main>
 
-
       {/* our story section */}
-
       <main>
         <OurStory />
       </main>
 
-
       {/* event gallery */}
-
       <main className="min-h-screen">
         <EventGallery />
       </main>
@@ -365,7 +471,6 @@ export default function Home() {
       <main>
         <Blog />
       </main>
-
 
       <main>
         <CoursePage />
@@ -375,14 +480,9 @@ export default function Home() {
         <TestimonialsSection />
       </main>
 
-
       <main>
         <ContactPage />
       </main>
-
-
     </div>
   )
 }
-
-

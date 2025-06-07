@@ -1,6 +1,4 @@
 
-
-
 "use client"
 
 import { useState, useEffect } from "react"
@@ -114,6 +112,7 @@ export default function Blog() {
                       <BlogCard blog={blog} />
                     </CarouselItem>
                   ))}
+
                 </CarouselContent>
 
                 <Button

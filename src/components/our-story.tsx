@@ -92,7 +92,17 @@ const StorySection = () => {
         const data: StoryImages = await response.json()
 
         // Get the first 3 images from the response
-        const imageUrls = [data.data.image1_url, data.data.image2_url, data.data.image3_url]
+        // const imageUrls = [data.data.image1_url, data.data.image2_url, data.data.image3_url]
+
+        const sanitizeUrl = (url: string | null | undefined) =>
+          url && url !== "pending" ? url : "/placeholder.svg?height=400&width=400"
+
+        const imageUrls = [
+          sanitizeUrl(data.data.image1_url),
+          sanitizeUrl(data.data.image2_url),
+          sanitizeUrl(data.data.image3_url),
+        ]
+
 
         setImages(imageUrls)
         setError(null)
@@ -165,7 +175,8 @@ const StorySection = () => {
                   </div>
                 ) : (
                   <Image
-                    src={images[0] || "/placeholder.svg?height=400&width=400"}
+                    // src={images[0] || "/placeholder.svg?height=400&width=400"}
+                    src={images[0]?.startsWith("http") ? images[0] : "/placeholder.svg?height=400&width=400"}
                     alt="Team member"
                     width={400}
                     height={400}
@@ -218,6 +229,7 @@ const StorySection = () => {
                     alt="Team member"
                     width={800}
                     height={400}
+                    unoptimized
                     className="object-cover w-full h-full aspect-[2/1] transition-transform duration-500 group-hover:scale-110"
                   />
                 )}

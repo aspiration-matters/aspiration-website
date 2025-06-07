@@ -172,10 +172,17 @@ export default function BlogPost() {
         >
           <Card className="overflow-hidden backdrop-blur-sm bg-white/95 border-0 shadow-lg rounded-2xl p-8 sm:p-10">
             <div className="prose max-w-none">
-              <p className="text-gray-800 leading-relaxed text-lg font-normal tracking-wide">
-                {text}
-                {isTypingEffect && <span className="animate-pulse inline-block w-1.5 h-5 bg-purple-500 ml-1"></span>}
-              </p>
+              <div className="text-gray-800 leading-relaxed text-lg font-normal tracking-wide space-y-2">
+                {text.replace(/\\n/g, '\n').split('\n').map((line, index) => (
+                  <p key={index} className="mb-4">
+                    {line}
+                    {isTypingEffect && index === text.replace(/\\n/g, '\n').split('\n').length - 1 && (
+                      <span className="animate-pulse inline-block w-1.5 h-5 bg-purple-500 ml-1"></span>
+                    )}
+                  </p>
+                ))}
+
+              </div>
             </div>
           </Card>
 
