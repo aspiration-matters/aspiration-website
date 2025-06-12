@@ -174,14 +174,13 @@ export default function BlogPost() {
             <div className="prose max-w-none">
               <div className="text-gray-800 leading-relaxed text-lg font-normal tracking-wide space-y-2">
                 {text.replace(/\\n/g, '\n').split('\n').map((line, index) => (
-                  <p key={index} className="mb-4">
+                  <p key={index} className="mb-4 text-justify">
                     {line}
                     {isTypingEffect && index === text.replace(/\\n/g, '\n').split('\n').length - 1 && (
                       <span className="animate-pulse inline-block w-1.5 h-5 bg-purple-500 ml-1"></span>
                     )}
                   </p>
                 ))}
-
               </div>
             </div>
           </Card>

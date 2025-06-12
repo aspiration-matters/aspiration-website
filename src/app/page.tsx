@@ -1,5 +1,4 @@
 
-
 "use client"
 
 import type React from "react"
@@ -8,10 +7,10 @@ import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { GlobeDemo1 } from "./globe/_components/Globedemo"
+import { GlobeDemo } from "./globe/_components/Globedemo"
 
 import { BoxReveal } from "@/components/magicui/box-reveal"
-import { SpinningText } from "@/components/magicui/spinning-text"
+// import { SpinningText } from "@/components/magicui/spinning-text"
 import { EventGallery } from "@/components/event-gallery"
 import Blog from "@/components/blog"
 import TestimonialsSection from "@/components/testimonials"
@@ -20,7 +19,10 @@ import CoursePage from "@/components/course"
 import Image from "next/image"
 import Head from "next/head"
 
-// import { useTheme } from "next-themes";
+import { GlobeWithSpinningText } from "@/components/globe-with-spinning-text"
+
+
+
 import OurStory from "@/components/our-story"
 import Philosophy from "@/components/ philosophy-section"
 import About from "@/components/about-us"
@@ -167,34 +169,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Mobile Navigation - Enhanced for tablets and phones */}
-        {/* {mobileMenuOpen && (
-          <div className="lg:hidden w-full backdrop-blur-md bg-white/90 shadow-xl border-t border-white/50 rounded-b-2xl">
-            <div className="container mx-auto px-4 py-4 sm:py-6">
-              <nav className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3">
-                {navItems.map((item) => {
-                  const isActive = activeSection === item.href.substring(1)
-                  return (
-                    <Button
-                      key={item.name}
-                      variant={isActive ? "default" : "ghost"}
-                      className={cn(
-                        "justify-center sm:justify-start font-medium rounded-xl h-10 sm:h-12 text-sm sm:text-base",
-                        isActive
-                          ? "bg-gradient-to-r from-purple-200 to-blue-200 text-purple-900 shadow-md"
-                          : "text-purple-700 hover:bg-white/60 hover:text-purple-800",
-                        "hover:translate-x-1 transition-all",
-                      )}
-                      onClick={(e) => scrollToSection(e as any, item.href)}
-                    >
-                      {item.name}
-                    </Button>
-                  )
-                })}
-              </nav>
-            </div>
-          </div>
-        )} */}
+
         {mobileMenuOpen && (
           <div className="lg:hidden w-full backdrop-blur-md bg-white/90 shadow-xl border-t border-white/50 rounded-b-2xl">
             <div className="container mx-auto px-4 py-4 sm:py-6">
@@ -230,18 +205,10 @@ export default function Home() {
         className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm relative overflow-hidden"
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-10">
-          {/* SpinningText - hidden on tablets and mobile */}
-          <SpinningText
-            reverse
-            className="hidden xl:block text-2xl absolute top-[550px] left-[1490px] right-[40]"
-            duration={150}
-            radius={18}
-          >
-            Aspiration matters • Aspiration matters • Aspiration matters •
-          </SpinningText>
+
 
           {/* Desktop Layout - Large screens only */}
-          <div className="hidden xl:block">
+          {/* <div className="hidden xl:block">
             <div className="w-full max-w-lg mx-auto lg:mx-0 lg:ml-6 mt-8 lg:mt-15 text-end">
               <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
                 <p className="text-3xl sm:text-4xl lg:text-[5.5rem] font-semibold">
@@ -295,13 +262,82 @@ export default function Home() {
               </BoxReveal>
             </div>
 
-            {/* Globe Demo - large screen */}
-            <div className="mt-8 sm:mt-12 w-full max-w-[300px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] mx-auto">
+
+            <div className="relative w-full max-w-[300px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] ml-auto" style={{ top: "-70px" }}>
               <div className="bg-transparent">
-                <GlobeDemo1 />
+                <GlobeDemo />
               </div>
             </div>
+
+          </div> */}
+
+          <div className="hidden xl:flex w-full items-center justify-between px-12">
+            {/* LEFT: Quote Section */}
+            <div className="flex-1 max-w-lg text-end">
+              <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
+                <p className="text-3xl sm:text-4xl lg:text-[5.5rem] font-semibold">
+                  Power up{" "}
+                  <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text">
+                    !!
+                  </span>
+                </p>
+              </BoxReveal>
+
+              <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
+                <h2 className="mt-2 sm:mt-4 text-2xl sm:text-3xl lg:text-[3rem] font-semibold">
+                  Discover{" "}
+                  <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text">
+                    the winning
+                  </span>
+                </h2>
+              </BoxReveal>
+
+              <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
+                <h2 className="mt-2 sm:mt-4 text-2xl sm:text-3xl lg:text-[3rem] font-semibold">edge,</h2>
+              </BoxReveal>
+
+              <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
+                <h2 className="mt-2 sm:mt-4 text-2xl sm:text-3xl lg:text-[3rem] font-semibold">
+                  It's in you{" "}
+                  <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text">
+                    .
+                  </span>
+                </h2>
+              </BoxReveal>
+
+              <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
+                <Button
+                  className="mt-8 sm:mt-12 lg:mt-[5.0rem] bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
+                  hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
+                  text-white font-bold py-5 sm:py-6 lg:py-7 px-8 sm:px-10 lg:px-12 
+                  rounded-lg transition-all duration-300 text-base sm:text-lg lg:text-xl 
+                  w-full sm:w-[250px] lg:w-[200px] h-[40px] sm:h-[50px] lg:h-[50px]"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const aboutSection = document.querySelector("#about");
+                    if (aboutSection) {
+                      aboutSection.scrollIntoView({ behavior: "smooth" });
+                      setActiveSection("about");
+                    }
+                  }}
+                >
+                  Get Started
+                </Button>
+              </BoxReveal>
+            </div>
+
+            {/* RIGHT: Globe */}
+            <div
+              className="relative flex-1 max-w-[600px] translate-x-4"
+              style={{ top: "30px" }}
+            >
+              <div className="bg-transparent">
+                <GlobeDemo />
+              </div>
+            </div>
+
           </div>
+
 
           {/* iPad Layout - Tablet devices (sm to lg) */}
           <div className="hidden sm:flex xl:hidden flex-col items-center justify-center h-full w-full min-h-screen">
@@ -359,11 +395,17 @@ export default function Home() {
             </div>
 
             {/* Globe Demo - Centered for tablets with transparent background */}
-            <div className="w-full max-w-[400px] md:max-w-[500px] lg:max-w-[600px] mx-auto flex items-center justify-center">
-              <div className="bg-transparent backdrop-blur-none">
-                <GlobeDemo1 />
-              </div>
+
+            <div className="relative w-full aspect-square max-w-[600px] mx-auto">
+              <GlobeWithSpinningText
+                text="Aspiration matters • Aspiration matters • Aspiration matters •"
+                textDuration={120}
+                className="drop-shadow-2xl"
+              />
             </div>
+
+
+
           </div>
 
           {/* Mobile Layout - Small screens only */}

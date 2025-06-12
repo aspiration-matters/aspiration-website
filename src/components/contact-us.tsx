@@ -1,7 +1,4 @@
 
-
-
-
 "use client"
 
 import type React from "react"
@@ -31,13 +28,10 @@ import {
   FaPaperPlane,
 } from "react-icons/fa"
 import Link from "next/link"
-import { delay } from "framer-motion"
 
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["600"] })
 
 export default function ContactPage() {
-
-
   // Email form state
   const [emailForm, setEmailForm] = useState({
     name: "",
@@ -56,26 +50,17 @@ export default function ContactPage() {
   const [emailLoading, setEmailLoading] = useState(false)
   const [whatsappLoading, setWhatsappLoading] = useState(false)
 
-
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { id, value } = e.target;
-    const key =
-      id === "email-name"
-        ? "name"
-        : id === "email"
-          ? "email"
-          : id === "email-message"
-            ? "message"
-            : "";
+    const { id, value } = e.target
+    const key = id === "email-name" ? "name" : id === "email" ? "email" : id === "email-message" ? "message" : ""
 
     if (key) {
       setEmailForm((prev) => ({
         ...prev,
         [key]: value,
-      }));
+      }))
     }
-  };
-
+  }
 
   // Handle WhatsApp form input changes
   const handleWhatsappChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -113,16 +98,13 @@ export default function ContactPage() {
       })
 
       if (response.status === 200) {
-
         toast.success("message sent successfully!")
 
         setEmailForm({ name: "", email: "", message: "" })
       } else {
-
         toast.error("Server error, please try again later")
       }
     } catch (error) {
-
       toast.error("Failed to send message. Please try again.")
     } finally {
       setEmailLoading(false)
@@ -135,7 +117,6 @@ export default function ContactPage() {
 
     // Validate form
     if (!whatsappForm.name || !whatsappForm.phone || !whatsappForm.message) {
-
       toast.error("Please fill all fields")
       return
     }
@@ -156,9 +137,8 @@ export default function ContactPage() {
       })
 
       if (response.ok) {
-
         toast.success("Success", {
-          description: "Redirecting to WhatsApp..."
+          description: "Redirecting to WhatsApp...",
         })
 
         const data = await response.json()
@@ -171,11 +151,9 @@ export default function ContactPage() {
           window.open(data.redirect_url, "_blank")
         }
       } else {
-
         toast.error("Server error, please try again later")
       }
     } catch (error) {
-
       toast.error("Failed to send message. Please try again.")
     } finally {
       setWhatsappLoading(false)
@@ -432,6 +410,21 @@ export default function ContactPage() {
                     <FaYoutube className="h-5 w-5 text-white" />
                   </div>
                 </a>
+                <a
+                  href="https://g.page/r/CZyCFpsGv0RZEAE/review"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transform hover:scale-110 transition-transform"
+                >
+                  <div className="h-8 w-8 bg-gradient-to-br from-[#4285F4] to-[#34A853] rounded-full flex items-center justify-center">
+                    <svg className="h-5 w-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+                      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+                    </svg>
+                  </div>
+                </a>
               </div>
             </div>
 
@@ -445,43 +438,43 @@ export default function ContactPage() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/about-us" className="text-purple-200 hover:text-white transition-colors">
-                      About Us
-                    </Link>
+
+                    <a href="#about" className="text-purple-200 hover:text-white transition-colors">About Us</a>
+
                   </li>
                   <li>
-                    <Link href="/philosophy" className="text-purple-200 hover:text-white transition-colors">
+                    <a href="#philosophy" className="text-purple-200 hover:text-white transition-colors">
                       Philosophy
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <Link href="/our-story" className="text-purple-200 hover:text-white transition-colors">
+                    <a href="#story" className="text-purple-200 hover:text-white transition-colors">
                       Our Story
-                    </Link>
+                    </a>
                   </li>
                 </ul>
               </div>
               <div>
                 <ul className="space-y-2">
                   <li>
-                    <Link href="/event-gallery" className="text-purple-200 hover:text-white transition-colors">
+                    <a href="#gallery" className="text-purple-200 hover:text-white transition-colors">
                       Event Gallery
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <Link href="/blogs" className="text-purple-200 hover:text-white transition-colors">
+                    <a href="#blogs" className="text-purple-200 hover:text-white transition-colors">
                       Blogs
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <Link href="/courses" className="text-purple-200 hover:text-white transition-colors">
+                    <a href="#courses" className="text-purple-200 hover:text-white transition-colors">
                       Courses
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <Link href="/testimonials" className="text-purple-200 hover:text-white transition-colors">
+                    <a href="#testimonials" className="text-purple-200 hover:text-white transition-colors">
                       Testimonials
-                    </Link>
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -502,3 +495,4 @@ export default function ContactPage() {
     </div>
   )
 }
+

@@ -38,6 +38,7 @@ export default function OurStoryPage() {
   const [currentParagraphIndex, setCurrentParagraphIndex] = useState<number>(0)
   const [charIndex, setCharIndex] = useState<number>(0)
 
+
   useEffect(() => {
     const fetchStoryData = async () => {
       try {
@@ -45,10 +46,18 @@ export default function OurStoryPage() {
         const response = await fetch("http://127.0.0.1:8080/story")
         if (!response.ok) throw new Error("Failed to fetch story data")
         const json = await response.json()
-        setImageUrl(json.data.image4_url)
+
+        const { image4_url } = json.data
+
+        // Find the first valid image (not "pending" or null)
+        const validImage = [image4_url].find(
+          (url) => url && url !== "pending"
+        )
+
+        setImageUrl(validImage || "/placeholder.svg?height=600&width=800")
       } catch (err: any) {
         toast.error("Error loading image: " + err.message)
-        // Fallback image in case of error
+        
         setImageUrl("/placeholder.svg?height=600&width=800")
       } finally {
         setLoading(false)

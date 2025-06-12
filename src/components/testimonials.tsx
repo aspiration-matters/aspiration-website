@@ -1,16 +1,14 @@
 
-
 "use client"
 
 import type React from "react"
-
 import { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronLeft, ChevronRight, Quote, Star, X, MessageSquarePlus } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { useMobile } from "@/app/hooks/use-mobile"
+// import { useMobile } from "@/app/hooks/use-mobile"
 import { Work_Sans } from "next/font/google"
 import { toast } from "sonner"
 import {
@@ -42,7 +40,7 @@ export default function TestimonialsSection() {
   const [loading, setLoading] = useState(true)
   const [activeIndex, setActiveIndex] = useState(0)
   const [isRatingModalOpen, setIsRatingModalOpen] = useState(false)
-  const isMobile = useMobile()
+  // const isMobile = useMobile()
   const containerRef = useRef<HTMLDivElement>(null)
   const [mounted, setMounted] = useState(false)
 
@@ -451,6 +449,7 @@ export function RatingModal({ isOpen, onClose }: RatingModalProps) {
             />
           </div>
 
+
           <div className="space-y-1">
             <Label htmlFor="review" className="text-xs font-medium text-purple-800">
               Review
@@ -459,11 +458,18 @@ export function RatingModal({ isOpen, onClose }: RatingModalProps) {
               id="review"
               name="review"
               value={formData.review}
-              onChange={handleChange}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (value.length <= 700) {
+                  handleChange(e);
+                }
+              }}
               placeholder="Share your experience with us..."
               required
-              className="min-h-[80px] border-purple-100 focus:border-purple-500 focus:ring-purple-500 text-sm bg-white/80"
+              maxLength={700}
+              className="min-h-[80px] border-purple-100 focus:border-purple-500 focus:ring-purple-500 text-sm bg-white/80 text-justify"
             />
+            <p className="text-xs text-right text-purple-600">{formData.review.length}/700</p>
           </div>
 
           <div className="space-y-1">

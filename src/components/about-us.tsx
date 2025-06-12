@@ -9,7 +9,7 @@ import { Card } from "@/components/ui/card";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import { Work_Sans } from "next/font/google";
 import { useEffect, useState } from "react";
-// import { toast } from "react-hot-toast";
+
 import { toast } from "sonner"
 
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["600"] });

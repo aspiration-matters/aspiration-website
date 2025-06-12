@@ -4,19 +4,19 @@ import { useState, useEffect } from "react"
 import { X, ExternalLink, ChevronLeft, ChevronRight, Camera, RefreshCw } from "lucide-react"
 import { BorderBeam } from "@/components/magicui/border-beam"
 import { Work_Sans } from "next/font/google"
-// Import toast from a common UI library if you don't have the custom hook
+
 import { toast } from "sonner"
 
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["600"] })
 
-// Define the type for our API response
+
 interface GalleryImage {
   id: string
   file_name: string
   image_url: string
 }
 
-// Define a separate type for our component's internal image format
+
 interface DisplayImage {
   id: string
   src: string
