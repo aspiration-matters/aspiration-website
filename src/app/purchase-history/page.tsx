@@ -228,7 +228,7 @@ export default function PurchaseHistory() {
         const userId = decoded.user_id
         if (!userId) throw new Error("Invalid token: user_id not found")
 
-        const res = await fetch(`http://127.0.0.1:8080/purchase/${userId}`)
+        const res = await fetch(`https://api.aspirationmatters.com/purchase/${userId}`)
         if (!res.ok) throw new Error("Failed to fetch purchase history")
 
         const json = await res.json()

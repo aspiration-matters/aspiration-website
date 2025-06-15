@@ -49,7 +49,7 @@ export default function TestimonialsSection() {
 
     const fetchTestimonials = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:8080/testimonial/verified")
+        const res = await fetch("https://api.aspirationmatters.com/testimonial/verified")
 
         if (!res.ok) {
           toast.error("failed to fetch")

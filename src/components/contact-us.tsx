@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
-// import { useToast } from "@/app/hooks/use-toast"
+
 import { toast } from "sonner"
 
 import { Loader2 } from "lucide-react"
@@ -85,7 +85,7 @@ export default function ContactPage() {
     setEmailLoading(true)
 
     try {
-      const response = await fetch("http://127.0.0.1:8080/contact/email", {
+      const response = await fetch("https://api.aspirationmatters.com/contact/email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -124,7 +124,7 @@ export default function ContactPage() {
     setWhatsappLoading(true)
 
     try {
-      const response = await fetch("http://127.0.0.1:8080/contact/whatsapp", {
+      const response = await fetch("https://api.aspirationmatters.com/contact/whatsapp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

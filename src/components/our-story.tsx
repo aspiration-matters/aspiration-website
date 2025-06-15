@@ -81,7 +81,7 @@ const StorySection = () => {
     const fetchImages = async () => {
       try {
         setLoading(true)
-        const response = await fetch("http://127.0.0.1:8080/story")
+        const response = await fetch("https://api.aspirationmatters.com/story")
 
         if (!response.ok) {
           toast.error("failed to fetch")

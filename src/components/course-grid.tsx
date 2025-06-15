@@ -45,11 +45,11 @@ export function CourseGrid({ searchQuery = "", customFetchUrl }: CourseGridProps
               throw new Error("User ID not found in token.")
             }
 
-            endpoint = `http://127.0.0.1:8080/course/user/${userId}`
+            endpoint = `https://api.aspirationmatters.com/course/user/${userId}`
             console.log("Using user-specific endpoint:", endpoint)
           } else {
             // Token not found, use general endpoint
-            endpoint = "http://127.0.0.1:8080/course/get"
+            endpoint = "https://api.aspirationmatters.com/course/get"
             console.log("Token not found, using default endpoint:", endpoint)
           }
         }

@@ -43,7 +43,7 @@ export default function OurStoryPage() {
     const fetchStoryData = async () => {
       try {
         setLoading(true)
-        const response = await fetch("http://127.0.0.1:8080/story")
+        const response = await fetch("https://api.aspirationmatters.com/story")
         if (!response.ok) throw new Error("Failed to fetch story data")
         const json = await response.json()
 
@@ -57,7 +57,7 @@ export default function OurStoryPage() {
         setImageUrl(validImage || "/placeholder.svg?height=600&width=800")
       } catch (err: any) {
         toast.error("Error loading image: " + err.message)
-        
+
         setImageUrl("/placeholder.svg?height=600&width=800")
       } finally {
         setLoading(false)

@@ -24,7 +24,7 @@ const About = () => {
   useEffect(() => {
     const fetchImage = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:8080/about");
+        const res = await fetch("https://api.aspirationmatters.com/about");
         const json = await res.json();
         if (!res.ok) throw new Error("Failed to fetch About section data");
         setImageUrl(json?.data?.image1_url);

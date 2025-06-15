@@ -50,7 +50,7 @@ export default function LoginPage() {
     if (isLoggedIn) {
       // ✅ OTP verification
       try {
-        const response = await fetch("http://127.0.0.1:8080/user/verify-otp", {
+        const response = await fetch("https://api.aspirationmatters.com/user/verify-otp", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -78,7 +78,7 @@ export default function LoginPage() {
     } else {
       // ✅ Send OTP
       try {
-        const response = await fetch("http://127.0.0.1:8080/user/send-otp", {
+        const response = await fetch("https://api.aspirationmatters.com/user/send-otp", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -55,7 +55,7 @@ export function CourseCard({ course, index }: CourseCardProps) {
     setLoading(true)
 
     try {
-      const res = await fetch("http://127.0.0.1:8080/cart/add", {
+      const res = await fetch("https://api.aspirationmatters.com/cart/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

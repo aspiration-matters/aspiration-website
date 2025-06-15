@@ -41,7 +41,7 @@ export function EventGallery() {
       setLoading(true)
       setError(null)
 
-      const response = await fetch("http://127.0.0.1:8080/eventgallery/")
+      const response = await fetch("https://api.aspirationmatters.com/eventgallery/")
 
       if (!response.ok) {
         toast.error("failed to fetch")

@@ -50,7 +50,7 @@ export default function Blog() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8080/blog/")
+    fetch("https://api.aspirationmatters.com/blog/")
       .then(async (res) => {
         if (!res.ok) {
           const text = await res.text()

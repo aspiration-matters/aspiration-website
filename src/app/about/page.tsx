@@ -18,7 +18,7 @@ export default function AboutPage() {
   useEffect(() => {
     const fetchAboutImage = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:8080/about");
+        const res = await fetch("https://api.aspirationmatters.com/about");
         if (!res.ok) throw new Error("Failed to fetch");
         const json = await res.json();
         setImageUrl(json?.data?.image2_url || null);

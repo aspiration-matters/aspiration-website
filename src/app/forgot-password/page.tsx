@@ -43,7 +43,7 @@ export default function ForgotPasswordPage() {
 
         try {
 
-            const response = await fetch("http://127.0.0.1:8080/user/forgot-password", {
+            const response = await fetch("https://api.aspirationmatters.com/user/forgot-password", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -87,7 +87,7 @@ export default function ForgotPasswordPage() {
         try {
 
             // Replace with your actual API endpoint
-            const response = await fetch("http://127.0.0.1:8080/user/reset-password", {
+            const response = await fetch("https://api.aspirationmatters.com/user/reset-password", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

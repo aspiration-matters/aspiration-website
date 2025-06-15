@@ -27,7 +27,7 @@ export default function CoursePage() {
     const fetchCourse = async () => {
       setLoading(true)
       try {
-        const res = await fetch(`http://127.0.0.1:8080/course/${id}`)
+        const res = await fetch(`https://api.aspirationmatters.com/course/${id}`)
         if (!res.ok) throw new Error("Course not found")
         const data = await res.json()
         setCourse(data.data)

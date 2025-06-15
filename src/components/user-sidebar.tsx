@@ -39,7 +39,7 @@ export function UserSidebar() {
         const decoded: DecodedToken = jwtDecode(token)
         const userId = decoded.user_id
 
-        const res = await fetch(`http://127.0.0.1:8080/user/${userId}`, {
+        const res = await fetch(`https://api.aspirationmatters.com/user/${userId}`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,

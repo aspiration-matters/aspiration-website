@@ -29,7 +29,7 @@ export default function BlogPost() {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const res = await fetch(`http://127.0.0.1:8080/blog/${params.id}`, {
+        const res = await fetch(`https://api.aspirationmatters.com/blog/${params.id}`, {
           method: "GET",
         })
 

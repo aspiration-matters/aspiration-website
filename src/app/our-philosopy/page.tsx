@@ -90,7 +90,7 @@ Our mantra is –
   useEffect(() => {
     const fetchImage = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:8080/philosopy")
+        const res = await fetch("https://api.aspirationmatters.com/philosopy")
         if (!res.ok) {
           throw new Error("Failed to fetch")
         }

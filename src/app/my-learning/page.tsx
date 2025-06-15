@@ -18,7 +18,7 @@ export default function MyLearning() {
         const decoded: any = jwtDecode(token)
         const userId = decoded.user_id
         if (userId) {
-          setUserCourseUrl(`http://127.0.0.1:8080/course/purchased/${userId}`)
+          setUserCourseUrl(`https://api.aspirationmatters.com/course/purchased/${userId}`)
         }
       } catch (err) {
         console.error("Invalid token", err)

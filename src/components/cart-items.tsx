@@ -63,7 +63,7 @@ export function CartItems() {
       // const courses_id = cartItems.map((value) => value.id);
       cartItems.map((value, _index) => value.id)
 
-      const res = await fetch("http://127.0.0.1:8080/payment/order", {
+      const res = await fetch("https://api.aspirationmatters.com/payment/order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -111,7 +111,7 @@ export function CartItems() {
           const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 sec timeout
 
           try {
-            const verifyRes = await fetch("http://127.0.0.1:8080/payment/verify", {
+            const verifyRes = await fetch("https://api.aspirationmatters.com/payment/verify", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
@@ -158,7 +158,7 @@ export function CartItems() {
   const handleCardDoubleClick = async (id: string) => {
     try {
       setLoadingCourseId(id)
-      const res = await fetch(`http://127.0.0.1:8080/course/${id}`)
+      const res = await fetch(`https://api.aspirationmatters.com/course/${id}`)
 
       if (!res.ok) {
         throw new Error(`Failed to fetch course (${res.status})`)
