@@ -24,6 +24,7 @@ const About = () => {
   useEffect(() => {
     const fetchImage = async () => {
       try {
+
         const res = await fetch("https://api.aspirationmatters.com/about");
         const json = await res.json();
         if (!res.ok) throw new Error("Failed to fetch About section data");
