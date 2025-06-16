@@ -1,7 +1,7 @@
 
 "use client"
 
-import { ArrowLeft, Loader2, BookOpen } from "lucide-react"
+import { ArrowLeft, Loader2 } from "lucide-react"
 import { useRouter, useParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
@@ -9,6 +9,7 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { toast } from "sonner"
 import { API_BASE_URL } from "@/lib/api";
+import Image from "next/image"
 
 interface BlogData {
   id: string
@@ -137,11 +138,14 @@ export default function BlogPost() {
           className="w-full overflow-hidden rounded-2xl shadow-xl  mb-0"
         >
           <div className="relative h-[450px] w-full">
-            <img
+
+            <Image
               src={blog.image_url}
               alt={blog.title}
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
             />
+
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/0" />
 
             <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-12">

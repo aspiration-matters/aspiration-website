@@ -81,7 +81,7 @@ export function CourseCard({ course, index }: CourseCardProps) {
           description: result?.message || "Something went wrong",
         })
       }
-    } catch (err) {
+    } catch (_err) {
       toast.error("Error", {
         description: "Unable to add to cart. Please try again.",
       })

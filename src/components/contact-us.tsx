@@ -105,7 +105,7 @@ export default function ContactPage() {
       } else {
         toast.error("Server error, please try again later")
       }
-    } catch (error) {
+    } catch {
       toast.error("Failed to send message. Please try again.")
     } finally {
       setEmailLoading(false)
@@ -125,7 +125,7 @@ export default function ContactPage() {
     setWhatsappLoading(true)
 
     try {
-      const response = await fetch(`${API_BASE_URL} /contact/whatsapp`, {
+      const response = await fetch(`${API_BASE_URL}/contact/whatsapp`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -154,7 +154,7 @@ export default function ContactPage() {
       } else {
         toast.error("Server error, please try again later")
       }
-    } catch (error) {
+    } catch {
       toast.error("Failed to send message. Please try again.")
     } finally {
       setWhatsappLoading(false)
@@ -218,7 +218,7 @@ export default function ContactPage() {
                 <CardTitle
                   className={`${workSans.className} font-medium text-center text-xl text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700`}
                 >
-                  Let's Connect
+                  Let{"'"}s Connect
                 </CardTitle>
               </CardHeader>
               <CardContent className="px-8">

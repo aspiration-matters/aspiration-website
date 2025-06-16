@@ -72,7 +72,7 @@ export default function LoginPage() {
         } else {
           toast.error(data.message || "Invalid OTP or other error")
         }
-      } catch (error) {
+      } catch {
         toast.error("Error verifying OTP")
         setErrorMessage("Error verifying OTP")
       }
@@ -97,7 +97,7 @@ export default function LoginPage() {
         } else {
           toast.error(data.message || "Error sending OTP")
         }
-      } catch (error) {
+      } catch {
         toast.error("Error sending OTP")
         setErrorMessage("Error sending OTP")
       }

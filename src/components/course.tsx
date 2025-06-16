@@ -36,7 +36,7 @@ export default function CoursePage() {
     }, 50)
 
     return () => clearInterval(typingInterval)
-  }, [])
+  }, [quoteText])
 
   return (
     <section id="courses" className="min-h-screen md:h-screen flex flex-col">
@@ -112,7 +112,9 @@ export default function CoursePage() {
 
           {/* Quote with typing effect - smaller for mobile */}
           <blockquote className="relative">
-            <p className="text-sm text-gray-800 leading-relaxed mb-4 whitespace-pre-line text-center">"{typedText}"</p>
+            {/* <p className="text-sm text-gray-800 leading-relaxed mb-4 whitespace-pre-line text-center">"{typedText}"</p> */}
+            <p className="text-sm text-gray-800 leading-relaxed mb-4 whitespace-pre-line text-center">&quot;{typedText}&quot;</p>
+
           </blockquote>
 
           {/* Button at bottom center for small screens */}
@@ -146,8 +148,11 @@ export default function CoursePage() {
 
         <div className="hidden sm:flex w-full lg:w-1/2 flex-col justify-center px-6 py-8 lg:py-0 lg:-ml-55">
           <blockquote className="relative">
-            <p className="text-xl md:text-2xl lg:text-3xl text-gray-800 leading-relaxed mb-6 whitespace-pre-line text-center lg:text-left">
+            {/* <p className="text-xl md:text-2xl lg:text-3xl text-gray-800 leading-relaxed mb-6 whitespace-pre-line text-center lg:text-left">
               "{typedText}"
+            </p> */}
+            <p className="text-xl md:text-2xl lg:text-3xl text-gray-800 leading-relaxed mb-6 whitespace-pre-line text-center lg:text-left">
+              &quot;{typedText}&quot;
             </p>
           </blockquote>
         </div>

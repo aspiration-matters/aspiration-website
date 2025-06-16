@@ -12,11 +12,12 @@ import { BorderBeam } from "@/components/magicui/border-beam";
 import { Work_Sans } from "next/font/google";
 import { toast } from "sonner";
 import { API_BASE_URL } from "@/lib/api";
+import Image from "next/image";
 
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["600"] });
 
 const Philosophy = () => {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [ref] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   const visionText =
     "To build a community of inspired individuals and organizations who strive for the betterment of themselves and society for human connection, collaboration, and co-creation. So, they develop the power to uplift each other.";
@@ -33,7 +34,7 @@ const Philosophy = () => {
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
         setImageUrl(data?.data?.image1_url || null);
-      } catch (err) {
+      } catch {
         toast.error("failed to fetch")
       } finally {
         setLoading(false);
@@ -65,9 +66,12 @@ const Philosophy = () => {
                     Loading...
                   </div>
                 ) : (
-                  <img
+
+                  <Image
                     src={imageUrl || "/fallback.jpg"}
                     alt="Philosophy"
+                    width={800}
+                    height={500}
                     className="w-full aspect-[16/10] object-cover transform group-hover:scale-105 transition duration-500"
                   />
                 )}

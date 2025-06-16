@@ -14,38 +14,60 @@ import { useCart } from "@/context/cart-context"
 import { toast } from "sonner"
 import { API_BASE_URL } from "@/lib/api";
 
+interface Course {
+  id: string;
+  title: string;
+  description: string;
+  duration: string;
+  instructor: string;
+  price: number;
+  originalPrice: number;
+  thumbnail: string;
+  tags: string[];
+  purchased: boolean;
+  videoUrl?: string;
+}
+
+
+
+
 export default function CoursePage() {
   const router = useRouter()
   const params = useParams()
-  const id = params?.id as string
+  // const id = params?.id as string
+  const id = typeof params?.id === "string" ? params.id : "";
 
   const { addToCart, isInCart } = useCart()
-  const [course, setCourse] = useState<any>(null)
+  // const [course, setCourse] = useState<any>(null)
+  const [course, setCourse] = useState<Course | null>(null);
   const [loading, setLoading] = useState(true)
   const [videoCompleted, setVideoCompleted] = useState(false)
 
+
   useEffect(() => {
     const fetchCourse = async () => {
-      setLoading(true)
+      setLoading(true);
       try {
-        const res = await fetch(`${API_BASE_URL}/course/${id}`)
-        if (!res.ok) throw new Error("Course not found")
-        const data = await res.json()
-        setCourse(data.data)
-      } catch (err: any) {
+        const res = await fetch(`${API_BASE_URL}/course/${id}`);
+        if (!res.ok) throw new Error("Course not found");
+
+        const data = await res.json();
+        setCourse(data.data);
+      } catch (err) {
+        const message = err instanceof Error ? err.message : "Something went wrong";
         toast.error("Failed to load course", {
-          description: err.message || "Something went wrong",
-        })
-        router.push("/")
+          description: message,
+        });
+        router.push("/");
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
     if (id) {
-      fetchCourse()
+      fetchCourse();
     }
-  }, [id, router])
+  }, [id, router]);
 
   const handleAddToCart = () => {
     if (course) {
@@ -130,8 +152,14 @@ export default function CoursePage() {
             {course.purchased ? (
               <div className="space-y-6">
                 <div className="rounded-xl overflow-hidden shadow-xl border border-purple-100">
-                  <VideoPlayer
+                  {/* <VideoPlayer
                     src={course.videoUrl}
+                    poster={course.thumbnail || "/placeholder.svg"}
+                    title={course.title}
+                    onComplete={handleVideoComplete}
+                  /> */}
+                  <VideoPlayer
+                    src={course.videoUrl ?? ""}
                     poster={course.thumbnail || "/placeholder.svg"}
                     title={course.title}
                     onComplete={handleVideoComplete}

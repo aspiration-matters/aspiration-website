@@ -3,7 +3,7 @@
 
 import type React from "react"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -38,20 +38,21 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
 
-  // const theme = useTheme();
 
-  // Navigation items with Home as first item
-  const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "About Us", href: "#about" },
-    { name: "Philosophy", href: "#philosophy" },
-    { name: "Our Story", href: "#story" },
-    { name: "Event Gallery", href: "#gallery" },
-    { name: "Blogs", href: "#blogs" },
-    { name: "Courses", href: "#courses" },
-    { name: "Testimonials", href: "#testimonials" },
-    { name: "Contact", href: "#contact" },
-  ]
+  const navItems = useMemo(
+    () => [
+      { name: "Home", href: "#home" },
+      { name: "About Us", href: "#about" },
+      { name: "Philosophy", href: "#philosophy" },
+      { name: "Our Story", href: "#story" },
+      { name: "Event Gallery", href: "#gallery" },
+      { name: "Blogs", href: "#blogs" },
+      { name: "Courses", href: "#courses" },
+      { name: "Testimonials", href: "#testimonials" },
+      { name: "Contact", href: "#contact" },
+    ],
+    []
+  )
 
   // Handle scroll event to change navbar appearance and track active section
   useEffect(() => {
@@ -82,8 +83,10 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [navItems])
 
-  // Smooth scroll function
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, href: string) => {
+
     e.preventDefault()
     const element = document.querySelector(href)
     if (element) {
@@ -93,16 +96,11 @@ export default function Home() {
     }
   }
 
+
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-100/80 to-white">
-      <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
+
       {/* Enhanced Navigation Bar - Updated for iPad and mobile */}
       <header
         className={cn(
@@ -134,7 +132,8 @@ export default function Home() {
                       <NavigationMenuItem key={item.name}>
                         <NavigationMenuLink
                           href={item.href}
-                          onClick={(e) => scrollToSection(e as any, item.href)}
+
+                          onClick={(e) => scrollToSection(e, item.href)}
                           className={cn(
                             "px-6 py-2.5 rounded-full transition-all duration-300 font-medium",
                             "hover:bg-gradient-to-r hover:from-white/90 hover:to-purple-100/80 hover:text-purple-900 hover:shadow-lg hover:scale-105",
@@ -233,7 +232,8 @@ export default function Home() {
 
               <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
                 <h2 className="mt-2 sm:mt-4 text-2xl sm:text-3xl lg:text-[3rem] font-semibold">
-                  It's in you{" "}
+                  It’ s in you{" "}
+
                   <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text">
                     .
                   </span>
@@ -301,7 +301,8 @@ export default function Home() {
 
               <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center">
-                  It's in you{" "}
+                  It’s in you{" "}
+
                   <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text">
                     .
                   </span>
@@ -368,7 +369,8 @@ export default function Home() {
 
                 <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
                   <h2 className="text-2xl font-semibold text-center">
-                    It's in you{" "}
+                    It’s in you{" "}
+
                     <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text">
                       .
                     </span>

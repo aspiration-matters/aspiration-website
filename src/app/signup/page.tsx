@@ -65,7 +65,7 @@ export default function SignupPage() {
       } else {
         toast.error("Unexpected error occurred.")
       }
-    } catch (err) {
+    } catch {
       toast.error("Network error. Please try again.")
     } finally {
       setLoading(false)

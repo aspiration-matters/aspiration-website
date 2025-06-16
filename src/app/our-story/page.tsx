@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
-import { ArrowLeft, BookOpen } from "lucide-react"
+import { ArrowLeft } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { ToastContainer } from "react-toastify"
@@ -34,7 +34,7 @@ export default function OurStoryPage() {
   const [loading, setLoading] = useState<boolean>(true)
   const [quickRead, setQuickRead] = useState<boolean>(false)
   const [visibleParagraphs, setVisibleParagraphs] = useState<number>(0)
-  const [isTyping, setIsTyping] = useState<boolean>(false)
+  // const [isTyping, setIsTyping] = useState<boolean>(false)
   const [currentText, setCurrentText] = useState<string>("")
   const [currentParagraphIndex, setCurrentParagraphIndex] = useState<number>(0)
   const [charIndex, setCharIndex] = useState<number>(0)
@@ -56,8 +56,9 @@ export default function OurStoryPage() {
         )
 
         setImageUrl(validImage || "/placeholder.svg?height=600&width=800")
-      } catch (err: any) {
-        toast.error("Error loading image: " + err.message)
+      } catch (err: unknown) {
+        const message = err instanceof Error ? err.message : "An unexpected error occurred"
+        toast.error("Error loading image: " + message)
 
         setImageUrl("/placeholder.svg?height=600&width=800")
       } finally {

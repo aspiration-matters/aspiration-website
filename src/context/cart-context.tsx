@@ -1,19 +1,21 @@
 
-
-
 "use client"
 
 import type React from "react"
 import { createContext, useContext, useState, useEffect } from "react"
 import { toast } from "sonner"
 import { jwtDecode } from "jwt-decode"
+import { API_BASE_URL } from "@/lib/api";
 
 declare global {
   interface Window {
     purchasedCourseIds?: string[]
   }
 }
+type DecodedToken = {
+  user_id: string
 
+}
 export type Course = {
   id: string
   title: string
@@ -47,36 +49,66 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     const token = localStorage.getItem("token")
     if (!token) return null
     try {
-      const decoded: any = jwtDecode(token)
+      const decoded: DecodedToken = jwtDecode(token)
       return decoded.user_id
     } catch {
       return null
     }
   }
 
-  const fetchCartItems = async () => {
-    const userId = getUserIdFromToken()
-    if (!userId) return
-    setLoading(true)
-    try {
-      const res = await fetch(`http://localhost:8080/cart/course?user_id=${userId}`)
-      const data = await res.json()
+  // const fetchCartItems = async () => {
+  //   const userId = getUserIdFromToken()
+  //   if (!userId) return
+  //   setLoading(true)
+  //   try {
+  //     const res = await fetch(`${API_BASE_URL}/cart/course?user_id=${userId}`)
+  //     const data = await res.json()
 
-      if (res.ok) {
-        setCartItems(data.data)
-      } else {
-        toast.error("Failed to load cart", { description: data.message || "Error occurred." })
-      }
-    } catch (err: any) {
-      toast.error("Network error", { description: err.message || "Unable to load cart." })
-    } finally {
-      setLoading(false)
-    }
-  }
+  //     if (res.ok) {
+  //       setCartItems(data.data)
+  //     } else {
+  //       toast.error("Failed to load cart", { description: data.message || "Error occurred." })
+  //     }
+  //   } catch (err: unknown) {
+  //     if (err instanceof Error) {
+  //       toast.error("Network error", { description: err.message })
+  //     } else {
+  //       toast.error("Network error", { description: "Unknown error occurred." })
+  //     }
+  //   }
+  //   finally {
+  //     setLoading(false)
+  //   }
+  // }
 
   useEffect(() => {
-    fetchCartItems()
+    const fetchItems = async () => {
+      const userId = getUserIdFromToken()
+      if (!userId) return
+      setLoading(true)
+      try {
+        const res = await fetch(`${API_BASE_URL}/cart/course?user_id=${userId}`)
+        const data = await res.json()
+
+        if (res.ok) {
+          setCartItems(data.data)
+        } else {
+          toast.error("Failed to load cart", { description: data.message || "Error occurred." })
+        }
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          toast.error("Network error", { description: err.message })
+        } else {
+          toast.error("Network error", { description: "Unknown error occurred." })
+        }
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchItems()
   }, [])
+
 
   const addToCart = (course: Course) => {
     if (!isInCart(course.id)) {
@@ -90,7 +122,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
     setLoading(true)
     try {
-      const res = await fetch(`http://127.0.0.1:8080/cart/${userId}/${courseId}`, {
+      const res = await fetch(`${API_BASE_URL}/cart/${userId}/${courseId}`, {
         method: "DELETE",
       })
 
@@ -102,8 +134,12 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       } else {
         toast.error("Failed to remove", { description: data.message || "Something went wrong." })
       }
-    } catch (err: any) {
-      toast.error("Network error", { description: err.message })
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        toast.error("Network error", { description: err.message })
+      } else {
+        toast.error("Network error", { description: "Unknown error occurred." })
+      }
     } finally {
       setLoading(false)
     }

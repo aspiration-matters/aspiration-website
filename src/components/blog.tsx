@@ -13,18 +13,26 @@ import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/com
 import { Spinner } from "@/components/ui/spinner"
 import { toast } from "sonner" // Import toast from sonner
 import { API_BASE_URL } from "@/lib/api";
+import Image from "next/image";
 
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["600"] })
+interface Blog {
+  id: string;
+  title: string;
+  description: string;
+  image_url?: string;
+}
 
-const BlogCard = ({ blog }: { blog: any }) => {
+const BlogCard = ({ blog }: { blog: Blog }) => {
   return (
     <motion.div whileHover={{ scale: 1.01 }} transition={{ type: "spring", stiffness: 200 }} className="h-full">
       <Card className="overflow-hidden bg-white border-gray-200 hover:shadow-lg transition-all duration-300 h-full flex flex-col p-0">
         <div className="relative h-64 overflow-hidden flex-shrink-0 w-full">
-          <img
+          <Image
             src={blog.image_url || "/placeholder.svg"}
             alt={blog.title}
-            className="object-cover w-full h-full transform hover:scale-105 transition-transform duration-500"
+            fill
+            className="object-cover transform hover:scale-105 transition-transform duration-500"
           />
         </div>
         <div className="p-6 flex flex-col flex-grow">
@@ -47,7 +55,7 @@ const BlogCard = ({ blog }: { blog: any }) => {
 export default function Blog() {
   const [api, setApi] = useState<CarouselApi>()
   const [currentSlide, setCurrentSlide] = useState(0)
-  const [blogs, setBlogs] = useState<any[]>([])
+  const [blogs, setBlogs] = useState<Blog[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {

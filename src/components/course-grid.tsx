@@ -37,7 +37,7 @@ export function CourseGrid({ searchQuery = "", customFetchUrl }: CourseGridProps
             let decoded: DecodedToken
             try {
               decoded = jwtDecode<DecodedToken>(token)
-            } catch (error) {
+            } catch {
               throw new Error("Invalid token format.")
             }
 
@@ -84,7 +84,7 @@ export function CourseGrid({ searchQuery = "", customFetchUrl }: CourseGridProps
         }
 
         setFilteredCourses(result)
-      } catch (err: any) {
+      } catch {
         toast.error("Failed to fetch courses")
       } finally {
         setLoading(false)

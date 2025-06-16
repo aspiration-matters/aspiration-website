@@ -30,7 +30,7 @@ const StorySection = () => {
   const [isTypingComplete, setIsTypingComplete] = useState(false)
   const [inView, setInView] = useState(false)
   const [images, setImages] = useState<string[]>([])
-  const [error, setError] = useState<string | null>(null)
+  // const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
 
   // Animation variants
@@ -104,10 +104,10 @@ const StorySection = () => {
 
 
         setImages(imageUrls)
-        setError(null)
+        // setError(null)
       } catch (err) {
         console.error("Error fetching images:", err)
-        setError(err instanceof Error ? err.message : "Failed to fetch images")
+        // setError(err instanceof Error ? err.message : "Failed to fetch images")
 
         // Fallback images for development
         setImages([
@@ -407,24 +407,5 @@ const StorySection = () => {
   )
 }
 
-// Typewriter effect component
-function TypewriterText({ text, onComplete }: { text: string; onComplete: () => void }) {
-  const [displayedText, setDisplayedText] = useState("")
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  useEffect(() => {
-    if (currentIndex < text.length) {
-      const timer = setTimeout(() => {
-        setDisplayedText((prev) => prev + text[currentIndex])
-        setCurrentIndex((prev) => prev + 1)
-      }, 30) // Speed of typing
-      return () => clearTimeout(timer)
-    } else {
-      onComplete()
-    }
-  }, [currentIndex, text, onComplete])
-
-  return <>{displayedText}</>
-}
 
 export default StorySection

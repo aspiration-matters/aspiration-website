@@ -1,12 +1,17 @@
 // src/components/GalleryImage.tsx
 import React from 'react';
+import Image from "next/image";
 
 interface GalleryImageProps {
-    image: any;
+    image: ImageData;
     onClick: () => void;
     isHovered: boolean;
     onMouseEnter: () => void;
     onMouseLeave: () => void;
+}
+interface ImageData {
+    src: string;
+    alt: string;
 }
 
 const GalleryImage: React.FC<GalleryImageProps> = ({
@@ -23,9 +28,11 @@ const GalleryImage: React.FC<GalleryImageProps> = ({
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
         >
-            <img
+            <Image
                 src={image.src || '/placeholder.svg'}
                 alt={image.alt}
+                width={400}
+                height={300}
                 className={`rounded-lg ${isHovered ? 'hovered' : ''}`}
             />
         </div>

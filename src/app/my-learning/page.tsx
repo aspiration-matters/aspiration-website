@@ -7,6 +7,11 @@ import { CourseGrid } from "@/components/course-grid"
 import { API_BASE_URL } from "@/lib/api";
 import { jwtDecode } from "jwt-decode"
 
+interface DecodedToken {
+  user_id: string
+
+}
+
 export default function MyLearning() {
   const [searchQuery, setSearchQuery] = useState("")
   const [userCourseUrl, setUserCourseUrl] = useState<string | null>(null)
@@ -16,7 +21,8 @@ export default function MyLearning() {
 
     if (token) {
       try {
-        const decoded: any = jwtDecode(token)
+        // const decoded: any = jwtDecode(token)
+        const decoded = jwtDecode<DecodedToken>(token);
         const userId = decoded.user_id
         if (userId) {
           setUserCourseUrl(`${API_BASE_URL}/course/purchased/${userId}`)

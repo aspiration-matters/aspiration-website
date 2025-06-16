@@ -11,12 +11,15 @@ import { Work_Sans } from "next/font/google";
 import { useEffect, useState } from "react";
 import { API_BASE_URL } from "@/lib/api";
 
+
+import Image from "next/image";
+
 import { toast } from "sonner"
 
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["600"] });
 
 const About = () => {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [ref] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -30,7 +33,7 @@ const About = () => {
         const json = await res.json();
         if (!res.ok) throw new Error("Failed to fetch About section data");
         setImageUrl(json?.data?.image1_url);
-      } catch (error) {
+      } catch {
         toast.error("failed to fetch")
       } finally {
         setLoading(false);
@@ -64,10 +67,12 @@ const About = () => {
                     Loading...
                   </div>
                 ) : (
-                  <img
+                  <Image
                     src={imageUrl || "/fallback.jpg"}
                     alt="Team working together"
-                    className="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
+                    layout="fill"
+                    objectFit="cover"
+                    className="transform group-hover:scale-105 transition duration-500"
                   />
                 )}
               </div>

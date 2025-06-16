@@ -1,6 +1,4 @@
 
-
-
 "use client"
 
 import { useEffect, useState } from "react"
@@ -21,9 +19,10 @@ export default function OurStoryPage() {
   const formattedText = (
     <div className="space-y-1">
       <p className="text-gray-800 leading-relaxed text-lg md:text-xl text-justify">
-        You have heard the famous adage "desire is the root cause of all achievements and accomplishments" and "our
-        attitude decides our altitude".
+        You have heard the famous adage ”desire is the root cause of all achievements and accomplishments ” and ”our
+        attitude decides our altitude”.
       </p>
+
 
       <p className="text-gray-800 leading-relaxed text-lg md:text-xl text-justify">
         Yes, how we think and aspire decides our motivation level and pace of achievement. It also sets the success we
@@ -61,14 +60,17 @@ export default function OurStoryPage() {
       <p className="text-gray-800 leading-relaxed text-lg md:text-xl text-justify">Our mantra is –</p>
 
       <p className="text-gray-900 leading-relaxed text-lg md:text-xl text-justify font-bold">
-        "Power up! discover the winning edge, it's in you"
+        “Power up! Discover the winning edge, it’s in you”
       </p>
     </div>
   )
 
-  const fullText = `You have heard the famous adage "desire is the root cause of all achievements and accomplishments" and "our attitude decides our altitude".
 
-Yes, how we think and aspire decides our motivation level and pace of achievement. It also sets the success we reap in our endeavours. The willpower to win, the desire to succeed, and the urge to reach our full potential depend upon one's aspirations.
+
+  const fullText = `You have heard the famous adage desire is the root cause of all achievements and accomplishments and  our attitude decides our altitude.
+
+
+Yes, how we think and aspire decides our motivation level and pace of achievement. It also sets the success we reap in our endeavours. The willpower to win, the desire to succeed, and the urge to reach our full potential depend upon  one's  aspirations.
 
 While behaviuor of human beings is rapidly evolving with all-pervasive technology, the human factor still plays a pivotal role in every organization and system.
 
@@ -82,7 +84,7 @@ All of us are blessed with unimaginable potential, we at aspiration matters prov
 
 Our mantra is –
 
-"Power up! discover the winning edge, it's in you"`
+Power up! discover the winning edge, it’s in you`
 
   const handleQuickRead = () => {
     setIsTypingEffect(false)
@@ -104,7 +106,7 @@ Our mantra is –
         } else {
           setImageUrl(null)
         }
-      } catch (error) {
+      } catch {
         toast.error("Failed to fetch")
       } finally {
         setLoading(false)

@@ -72,7 +72,7 @@ export default function ForgotPasswordPage() {
                 toast.error(data.message || "Error sending OTP")
                 setErrorMessage(data.message || "Error sending OTP")
             }
-        } catch (error) {
+        } catch {
             toast.error("Error sending OTP")
             setErrorMessage("Error sending OTP")
         }
@@ -109,7 +109,7 @@ export default function ForgotPasswordPage() {
                 toast.error(data.message || "Error resetting password")
                 setErrorMessage(data.message || "Error resetting password")
             }
-        } catch (error) {
+        } catch {
             toast.error("Error resetting password")
             setErrorMessage("Error resetting password")
         }

@@ -9,7 +9,6 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { API_BASE_URL } from "@/lib/api";
-
 import { Work_Sans } from "next/font/google"
 import { toast } from "sonner"
 import {
@@ -43,10 +42,10 @@ export default function TestimonialsSection() {
   const [isRatingModalOpen, setIsRatingModalOpen] = useState(false)
   // const isMobile = useMobile()
   const containerRef = useRef<HTMLDivElement>(null)
-  const [mounted, setMounted] = useState(false)
+  // const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
+    // setMounted(true)
 
     const fetchTestimonials = async () => {
       try {
@@ -61,11 +60,12 @@ export default function TestimonialsSection() {
         console.log("Testimonials fetched:", json)
         setTestimonials(json.data || [])
 
-        // const json = await res.json()
-        // setTestimonials(json.data)
-      } catch (err: any) {
-        toast.error(err.message || "An error occurred while fetching testimonials")
-      } finally {
+
+      } catch (err) {
+        const error = err as Error;
+        toast.error(error.message || "An error occurred while fetching testimonials");
+      }
+      finally {
         setLoading(false)
       }
     }
@@ -122,7 +122,8 @@ export default function TestimonialsSection() {
       <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-purple-300/20 to-transparent pointer-events-none"></div>
 
       <div className="max-w-[1400px] w-full mx-auto z-10">
-        <div className="text-center mb-12 md:mb-24 relative">
+        {/* <div className="text-center mb-12 md:mb-24 relative"> */}
+        <div className="text-center mt-6 mb-12 md:mt-10 md:mb-24 relative">
           <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 w-20 h-20 bg-gradient-to-r from-purple-600/10 to-blue-600/10 rounded-full blur-xl"></div>
           <div className="relative inline-block pb-3">
             <h2
@@ -133,11 +134,11 @@ export default function TestimonialsSection() {
             <div className="absolute -bottom-2 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
           </div>
           <p className="text-base sm:text-lg text-black-700 max-w-2xl mx-auto mt-3 sm:mt-4">
-            Don't just take our word for it. Here's what our clients have to say about their experience working with us.
+            Don{"'"}t just take our word for it. Here's what our clients have to say about their experience working with us.
           </p>
         </div>
 
-        <div className="relative">
+        <div className="relative -mt-8">
           {/* Carousel Navigation */}
           <div className="absolute top-1/2 -left-1 sm:-left-2 md:-left-6 transform -translate-y-1/2 z-20">
             <Button
@@ -198,7 +199,8 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Rating Button - Smaller and Cooler */}
-        <div className="flex justify-center mt-10">
+        {/* <div className="flex justify-center mt-10"> */}
+        <div className="flex justify-center mt-6 md:mt-4">
           <Button
             onClick={() => setIsRatingModalOpen(true)}
             className="bg-white/90 text-purple-600 hover:text-white hover:bg-purple-600 border border-purple-300 rounded-full shadow-md hover:shadow-lg transition-all duration-300 group flex items-center gap-2 px-5 py-2 backdrop-blur-sm"
@@ -364,7 +366,7 @@ export function RatingModal({ isOpen, onClose }: RatingModalProps) {
     }
 
     try {
-      const res = await fetch("http://127.0.0.1:8080/testimonial/", {
+      const res = await fetch(`${API_BASE_URL}/testimonial/`, {
         method: "POST",
         body: payload,
       })
@@ -384,7 +386,7 @@ export function RatingModal({ isOpen, onClose }: RatingModalProps) {
           position: "bottom-center",
         })
       }
-    } catch (error) {
+    } catch {
       toast.error("Network error. Please check your connection.")
     } finally {
       setLoading(false)

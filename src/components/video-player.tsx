@@ -36,7 +36,7 @@ export function VideoPlayer({ src, poster, title, onComplete, className }: Video
   const [volume, setVolume] = useState(1)
   const [isMuted, setIsMuted] = useState(false)
   const [isControlsVisible, setIsControlsVisible] = useState(true)
-  const [isFullscreen, setIsFullscreen] = useState(false)
+
   const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const [skipIndicator, setSkipIndicator] = useState<"forward" | "backward" | null>(null)
   const [playbackSpeed, setPlaybackSpeed] = useState(1)
@@ -90,11 +90,7 @@ export function VideoPlayer({ src, poster, title, onComplete, className }: Video
     setIsPlaying(!isPlaying)
   }
 
-  // Handle seeking - disabled as requested
-  const handleSeek = (value: number[]) => {
-    // Seeking is disabled
-    return
-  }
+
 
   // Handle volume change
   const handleVolumeChange = (value: number[]) => {
@@ -142,10 +138,10 @@ export function VideoPlayer({ src, poster, title, onComplete, className }: Video
       videoContainer.requestFullscreen().catch((err) => {
         console.error(`Error attempting to enable fullscreen: ${err.message}`)
       })
-      setIsFullscreen(true)
+
     } else {
       document.exitFullscreen()
-      setIsFullscreen(false)
+
     }
   }
 
@@ -197,7 +193,7 @@ export function VideoPlayer({ src, poster, title, onComplete, className }: Video
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`
   }
 
-  // Keyboard shortcuts
+  // // Keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!videoRef.current) return
@@ -243,7 +239,7 @@ export function VideoPlayer({ src, poster, title, onComplete, className }: Video
 
     window.addEventListener("keydown", handleKeyDown)
     return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [duration])
+  }, [duration, togglePlay, toggleMute, skip])
 
   return (
     <div

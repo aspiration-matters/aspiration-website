@@ -29,13 +29,13 @@ export function GlobeWithSpinningText({
 }: GlobeWithSpinningTextProps) {
     const containerRef = useRef<HTMLDivElement>(null)
     const [radius, setRadius] = useState(18)
-    const [containerSize, setContainerSize] = useState(0)
+
 
     useEffect(() => {
         const updateSize = () => {
             if (containerRef.current) {
                 const width = containerRef.current.offsetWidth
-                setContainerSize(width)
+                // setContainerSize(width)
 
                 const globeRadius = width / 2
                 const textRadius = globeRadius + PADDING_PX

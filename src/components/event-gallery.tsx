@@ -5,6 +5,7 @@ import { X, ExternalLink, ChevronLeft, ChevronRight, Camera, RefreshCw } from "l
 import { BorderBeam } from "@/components/magicui/border-beam"
 import { Work_Sans } from "next/font/google"
 import { API_BASE_URL } from "@/lib/api";
+import Image from "next/image"
 
 import { toast } from "sonner"
 
@@ -43,15 +44,12 @@ export function EventGallery() {
       setError(null)
 
       const response = await fetch(`${API_BASE_URL}/eventgallery/`)
-
       if (!response.ok) {
-        toast.error("failed to fetch")
-        throw new Error(`Error: ${response.status}`)
+        throw new Error(`Error: ${response.status}`);
       }
 
       const data: ApiResponse = await response.json()
 
-      console.log(`Fetched ${data.data.length} images from API`)
 
       // Map API data to the format our component expects
       const formattedImages: DisplayImage[] = data.data.map((img) => ({
@@ -264,10 +262,15 @@ export function EventGallery() {
 
             <div className="relative rounded-xl overflow-hidden p-1">
               <div className="relative rounded-lg overflow-hidden">
-                <img
+
+                <Image
                   src={selectedImage.src || "/placeholder.svg"}
                   alt={selectedImage.alt}
+                  width={800}
+                  height={700}
                   className="w-full h-auto max-h-[70vh] object-contain rounded-lg"
+                  sizes="(max-width: 768px) 90vw, 70vw"
+                  priority
                 />
 
                 <BorderBeam duration={2} size={1000} />
@@ -335,13 +338,15 @@ function GalleryImage({
       onMouseLeave={onMouseLeave}
     >
       <div className="absolute inset-0 w-full h-full rounded-xl overflow-hidden shadow-lg transition-all duration-500">
-        <img
+
+        <Image
           src={image.src || "/placeholder.svg"}
           alt={image.alt}
-          className={`w-full h-full object-cover transition-transform duration-700 ${isHovered ? "scale-110" : ""}`}
-          loading="lazy"
+          fill
+          className={`object-cover transition-transform duration-700 ${isHovered ? "scale-110" : ""}`}
+          sizes="(max-width: 768px) 100vw, 33vw"
+          priority={false}
         />
-
         <div
           className={`absolute inset-0 bg-gradient-to-t from-purple-900/70 via-blue-900/30 to-transparent transition-opacity duration-300 ${isHovered ? "opacity-100" : "opacity-0"}`}
         ></div>

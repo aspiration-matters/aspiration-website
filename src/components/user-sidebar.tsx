@@ -15,7 +15,7 @@ import { API_BASE_URL } from "@/lib/api";
 
 interface DecodedToken {
   user_id: string
-  [key: string]: any
+
 }
 
 interface User {

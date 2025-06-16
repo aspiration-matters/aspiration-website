@@ -3,7 +3,7 @@
 
 import Image from "next/image"
 
-import { Trash2, Clock, Tag, BookOpen, Loader2, Key } from "lucide-react"
+import { Trash2, Clock, Tag, BookOpen, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
@@ -22,13 +22,33 @@ interface CustomJwtPayload {
   user_id: string;
 
 }
+
+interface CourseDetails {
+  id: string;
+  title: string;
+  description: string;
+  duration: string;
+  instructor: string;
+  thumbnail?: string;
+  tags: string[];
+}
+
+interface RazorpayPaymentResponse {
+  razorpay_order_id: string;
+  razorpay_payment_id: string;
+  razorpay_signature: string;
+}
+
 export function CartItems() {
-  const [selectedCourse, setSelectedCourse] = useState<any>(null)
+  // const [selectedCourse, setSelectedCourse] = useState<any>(null)
+  const [selectedCourse, setSelectedCourse] = useState<CourseDetails | null>(null)
+
 
   const [loadingCourseId, setLoadingCourseId] = useState<string | null>(null)
   const [removingCourseId, setRemovingCourseId] = useState<string | null>(null)
 
   const { cartItems, removeFromCart } = useCart()
+  // const cartItems = useCart().cartItems as CartItem[];
 
   const handleRemoveItem = async (id: string) => {
     try {
@@ -37,10 +57,11 @@ export function CartItems() {
       toast("Item removed", {
         description: "The course has been removed from your cart.",
       })
-    } catch (err: any) {
+    } catch (err: unknown) {
+      const error = err as Error;
       toast.error("Failed to remove item", {
-        description: err.message || "Something went wrong.",
-      })
+        description: error.message || "Something went wrong.",
+      });
     } finally {
       setRemovingCourseId(null)
     }
@@ -62,7 +83,7 @@ export function CartItems() {
 
     try {
       // const courses_id = cartItems.map((value) => value.id);
-      cartItems.map((value, _index) => value.id)
+      // cartItems.map((value) => value.id)
 
       const res = await fetch(`${API_BASE_URL}/payment/order`, {
         method: "POST",
@@ -71,12 +92,12 @@ export function CartItems() {
         },
         body: JSON.stringify(
           {
-            courses_id: cartItems.map((value, _index) => value.id)
+            courses_id: cartItems.map((value) => value.id)
           }
         )
       })
 
-      console.log("in oder course ids :", cartItems.map((value, _index) => value.id))
+      console.log("in oder course ids :", cartItems.map((value) => value.id))
       const data = await res.json();
 
       const razorpayLoaded = await loadRazorpayScript();
@@ -92,7 +113,7 @@ export function CartItems() {
         name: "Aspiration Matters",
         description: "",
         order_id: data.id,
-        handler: async function (response: any) {
+        handler: async function (response: RazorpayPaymentResponse) {
           console.log("Razorpay response:", response);
 
           const token = localStorage.getItem('token');
@@ -131,14 +152,16 @@ export function CartItems() {
             console.log("Server verification response:", data);
 
             // You can also show a toast or redirect here
-          } catch (err) {
+          } catch (err: unknown) {
             clearTimeout(timeoutId);
-            if (err === "AbortError") {
+
+            if ((err as Error).name === "AbortError") {
               console.error("Verification request timed out");
             } else {
               console.error("Verification fetch failed:", err);
             }
           }
+
         },
 
         theme: {
@@ -146,9 +169,11 @@ export function CartItems() {
         }
       }
 
-      const rzp = new (window as any).Razorpay(options)
+      // const rzp = new (window as any).Razorpay(options)
+      const rzp = new (window as typeof window & { Razorpay: any }).Razorpay(options)
 
       rzp.open();
+
     } catch (error) {
       console.log(error)
     } finally {
@@ -167,10 +192,11 @@ export function CartItems() {
 
       const data = await res.json()
       setSelectedCourse(data.data)
-    } catch (err: any) {
+    } catch (err: unknown) {
+      const error = err as Error;
       toast.error("Failed to load course", {
-        description: err.message || "Something went wrong while loading the course.",
-      })
+        description: error.message || "Something went wrong while loading the course.",
+      });
     } finally {
       setLoadingCourseId(null)
     }
@@ -341,7 +367,9 @@ export function CartItems() {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold mb-2 text-purple-600">What you'll learn</h4>
+                  <h4 className="font-semibold mb-2 text-purple-600">
+                    What you{`'`}ll learn
+                  </h4>
                   <p className="text-muted-foreground">{selectedCourse.description}</p>
                 </div>
 

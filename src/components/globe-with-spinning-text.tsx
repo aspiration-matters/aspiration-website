@@ -82,7 +82,7 @@ export function GlobeWithSpinningText({
     const containerRef = useRef<HTMLDivElement>(null)
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const [radius, setRadius] = useState(20)
-    const [containerSize, setContainerSize] = useState(0)
+    // const [containerSize, setContainerSize] = useState(0)
 
     // Globe interaction state
     const pointerInteracting = useRef<number | null>(null)
@@ -99,7 +99,7 @@ export function GlobeWithSpinningText({
         const updateSize = () => {
             if (containerRef.current) {
                 const containerWidth = containerRef.current.offsetWidth
-                setContainerSize(containerWidth)
+
 
                 // Calculate the actual globe radius (half of container width)
                 const globeRadius = containerWidth / 2
