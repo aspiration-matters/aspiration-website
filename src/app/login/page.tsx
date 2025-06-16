@@ -14,6 +14,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { BorderBeam } from "@/components/magicui/border-beam"
 import { toast } from "sonner"
 import { Loader2 } from "lucide-react"
+import { API_BASE_URL } from "@/lib/api";
 export default function LoginPage() {
   const router = useRouter()
   const [formData, setFormData] = useState({
@@ -50,7 +51,7 @@ export default function LoginPage() {
     if (isLoggedIn) {
       // ✅ OTP verification
       try {
-        const response = await fetch("https://api.aspirationmatters.com/user/verify-otp", {
+        const response = await fetch(`${API_BASE_URL}/user/verify-otp`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -78,7 +79,7 @@ export default function LoginPage() {
     } else {
       // ✅ Send OTP
       try {
-        const response = await fetch("https://api.aspirationmatters.com/user/send-otp", {
+        const response = await fetch(`${API_BASE_URL}/user/send-otp`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -7,6 +7,7 @@ import { Course } from "@/context/cart-context"
 import { toast } from "sonner"
 import { Loader2 } from "lucide-react"
 import { jwtDecode } from "jwt-decode"
+import { API_BASE_URL } from "@/lib/api";
 
 interface CourseGridProps {
   searchQuery?: string
@@ -45,11 +46,11 @@ export function CourseGrid({ searchQuery = "", customFetchUrl }: CourseGridProps
               throw new Error("User ID not found in token.")
             }
 
-            endpoint = `https://api.aspirationmatters.com/course/user/${userId}`
+            endpoint = `${API_BASE_URL}/course/user/${userId}`
             console.log("Using user-specific endpoint:", endpoint)
           } else {
             // Token not found, use general endpoint
-            endpoint = "https://api.aspirationmatters.com/course/get"
+            endpoint = `${API_BASE_URL}/course/get`
             console.log("Token not found, using default endpoint:", endpoint)
           }
         }

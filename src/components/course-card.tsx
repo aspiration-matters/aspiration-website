@@ -13,6 +13,7 @@ import { useCart } from "@/context/cart-context"
 import type { Course } from "@/context/cart-context"
 import { Badge } from "@/components/ui/badge"
 import { jwtDecode } from "jwt-decode"
+import { API_BASE_URL } from "@/lib/api";
 
 interface CourseCardProps {
   course: Course & {
@@ -55,7 +56,7 @@ export function CourseCard({ course, index }: CourseCardProps) {
     setLoading(true)
 
     try {
-      const res = await fetch("https://api.aspirationmatters.com/cart/add", {
+      const res = await fetch(`${API_BASE_URL}/cart/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

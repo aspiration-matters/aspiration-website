@@ -11,6 +11,7 @@ import { useInView } from "react-intersection-observer";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import { Work_Sans } from "next/font/google";
 import { toast } from "sonner";
+import { API_BASE_URL } from "@/lib/api";
 
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["600"] });
 
@@ -28,7 +29,7 @@ const Philosophy = () => {
   useEffect(() => {
     const fetchPhilosophy = async () => {
       try {
-        const res = await fetch("https://api.aspirationmatters.com/philosopy");
+        const res = await fetch(`${API_BASE_URL}/philosopy`);
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
         setImageUrl(data?.data?.image1_url || null);

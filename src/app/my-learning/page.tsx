@@ -4,6 +4,7 @@
 import { useState, useEffect } from "react"
 import { CourseLayout } from "@/components/course-layout"
 import { CourseGrid } from "@/components/course-grid"
+import { API_BASE_URL } from "@/lib/api";
 import { jwtDecode } from "jwt-decode"
 
 export default function MyLearning() {
@@ -18,7 +19,7 @@ export default function MyLearning() {
         const decoded: any = jwtDecode(token)
         const userId = decoded.user_id
         if (userId) {
-          setUserCourseUrl(`https://api.aspirationmatters.com/course/purchased/${userId}`)
+          setUserCourseUrl(`${API_BASE_URL}/course/purchased/${userId}`)
         }
       } catch (err) {
         console.error("Invalid token", err)

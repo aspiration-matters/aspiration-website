@@ -9,6 +9,7 @@ import Link from "next/link"
 import { Work_Sans } from "next/font/google"
 import { TypeAnimation } from "react-type-animation"
 import { toast } from "sonner"
+import { API_BASE_URL } from "@/lib/api";
 
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["600"] })
 const ourStory =
@@ -81,7 +82,7 @@ const StorySection = () => {
     const fetchImages = async () => {
       try {
         setLoading(true)
-        const response = await fetch("https://api.aspirationmatters.com/story")
+        const response = await fetch(`${API_BASE_URL}/story`)
 
         if (!response.ok) {
           toast.error("failed to fetch")
@@ -91,8 +92,6 @@ const StorySection = () => {
 
         const data: StoryImages = await response.json()
 
-        // Get the first 3 images from the response
-        // const imageUrls = [data.data.image1_url, data.data.image2_url, data.data.image3_url]
 
         const sanitizeUrl = (url: string | null | undefined) =>
           url && url !== "pending" ? url : "/placeholder.svg?height=400&width=400"

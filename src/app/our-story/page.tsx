@@ -11,6 +11,7 @@ import toast from "react-hot-toast"
 import "react-toastify/dist/ReactToastify.css"
 import { Button } from "@/components/ui/button"
 import { Trophy } from "lucide-react";
+import { API_BASE_URL } from "@/lib/api";
 
 export default function OurStoryPage() {
   const storyContent = [
@@ -43,7 +44,7 @@ export default function OurStoryPage() {
     const fetchStoryData = async () => {
       try {
         setLoading(true)
-        const response = await fetch("https://api.aspirationmatters.com/story")
+        const response = await fetch(`${API_BASE_URL}/story`)
         if (!response.ok) throw new Error("Failed to fetch story data")
         const json = await response.json()
 
@@ -202,11 +203,6 @@ export default function OurStoryPage() {
             >
               Quick Read
             </Button>
-
-
-
-
-
           </div>
 
           {/* CONTENT SECTION BELOW IMAGE - WIDER THAN IMAGE */}

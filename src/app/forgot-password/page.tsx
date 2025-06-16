@@ -13,6 +13,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { BorderBeam } from "@/components/magicui/border-beam"
 import { toast } from "sonner"
 import { Loader2 } from "lucide-react"
+import { API_BASE_URL } from "@/lib/api";
 
 export default function ForgotPasswordPage() {
     const router = useRouter()
@@ -43,7 +44,7 @@ export default function ForgotPasswordPage() {
 
         try {
 
-            const response = await fetch("https://api.aspirationmatters.com/user/forgot-password", {
+            const response = await fetch(`${API_BASE_URL}/user/forgot-password`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -87,7 +88,7 @@ export default function ForgotPasswordPage() {
         try {
 
             // Replace with your actual API endpoint
-            const response = await fetch("https://api.aspirationmatters.com/user/reset-password", {
+            const response = await fetch(`${API_BASE_URL}/user/reset-password`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

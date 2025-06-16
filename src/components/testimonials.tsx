@@ -8,7 +8,8 @@ import { ChevronLeft, ChevronRight, Quote, Star, X, MessageSquarePlus } from "lu
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-// import { useMobile } from "@/app/hooks/use-mobile"
+import { API_BASE_URL } from "@/lib/api";
+
 import { Work_Sans } from "next/font/google"
 import { toast } from "sonner"
 import {
@@ -49,7 +50,7 @@ export default function TestimonialsSection() {
 
     const fetchTestimonials = async () => {
       try {
-        const res = await fetch("https://api.aspirationmatters.com/testimonial/verified")
+        const res = await fetch(`${API_BASE_URL}/testimonial/verified`)
 
         if (!res.ok) {
           toast.error("failed to fetch")

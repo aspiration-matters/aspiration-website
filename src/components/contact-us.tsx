@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
+import { API_BASE_URL } from "@/lib/api";
 
 import { toast } from "sonner"
 
@@ -85,7 +86,7 @@ export default function ContactPage() {
     setEmailLoading(true)
 
     try {
-      const response = await fetch("https://api.aspirationmatters.com/contact/email", {
+      const response = await fetch(`${API_BASE_URL}/contact/email`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -124,7 +125,7 @@ export default function ContactPage() {
     setWhatsappLoading(true)
 
     try {
-      const response = await fetch("https://api.aspirationmatters.com/contact/whatsapp", {
+      const response = await fetch(`${API_BASE_URL} /contact/whatsapp`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

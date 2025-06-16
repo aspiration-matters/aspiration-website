@@ -12,6 +12,7 @@ import { Work_Sans } from "next/font/google"
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel"
 import { Spinner } from "@/components/ui/spinner"
 import { toast } from "sonner" // Import toast from sonner
+import { API_BASE_URL } from "@/lib/api";
 
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["600"] })
 
@@ -50,7 +51,7 @@ export default function Blog() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch("https://api.aspirationmatters.com/blog/")
+    fetch(`${API_BASE_URL}/blog/`)
       .then(async (res) => {
         if (!res.ok) {
           const text = await res.text()

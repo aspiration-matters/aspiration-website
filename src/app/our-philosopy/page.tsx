@@ -11,6 +11,7 @@ import Link from "next/link"
 import { TypeAnimation } from "react-type-animation"
 import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
+import { API_BASE_URL } from "@/lib/api";
 
 export default function OurStoryPage() {
   const [imageUrl, setImageUrl] = useState<string | null>(null)
@@ -90,7 +91,7 @@ Our mantra is –
   useEffect(() => {
     const fetchImage = async () => {
       try {
-        const res = await fetch("https://api.aspirationmatters.com/philosopy")
+        const res = await fetch(`${API_BASE_URL}/philosopy`)
         if (!res.ok) {
           throw new Error("Failed to fetch")
         }

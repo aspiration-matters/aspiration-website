@@ -9,6 +9,7 @@ import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { API_BASE_URL } from "@/lib/api";
 import {
   Card,
   CardContent,
@@ -47,7 +48,7 @@ export default function SignupPage() {
     }
 
     try {
-      const res = await fetch("https://api.aspirationmatters.com/user/signup", {
+      const res = await fetch(`${API_BASE_URL}/user/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

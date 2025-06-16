@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { X, ExternalLink, ChevronLeft, ChevronRight, Camera, RefreshCw } from "lucide-react"
 import { BorderBeam } from "@/components/magicui/border-beam"
 import { Work_Sans } from "next/font/google"
+import { API_BASE_URL } from "@/lib/api";
 
 import { toast } from "sonner"
 
@@ -41,7 +42,7 @@ export function EventGallery() {
       setLoading(true)
       setError(null)
 
-      const response = await fetch("https://api.aspirationmatters.com/eventgallery/")
+      const response = await fetch(`${API_BASE_URL}/eventgallery/`)
 
       if (!response.ok) {
         toast.error("failed to fetch")

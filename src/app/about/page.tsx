@@ -7,7 +7,8 @@ import { ArrowLeft, Crown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { TypeAnimation } from "react-type-animation";
-import { toast } from "sonner"; // Make sure you have 'sonner' installed
+import { toast } from "sonner";
+import { API_BASE_URL } from "@/lib/api";
 
 export default function AboutPage() {
   const fullText = `Our journey is rooted in a deep passion for transformation and growth. We started with a vision—to empower individuals and organizations to break free from limitations and embrace their true potential. Every step we take is driven by a commitment to inspire, uplift, and create lasting impact. We believe that success is not just about reaching the top but about the journey of self-discovery, resilience, and continuous learning. With the right mindset and guidance, anyone can redefine their path and turn aspirations into achievements. The road to greatness begins within, and we are here to walk that journey with you….`;
@@ -18,7 +19,7 @@ export default function AboutPage() {
   useEffect(() => {
     const fetchAboutImage = async () => {
       try {
-        const res = await fetch("https://api.aspirationmatters.com/about");
+        const res = await fetch(`${API_BASE_URL}/about`);
         if (!res.ok) throw new Error("Failed to fetch");
         const json = await res.json();
         setImageUrl(json?.data?.image2_url || null);

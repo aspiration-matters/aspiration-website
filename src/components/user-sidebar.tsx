@@ -11,6 +11,7 @@ import { LogOut, ShoppingBag, ShoppingCart, GraduationCapIcon as Graduation } fr
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
+import { API_BASE_URL } from "@/lib/api";
 
 interface DecodedToken {
   user_id: string
@@ -39,7 +40,7 @@ export function UserSidebar() {
         const decoded: DecodedToken = jwtDecode(token)
         const userId = decoded.user_id
 
-        const res = await fetch(`https://api.aspirationmatters.com/user/${userId}`, {
+        const res = await fetch(`${API_BASE_URL}/user/${userId}`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -52,6 +53,7 @@ export function UserSidebar() {
         } else {
           const errorData = await res.json()
           toast.error(errorData.message || "Failed to fetch user")
+          // router.push("/login")
         }
       } catch (err) {
         console.error(err)

@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge"
 import { Clock, BookOpen, Tag, ChevronLeft, Lock, Award, CheckCircle } from "lucide-react"
 import { useCart } from "@/context/cart-context"
 import { toast } from "sonner"
+import { API_BASE_URL } from "@/lib/api";
 
 export default function CoursePage() {
   const router = useRouter()
@@ -27,7 +28,7 @@ export default function CoursePage() {
     const fetchCourse = async () => {
       setLoading(true)
       try {
-        const res = await fetch(`https://api.aspirationmatters.com/course/${id}`)
+        const res = await fetch(`${API_BASE_URL}/course/${id}`)
         if (!res.ok) throw new Error("Course not found")
         const data = await res.json()
         setCourse(data.data)

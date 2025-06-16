@@ -14,6 +14,7 @@ import { useCart } from "@/context/cart-context"
 import Link from "next/link"
 import { useState } from "react"
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
+import { API_BASE_URL } from "@/lib/api";
 
 import { jwtDecode } from 'jwt-decode';
 
@@ -63,7 +64,7 @@ export function CartItems() {
       // const courses_id = cartItems.map((value) => value.id);
       cartItems.map((value, _index) => value.id)
 
-      const res = await fetch("https://api.aspirationmatters.com/payment/order", {
+      const res = await fetch(`${API_BASE_URL}/payment/order`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -111,7 +112,7 @@ export function CartItems() {
           const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 sec timeout
 
           try {
-            const verifyRes = await fetch("https://api.aspirationmatters.com/payment/verify", {
+            const verifyRes = await fetch(`${API_BASE_URL}/payment/verify`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
@@ -158,7 +159,7 @@ export function CartItems() {
   const handleCardDoubleClick = async (id: string) => {
     try {
       setLoadingCourseId(id)
-      const res = await fetch(`https://api.aspirationmatters.com/course/${id}`)
+      const res = await fetch(`${API_BASE_URL}/course/${id}`)
 
       if (!res.ok) {
         throw new Error(`Failed to fetch course (${res.status})`)

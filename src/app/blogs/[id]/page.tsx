@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/card"
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { toast } from "sonner"
+import { API_BASE_URL } from "@/lib/api";
 
 interface BlogData {
   id: string
@@ -29,7 +30,7 @@ export default function BlogPost() {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const res = await fetch(`https://api.aspirationmatters.com/blog/${params.id}`, {
+        const res = await fetch(`${API_BASE_URL}/blog/${params.id}`, {
           method: "GET",
         })
 

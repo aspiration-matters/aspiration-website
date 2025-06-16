@@ -9,6 +9,7 @@ import { Card } from "@/components/ui/card";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import { Work_Sans } from "next/font/google";
 import { useEffect, useState } from "react";
+import { API_BASE_URL } from "@/lib/api";
 
 import { toast } from "sonner"
 
@@ -25,7 +26,7 @@ const About = () => {
     const fetchImage = async () => {
       try {
 
-        const res = await fetch("https://api.aspirationmatters.com/about");
+        const res = await fetch(`${API_BASE_URL}/about`);
         const json = await res.json();
         if (!res.ok) throw new Error("Failed to fetch About section data");
         setImageUrl(json?.data?.image1_url);
