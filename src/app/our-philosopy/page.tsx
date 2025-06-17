@@ -26,8 +26,7 @@ export default function OurStoryPage() {
 
       <p className="text-gray-800 leading-relaxed text-lg md:text-xl text-justify">
         Yes, how we think and aspire decides our motivation level and pace of achievement. It also sets the success we
-        reap in our endeavours. The willpower to win, the desire to succeed, and the urge to reach our full potential
-        depend upon one's aspirations.
+        reap in our endeavours. {"The willpower to win, the desire to succeed, and the urge to reach our full potential depend upon one's aspirations."}
       </p>
 
       <p className="text-gray-800 leading-relaxed text-lg md:text-xl text-justify">

@@ -105,7 +105,12 @@ export default function CoursePage() {
       <CourseLayout>
         <div className="container mx-auto px-4 py-6">
           <h2 className="text-2xl font-bold mb-6">Course not found</h2>
-          <p className="text-muted-foreground mb-6">The course you're looking for doesn't exist.</p>
+          {/* <p className="text-muted-foreground mb-6">The course you're looking for doesn't exist.</p> */}
+          <p className="text-muted-foreground mb-6">
+            {"The course you're looking for doesn't exist."}
+          </p>
+
+
           <Button asChild>
             <Link href="/">Back to courses</Link>
           </Button>
@@ -152,12 +157,7 @@ export default function CoursePage() {
             {course.purchased ? (
               <div className="space-y-6">
                 <div className="rounded-xl overflow-hidden shadow-xl border border-purple-100">
-                  {/* <VideoPlayer
-                    src={course.videoUrl}
-                    poster={course.thumbnail || "/placeholder.svg"}
-                    title={course.title}
-                    onComplete={handleVideoComplete}
-                  /> */}
+
                   <VideoPlayer
                     src={course.videoUrl ?? ""}
                     poster={course.thumbnail || "/placeholder.svg"}
@@ -171,7 +171,9 @@ export default function CoursePage() {
                     <Award className="h-5 w-5 text-purple-600 mt-0.5" />
                     <div>
                       <h3 className="font-medium">Congratulations!</h3>
-                      <p>You've completed this video. Continue learning to master the course.</p>
+
+                      <p>{"You've completed this video. Continue learning to master the course."}</p>
+
                     </div>
                   </div>
                 )}

@@ -1,7 +1,8 @@
 
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useCallback } from "react"
+
 import {
   Play,
   Pause,
@@ -75,8 +76,8 @@ export function VideoPlayer({ src, poster, title, onComplete, className }: Video
     }
   }, [onComplete, volume, isMuted])
 
-  // Handle play/pause
-  const togglePlay = () => {
+
+  const togglePlay = useCallback(() => {
     const video = videoRef.current
     if (!video) return
 
@@ -87,8 +88,8 @@ export function VideoPlayer({ src, poster, title, onComplete, className }: Video
         console.error("Error playing video:", err)
       })
     }
-    setIsPlaying(!isPlaying)
-  }
+    setIsPlaying((prev) => !prev)
+  }, [isPlaying])
 
 
 
@@ -103,31 +104,40 @@ export function VideoPlayer({ src, poster, title, onComplete, className }: Video
     setIsMuted(newVolume === 0)
   }
 
-  // Handle mute toggle
-  const toggleMute = () => {
+
+  const toggleMute = useCallback(() => {
     const video = videoRef.current
     if (!video) return
 
-    video.muted = !isMuted
-    setIsMuted(!isMuted)
-    if (isMuted) {
-      video.volume = volume || 0.5
-    }
-  }
+    setIsMuted((prev) => {
+      const newMuted = !prev
+      video.muted = newMuted
 
-  // Skip forward/backward with visual indicator
-  const skip = (seconds: number) => {
-    const video = videoRef.current
-    if (!video) return
+      // If unmuting and volume is 0, set to default (e.g. 0.5)
+      if (!newMuted && volume === 0) {
+        video.volume = 0.5
+        setVolume(0.5)
+      }
 
-    const newTime = Math.min(Math.max(video.currentTime + seconds, 0), duration)
-    video.currentTime = newTime
-    setCurrentTime(newTime)
+      return newMuted
+    })
+  }, [volume])
 
-    // Show skip indicator
-    setSkipIndicator(seconds > 0 ? "forward" : "backward")
-    setTimeout(() => setSkipIndicator(null), 800)
-  }
+
+  const skip = useCallback(
+    (seconds: number) => {
+      const video = videoRef.current
+      if (!video) return
+
+      const newTime = Math.min(Math.max(video.currentTime + seconds, 0), duration)
+      video.currentTime = newTime
+      setCurrentTime(newTime)
+
+      setSkipIndicator(seconds > 0 ? "forward" : "backward")
+      setTimeout(() => setSkipIndicator(null), 800)
+    },
+    [duration]
+  )
 
   // Toggle fullscreen
   const toggleFullscreen = () => {

@@ -134,7 +134,7 @@ export default function TestimonialsSection() {
             <div className="absolute -bottom-2 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
           </div>
           <p className="text-base sm:text-lg text-black-700 max-w-2xl mx-auto mt-3 sm:mt-4">
-            Don{"'"}t just take our word for it. Here's what our clients have to say about their experience working with us.
+            Don&apos;t just take our word for it. Here&apos;s what our clients have to say about their experience working with us.
           </p>
         </div>
 

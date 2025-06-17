@@ -1,8 +1,5 @@
 
 "use client"
-
-import type React from "react"
-
 import { useState, useEffect, useMemo } from "react"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -17,14 +14,14 @@ import TestimonialsSection from "@/components/testimonials"
 import ContactPage from "@/components/contact-us"
 import CoursePage from "@/components/course"
 import Image from "next/image"
-import Head from "next/head"
+
 
 import { GlobeWithSpinningText } from "@/components/globe-with-spinning-text"
 
 
 
 import OurStory from "@/components/our-story"
-import Philosophy from "@/components/ philosophy-section"
+import Philosophy from "@/components/philosophy-section"
 import About from "@/components/about-us"
 import {
   NavigationMenu,
@@ -85,7 +82,10 @@ export default function Home() {
 
 
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, href: string) => {
+  const scrollToSection = (
+    e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+    href: string
+  ) => {
 
     e.preventDefault()
     const element = document.querySelector(href)
@@ -186,7 +186,10 @@ export default function Home() {
                           : "text-purple-700 hover:bg-white/60 hover:text-purple-800",
                         "hover:translate-x-1 transition-all",
                       )}
-                      onClick={(e) => scrollToSection(e as any, item.href)}
+                      onClick={(e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) =>
+                        scrollToSection(e, item.href)
+                      }
+
                     >
                       {item.name}
                     </Button>

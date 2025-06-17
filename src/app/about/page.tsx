@@ -23,7 +23,7 @@ export default function AboutPage() {
         if (!res.ok) throw new Error("Failed to fetch");
         const json = await res.json();
         setImageUrl(json?.data?.image2_url || null);
-      } catch (error) {
+      } catch {
         toast.error("Failed to  fetch")
 
       } finally {

@@ -42,7 +42,7 @@ export default function BlogPost() {
         const result = await res.json()
         setBlog(result.data)
         setText(isTypingEffect ? "" : result.data.content)
-      } catch (err) {
+      } catch {
         toast.error("Failed to load blog post. Please try again later.")
       } finally {
         setLoading(false)

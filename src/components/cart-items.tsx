@@ -15,8 +15,11 @@ import Link from "next/link"
 import { useState } from "react"
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 import { API_BASE_URL } from "@/lib/api";
+import { useRouter } from "next/navigation";
 
 import { jwtDecode } from 'jwt-decode';
+
+
 
 interface CustomJwtPayload {
   user_id: string;
@@ -38,8 +41,33 @@ interface RazorpayPaymentResponse {
   razorpay_payment_id: string;
   razorpay_signature: string;
 }
+interface RazorpayOptions {
+  key: string;
+  amount: number;
+  currency: string;
+  name: string;
+  description: string;
+  order_id: string;
+  handler: (response: RazorpayPaymentResponse) => void;
+  theme: {
+    color: string;
+  };
+}
+
+interface RazorpayInstance {
+  open(): void;
+}
+
+interface RazorpayConstructor {
+  new(options: RazorpayOptions): RazorpayInstance;
+}
+
+interface RazorpayWindow extends Window {
+  Razorpay: RazorpayConstructor;
+}
 
 export function CartItems() {
+  const router = useRouter();
   // const [selectedCourse, setSelectedCourse] = useState<any>(null)
   const [selectedCourse, setSelectedCourse] = useState<CourseDetails | null>(null)
 
@@ -54,9 +82,7 @@ export function CartItems() {
     try {
       setRemovingCourseId(id)
       await removeFromCart(id)
-      toast("Item removed", {
-        description: "The course has been removed from your cart.",
-      })
+
     } catch (err: unknown) {
       const error = err as Error;
       toast.error("Failed to remove item", {
@@ -82,8 +108,7 @@ export function CartItems() {
   const handleCheckout = async () => {
 
     try {
-      // const courses_id = cartItems.map((value) => value.id);
-      // cartItems.map((value) => value.id)
+
 
       const res = await fetch(`${API_BASE_URL}/payment/order`, {
         method: "POST",
@@ -98,6 +123,11 @@ export function CartItems() {
       })
 
       console.log("in oder course ids :", cartItems.map((value) => value.id))
+
+      if (!res.ok) {
+        throw new Error("Failed to create payment order");
+      }
+
       const data = await res.json();
 
       const razorpayLoaded = await loadRazorpayScript();
@@ -151,6 +181,18 @@ export function CartItems() {
             const data = await verifyRes.json();
             console.log("Server verification response:", data);
 
+            if (verifyRes.ok) {
+              toast.success("Payment successful!", {
+                description: "You're now enrolled in the course.",
+              });
+
+              router.push("/my-learning");
+            } else {
+              toast.error("Payment verification failed", {
+                description: data?.message || "Please contact support.",
+              });
+            }
+
             // You can also show a toast or redirect here
           } catch (err: unknown) {
             clearTimeout(timeoutId);
@@ -169,13 +211,15 @@ export function CartItems() {
         }
       }
 
-      // const rzp = new (window as any).Razorpay(options)
-      const rzp = new (window as typeof window & { Razorpay: any }).Razorpay(options)
-
+      const rzp = new ((window as unknown) as RazorpayWindow).Razorpay(options);
       rzp.open();
 
     } catch (error) {
-      console.log(error)
+      console.error("Payment error:", error);
+      toast.error("Checkout failed", {
+        description: (error as Error).message || "Something went wrong.",
+      });
+
     } finally {
 
     }

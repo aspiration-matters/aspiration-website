@@ -1,7 +1,7 @@
 
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useMemo } from "react"
 import { motion } from "framer-motion"
 import { ArrowLeft } from "lucide-react"
 import Image from "next/image"
@@ -14,7 +14,7 @@ import { Trophy } from "lucide-react";
 import { API_BASE_URL } from "@/lib/api";
 
 export default function OurStoryPage() {
-  const storyContent = [
+  const storyContent = useMemo(() => [
     `"I didn't know what I was meant to become—but I knew I was not meant to stay the same."`,
     `Neelima Kumari's story isn't just one of success—it's a journey of becoming. A journey born from the heart of an ordinary girl with extraordinary dreams.`,
     `That one thought became the compass guiding her forward—not through shortcuts or overnight success, but through quiet resilience, relentless self-growth, and an unwavering belief in the power of aspiration, confidence, and conviction.`,
@@ -28,7 +28,7 @@ export default function OurStoryPage() {
     `When aspiration becomes action, life becomes unstoppable.`,
     `And that is exactly why—`,
     `Aspiration Matters.`,
-  ]
+  ], [])
 
   const [imageUrl, setImageUrl] = useState<string | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
@@ -99,7 +99,7 @@ export default function OurStoryPage() {
         return () => clearTimeout(timer)
       }
     }
-  }, [currentParagraphIndex, charIndex, quickRead, storyContent.length])
+  }, [currentParagraphIndex, charIndex, quickRead, storyContent])
 
   const handleQuickRead = () => {
     setQuickRead(true)

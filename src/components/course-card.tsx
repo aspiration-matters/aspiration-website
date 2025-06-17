@@ -47,7 +47,7 @@ export function CourseCard({ course, index }: CourseCardProps) {
     try {
       const decoded = jwtDecode<DecodedToken>(token)
       userId = decoded.user_id
-    } catch (err) {
+    } catch {
       toast.error("Invalid token")
       router.push("/login")
       return
@@ -81,7 +81,7 @@ export function CourseCard({ course, index }: CourseCardProps) {
           description: result?.message || "Something went wrong",
         })
       }
-    } catch (_err) {
+    } catch {
       toast.error("Error", {
         description: "Unable to add to cart. Please try again.",
       })
