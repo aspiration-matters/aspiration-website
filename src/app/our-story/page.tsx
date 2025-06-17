@@ -50,7 +50,7 @@ export default function OurStoryPage() {
 
         const { image4_url } = json.data
 
-        // Find the first valid image (not "pending" or null)
+
         const validImage = [image4_url].find(
           (url) => url && url !== "pending"
         )
