@@ -18,6 +18,7 @@
     "jsx": "preserve",
     "incremental": true,
     "types": [
+      "react",
       "node",
       "estree",
       "json-schema"
