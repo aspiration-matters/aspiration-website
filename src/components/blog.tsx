@@ -14,6 +14,7 @@ import { Spinner } from "@/components/ui/spinner"
 import { toast } from "sonner" // Import toast from sonner
 import { API_BASE_URL } from "@/lib/api";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["600"] })
 interface Blog {
@@ -40,11 +41,18 @@ const BlogCard = ({ blog }: { blog: Blog }) => {
             {blog.title}
           </h3>
           <p className="text-gray-700 mb-5 line-clamp-2 text-base flex-grow">{blog.description}</p>
-          <Link href={`/blogs/${blog.id}`} className="mt-auto w-full">
-            <Button className="w-full bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 text-white transition-all duration-300 py-5 text-base shadow-sm">
-              Continue Reading
-              <ChevronRight className="ml-2 h-4 w-4" />
-            </Button>
+
+          <Link href={`/blogs/${blog.id}`} passHref>
+            <div
+              className="mt-auto w-full flex items-center justify-center py-3 px-4 bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
+      hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
+      text-white font-semibold rounded-md transition-all duration-300
+      shadow-[0_4px_20px_-4px_rgba(147,51,234,0.6)] hover:shadow-[0_8px_25px_-5px_rgba(147,51,234,0.9)] cursor-pointer text-base"
+            >
+              <span className="flex items-center gap-x-2">
+                Continue Reading <ChevronRight className="h-4 w-4" />
+              </span>
+            </div>
           </Link>
         </div>
       </Card>
@@ -57,6 +65,17 @@ export default function Blog() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [blogs, setBlogs] = useState<Blog[]>([])
   const [loading, setLoading] = useState(true)
+  const router = useRouter();
+
+
+
+  useEffect(() => {
+    if (blogs.length) {
+      blogs.forEach((blog) => {
+        router.prefetch(`/blogs/${blog.id}`);
+      });
+    }
+  }, [blogs, router]);
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/blog/`)

@@ -13,6 +13,7 @@ import { Work_Sans } from "next/font/google";
 import { toast } from "sonner";
 import { API_BASE_URL } from "@/lib/api";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["600"] });
 
@@ -26,6 +27,11 @@ const Philosophy = () => {
 
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
+
+  useEffect(() => {
+    router.prefetch("/our-philosopy");
+  }, [router]);
 
   useEffect(() => {
     const fetchPhilosophy = async () => {
@@ -129,16 +135,18 @@ const Philosophy = () => {
               </div>
             </div>
 
-            <button
-              className="flex items-center justify-center w-36 h-10 bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
-                hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
-                text-white font-bold rounded-lg transition-all duration-300
-                shadow-[0_4px_20px_-4px_rgba(147,51,234,0.6)] hover:shadow-[0_8px_25px_-5px_rgba(147,51,234,0.9)]"
-            >
-              <Link href="/our-philosopy" className="flex items-center gap-x-2">
-                Read More <ArrowRight className="h-5 w-5" />
-              </Link>
-            </button>
+            <Link href="/our-philosopy" passHref>
+              <div
+                className="flex items-center justify-center w-36 h-10 bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
+      hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
+      text-white font-bold rounded-lg transition-all duration-300
+      shadow-[0_4px_20px_-4px_rgba(147,51,234,0.6)] hover:shadow-[0_8px_25px_-5px_rgba(147,51,234,0.9)] cursor-pointer"
+              >
+                <span className="flex items-center gap-x-2">
+                  Read More <ArrowRight className="h-5 w-5" />
+                </span>
+              </div>
+            </Link>
           </motion.div>
         </div>
       </div>

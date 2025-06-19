@@ -1,6 +1,8 @@
 
 "use client"
-import { useState, useEffect, useMemo } from "react"
+import { useState, useEffect, useMemo, useCallback } from "react"
+import type React from "react"
+
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -15,10 +17,7 @@ import ContactPage from "@/components/contact-us"
 import CoursePage from "@/components/course"
 import Image from "next/image"
 
-
 import { GlobeWithSpinningText } from "@/components/globe-with-spinning-text"
-
-
 
 import OurStory from "@/components/our-story"
 import Philosophy from "@/components/philosophy-section"
@@ -35,7 +34,6 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
 
-
   const navItems = useMemo(
     () => [
       { name: "Home", href: "#home" },
@@ -48,7 +46,7 @@ export default function Home() {
       { name: "Testimonials", href: "#testimonials" },
       { name: "Contact", href: "#contact" },
     ],
-    []
+    [],
   )
 
   // Handle scroll event to change navbar appearance and track active section
@@ -80,13 +78,7 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [navItems])
 
-
-
-  const scrollToSection = (
-    e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
-    href: string
-  ) => {
-
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, href: string) => {
     e.preventDefault()
     const element = document.querySelector(href)
     if (element) {
@@ -96,11 +88,96 @@ export default function Home() {
     }
   }
 
+  // Enhanced scroll function with multiple fallback methods for problematic devices
+  const handleGetStartedClick = useCallback(() => {
+    console.log("Get Started button clicked") // Debug log
 
+    const aboutSection = document.getElementById("about")
+    if (!aboutSection) {
+      console.error("About section not found")
+      return
+    }
+
+    // Method 1: Try smooth scrolling
+    try {
+      aboutSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest",
+      })
+      setActiveSection("about")
+      console.log("Smooth scroll executed")
+    } catch {
+      console.log("Smooth scroll failed, trying fallback")
+
+      // Method 2: Fallback to instant scroll
+      try {
+        aboutSection.scrollIntoView({
+          behavior: "auto",
+          block: "start",
+        })
+        setActiveSection("about")
+        console.log("Auto scroll executed")
+      } catch {
+        console.log("Auto scroll failed, trying manual scroll")
+
+        // Method 3: Manual scroll calculation
+        const rect = aboutSection.getBoundingClientRect()
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+        const targetPosition = rect.top + scrollTop - 80
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        })
+        setActiveSection("about")
+        console.log("Manual scroll executed")
+      }
+    }
+  }, [])
+
+  // Create a simple button component that handles all event types
+  const GetStartedButton = ({ className, children }: { className: string; children: React.ReactNode }) => {
+
+
+    const handleAllEvents = (
+      e: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>
+    ) => {
+      e.preventDefault()
+      e.stopPropagation()
+      handleGetStartedClick()
+    }
+
+    return (
+      <button
+        type="button"
+        className={className}
+        onClick={handleAllEvents}
+        onTouchStart={handleAllEvents}
+        onTouchEnd={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+        }}
+        onMouseDown={handleAllEvents}
+        style={{
+          WebkitTapHighlightColor: "transparent",
+          WebkitTouchCallout: "none",
+          WebkitUserSelect: "none",
+          userSelect: "none",
+          touchAction: "manipulation",
+          cursor: "pointer",
+        }}
+        role="button"
+        tabIndex={0}
+        aria-label="Get Started - Navigate to About section"
+      >
+        {children}
+      </button>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-100/80 to-white">
-
       {/* Enhanced Navigation Bar - Updated for iPad and mobile */}
       <header
         className={cn(
@@ -117,13 +194,14 @@ export default function Home() {
                 alt="Logo"
                 width={300}
                 height={80}
-                className="h-22 sm:h-22 md:h-20 lg:h-24 xl:h-32 w-auto"
+                className="h-22 sm:h-26 md:h-20 lg:h-24 xl:h-32 w-auto"
                 priority
               />
             </div>
 
             {/* Desktop Navigation - Updated for better tablet support */}
             <div className="hidden lg:block">
+
               <NavigationMenu className="rounded-full border border-white/50 shadow-lg p-2">
                 <NavigationMenuList className="flex space-x-2">
                   {navItems.map((item) => {
@@ -132,7 +210,6 @@ export default function Home() {
                       <NavigationMenuItem key={item.name}>
                         <NavigationMenuLink
                           href={item.href}
-
                           onClick={(e) => scrollToSection(e, item.href)}
                           className={cn(
                             "px-6 py-2.5 rounded-full transition-all duration-300 font-medium",
@@ -140,7 +217,7 @@ export default function Home() {
                             "active:scale-95 active:shadow-md",
                             isActive
                               ? "bg-gradient-to-r from-purple-300 to-blue-300 text-purple-900 shadow-lg"
-                              : "text-purple-900 bg-white shadow-md"
+                              : "text-purple-900 bg-white shadow-md",
                           )}
                         >
                           <span>{item.name}</span>
@@ -168,7 +245,6 @@ export default function Home() {
           </div>
         </div>
 
-
         {mobileMenuOpen && (
           <div className="lg:hidden w-full backdrop-blur-md bg-white/90 shadow-xl border-t border-white/50 rounded-b-2xl">
             <div className="container mx-auto px-4 py-4 sm:py-6">
@@ -189,7 +265,6 @@ export default function Home() {
                       onClick={(e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) =>
                         scrollToSection(e, item.href)
                       }
-
                     >
                       {item.name}
                     </Button>
@@ -207,7 +282,6 @@ export default function Home() {
         className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm relative overflow-hidden"
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-10">
-
           <div className="hidden xl:flex w-full items-center justify-between px-12">
             {/* LEFT: Quote Section */}
             <div className="flex-1 max-w-lg text-end">
@@ -235,47 +309,39 @@ export default function Home() {
 
               <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
                 <h2 className="mt-2 sm:mt-4 text-2xl sm:text-3xl lg:text-[3rem] font-semibold">
-                  It’ s in you{" "}
-
+                  It&#39;s in you{" "}
                   <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text">
                     .
                   </span>
                 </h2>
+
               </BoxReveal>
 
               <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
-                <Button
-                  className="mt-8 sm:mt-12 lg:mt-[5.0rem] bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
-                  hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
-                  text-white font-bold py-5 sm:py-6 lg:py-7 px-8 sm:px-10 lg:px-12 
-                  rounded-lg transition-all duration-300 text-base sm:text-lg lg:text-xl 
-                  w-full sm:w-[250px] lg:w-[200px] h-[40px] sm:h-[50px] lg:h-[50px]"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const aboutSection = document.querySelector("#about");
-                    if (aboutSection) {
-                      aboutSection.scrollIntoView({ behavior: "smooth" });
-                      setActiveSection("about");
-                    }
-                  }}
+                <GetStartedButton
+                  className="flex justify-center items-center leading-none whitespace-nowrap
+  mt-8 sm:mt-12 lg:mt-[5.0rem]
+  bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
+  hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
+  text-white font-bold px-8 sm:px-10 lg:px-12 
+  rounded-lg transition-all duration-300 text-base sm:text-lg lg:text-xl 
+  min-w-[200px] h-[50px]
+  border-0 outline-none focus:outline-none active:outline-none
+  relative z-10"
                 >
+
                   Get Started
-                </Button>
+                </GetStartedButton>
               </BoxReveal>
             </div>
 
             {/* RIGHT: Globe */}
-            <div
-              className="relative flex-1 max-w-[600px] translate-x-4"
-              style={{ top: "30px" }}
-            >
+            <div className="relative flex-1 max-w-[600px] translate-x-4" style={{ top: "30px" }}>
               <div className="bg-transparent">
                 <GlobeDemo />
               </div>
             </div>
-
           </div>
-
 
           {/* iPad Layout - Tablet devices (sm to lg) */}
           <div className="hidden sm:flex xl:hidden flex-col items-center justify-center h-full w-full min-h-screen">
@@ -304,8 +370,7 @@ export default function Home() {
 
               <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center">
-                  It’s in you{" "}
-
+                  It&#39;s in you{" "}
                   <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text">
                     .
                   </span>
@@ -313,38 +378,28 @@ export default function Home() {
               </BoxReveal>
 
               <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
-                <Button
-                  className="mt-8 bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
-                    hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
-                    text-white font-bold py-4 px-8 
-                    rounded-lg transition-all duration-300 text-lg
-                    w-[200px] h-[50px]"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    const aboutSection = document.querySelector("#about")
-                    if (aboutSection) {
-                      aboutSection.scrollIntoView({ behavior: "smooth" })
-                      setActiveSection("about")
-                    }
-                  }}
+                <GetStartedButton
+                  className="flex justify-center items-center leading-none
+  mt-8 bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
+  hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
+  text-white font-bold py-4 px-8 
+  rounded-lg transition-all duration-300 text-lg
+  w-[200px] h-[50px] border-0 outline-none focus:outline-none active:outline-none
+  relative z-10"
                 >
                   Get Started
-                </Button>
+                </GetStartedButton>
               </BoxReveal>
             </div>
 
             {/* Globe Demo - Centered for tablets with transparent background */}
-
-            <div className="relative w-full aspect-square max-w-[600px] mx-auto">
+            <div className="relative w-full aspect-square max-w-[600px] mx-auto ">
               <GlobeWithSpinningText
                 text="Aspiration matters • Aspiration matters • Aspiration matters •"
                 textDuration={120}
                 className="drop-shadow-2xl"
               />
             </div>
-
-
-
           </div>
 
           {/* Mobile Layout - Small screens only */}
@@ -372,8 +427,7 @@ export default function Home() {
 
                 <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
                   <h2 className="text-2xl font-semibold text-center">
-                    It’s in you{" "}
-
+                    It&#39;s in you{" "}
                     <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 text-transparent bg-clip-text">
                       .
                     </span>
@@ -381,55 +435,77 @@ export default function Home() {
                 </BoxReveal>
 
                 <BoxReveal boxColor={"rgb(147, 51, 234)"} duration={0.5}>
-                  <Button
-                    className="mt-4 bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
-                      hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
-                      text-white font-bold py-3 px-6 
-                      rounded-lg transition-all duration-300 text-sm
-                      w-[140px] h-[36px]"
-                    onClick={(e) => {
-                      e.preventDefault()
-                      const aboutSection = document.querySelector("#about")
-                      if (aboutSection) {
-                        aboutSection.scrollIntoView({ behavior: "smooth" })
-                        setActiveSection("about")
-                      }
-                    }}
+                  <GetStartedButton
+                    className="flex justify-center items-center leading-none
+  mt-4 bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
+  hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
+  text-white font-bold py-3 px-6 
+  rounded-lg transition-all duration-300 text-sm
+  w-[140px] h-[36px] border-0 outline-none focus:outline-none active:outline-none
+  relative z-10"
                   >
                     Get Started
-                  </Button>
+                  </GetStartedButton>
                 </BoxReveal>
+
               </div>
             </div>
 
-            {/* Image positioned at the exact bottom for mobile */}
-            <div className="w-full max-w-[200px] mx-auto fixed bottom-4 left-0 right-0 flex justify-center">
-              <div className="relative bg-transparent">
-                <Image
-                  src="/asssp.png"
-                  alt="Aspiration Matters"
-                  width={200}
-                  height={200}
-                  className="w-full h-auto bg-transparent"
-                />
-                <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <h1 className="text-black font-serif text-2xl font-black tracking-tight leading-none">Aspiration</h1>
-                  <h1
-                    className="text-black font-serif text-2xl font-black tracking-tight mt-1 
-                      bg-clip-text bg-gradient-to-b from-black to-black/80"
-                    style={{
-                      fontFamily: "'Playfair Display', serif",
-                    }}
-                  >
-                    Matters
-                  </h1>
+            <div className="sm:hidden block">
+              <div className="w-full max-w-[200px] mx-auto fixed left-0 right-0 flex justify-center bottom-4 iphone-se-down">
+                <div className="relative bg-transparent">
+                  <Image
+                    src="/asssp.png"
+                    alt="Aspiration Matters"
+                    width={200}
+                    height={200}
+                    className="w-full h-auto bg-transparent"
+                  />
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <h1 className="text-black font-serif text-2xl font-black tracking-tight leading-none">
+                      Aspiration
+                    </h1>
+                    <h1
+                      className="text-black font-serif text-2xl font-black tracking-tight mt-1 bg-clip-text bg-gradient-to-b from-black to-black/80"
+                      style={{ fontFamily: "'Playfair Display', serif" }}
+                    >
+                      Matters
+                    </h1>
+                  </div>
                 </div>
               </div>
+
+              {/* ✨ ONLY for iPhone SE‑like screens: add additional offset */}
+              <style jsx global>{`
+                @media (max-width: 375px) {
+                  .iphone-se-down {
+                    bottom: -15px !important;
+                  }
+                }
+
+                /* Additional CSS for problematic devices */
+                button[role="button"] {
+                  -webkit-tap-highlight-color: transparent !important;
+                  -webkit-touch-callout: none !important;
+                  -webkit-user-select: none !important;
+                  -moz-user-select: none !important;
+                  -ms-user-select: none !important;
+                  user-select: none !important;
+                  touch-action: manipulation !important;
+                  pointer-events: auto !important;
+                }
+
+                /* Ensure buttons work on older iOS Safari */
+                @supports (-webkit-touch-callout: none) {
+                  button[role="button"] {
+                    cursor: pointer !important;
+                  }
+                }
+              `}</style>
             </div>
           </div>
         </div>
       </section>
-
       {/* about us section */}
       <main>
         <About />
@@ -468,3 +544,7 @@ export default function Home() {
     </div>
   )
 }
+
+
+
+

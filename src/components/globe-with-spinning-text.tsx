@@ -38,7 +38,7 @@ const GLOBE_CONFIG: COBEOptions = {
 // Constants
 const MOVEMENT_DAMPING = 1400
 const PADDING_CM = -3.5 // 0.5cm padding
-const PADDING_PX = PADDING_CM * 37.8 // Convert cm to pixels (1cm ≈ 37.8px)
+const PADDING_PX = (PADDING_CM * 37.8)// Convert cm to pixels (1cm ≈ 37.8px)
 
 // Base transition for spinning text
 const BASE_TRANSITION = {

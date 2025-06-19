@@ -10,6 +10,7 @@ import { Work_Sans } from "next/font/google"
 import { TypeAnimation } from "react-type-animation"
 import { toast } from "sonner"
 import { API_BASE_URL } from "@/lib/api";
+import { useRouter } from "next/navigation";
 
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["600"] })
 const ourStory =
@@ -30,8 +31,9 @@ const StorySection = () => {
   const [isTypingComplete, setIsTypingComplete] = useState(false)
   const [inView, setInView] = useState(false)
   const [images, setImages] = useState<string[]>([])
-  // const [error, setError] = useState<string | null>(null)
+
   const [loading, setLoading] = useState(true)
+  const router = useRouter();
 
   // Animation variants
   const containerVariants = {
@@ -76,6 +78,11 @@ const StorySection = () => {
       },
     },
   }
+
+
+  useEffect(() => {
+    router.prefetch("/our-story");
+  }, [router]);
 
   // Fetch images from the API
   useEffect(() => {
@@ -272,18 +279,26 @@ const StorySection = () => {
             </div>
 
             {isTypingComplete && (
-              <motion.div variants={buttonVariants} initial="hidden" animate="visible" className="mt-4 sm:mt-6">
-                <button
-                  className="flex items-center justify-center w-32 sm:w-36 h-9 sm:h-10 bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
-                hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
-                text-white font-bold rounded-lg transition-all duration-300
-                shadow-[0_4px_20px_-4px_rgba(147,51,234,0.6)] hover:shadow-[0_8px_25px_-5px_rgba(147,51,234,0.9)]"
-                >
-                  <Link href="/our-story" className="flex items-center gap-x-2 text-sm sm:text-base">
-                    Read More <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
-                  </Link>
-                </button>
+              <motion.div
+                variants={buttonVariants}
+                initial="hidden"
+                animate="visible"
+                className="mt-4 sm:mt-6"
+              >
+                <Link href="/our-story" passHref>
+                  <div
+                    className="flex items-center justify-center w-32 sm:w-36 h-9 sm:h-10 bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
+        hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
+        text-white font-bold rounded-lg transition-all duration-300
+        shadow-[0_4px_20px_-4px_rgba(147,51,234,0.6)] hover:shadow-[0_8px_25px_-5px_rgba(147,51,234,0.9)] cursor-pointer"
+                  >
+                    <span className="flex items-center gap-x-2 text-sm sm:text-base">
+                      Read More <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
+                    </span>
+                  </div>
+                </Link>
               </motion.div>
+
             )}
           </motion.div>
         </div>
