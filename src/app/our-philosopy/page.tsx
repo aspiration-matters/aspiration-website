@@ -9,7 +9,7 @@ import Link from "next/link"
 import { TypeAnimation } from "react-type-animation"
 import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
-import { API_BASE_URL } from "@/lib/api";
+import { API_BASE_URL } from "@/lib/api"
 
 export default function OurStoryPage() {
   const [imageUrl, setImageUrl] = useState<string | null>(null)
@@ -19,14 +19,16 @@ export default function OurStoryPage() {
   const formattedText = (
     <div className="space-y-1">
       <p className="text-gray-800 leading-relaxed text-lg md:text-xl text-justify">
-        You have heard the famous adage ”desire is the root cause of all achievements and accomplishments ” and ”our
-        attitude decides our altitude”.
+        You have heard the famous adage “desire is the root cause of all achievements and accomplishments “and “our
+        attitude decides our altitude“.
       </p>
-
 
       <p className="text-gray-800 leading-relaxed text-lg md:text-xl text-justify">
         Yes, how we think and aspire decides our motivation level and pace of achievement. It also sets the success we
-        reap in our endeavours. {"The willpower to win, the desire to succeed, and the urge to reach our full potential depend upon one's aspirations."}
+        reap in our endeavours.{" "}
+
+        “ The willpower to win, the desire to succeed, and the urge to reach our full potential depend upon one&apos;s aspirations.“
+
       </p>
 
       <p className="text-gray-800 leading-relaxed text-lg md:text-xl text-justify">
@@ -59,12 +61,11 @@ export default function OurStoryPage() {
       <p className="text-gray-800 leading-relaxed text-lg md:text-xl text-justify">Our mantra is –</p>
 
       <p className="text-gray-900 leading-relaxed text-lg md:text-xl text-justify font-bold">
-        “Power up! Discover the winning edge, it’s in you”
+        &quot;Power up! Discover the winning edge, it&apos;s in you&quot;
+
       </p>
     </div>
   )
-
-
 
   const fullText = `You have heard the famous adage desire is the root cause of all achievements and accomplishments and  our attitude decides our altitude.
 
@@ -83,7 +84,7 @@ All of us are blessed with unimaginable potential, we at aspiration matters prov
 
 Our mantra is –
 
-Power up! discover the winning edge, it’s in you`
+Power up! discover the winning edge, it's in you`
 
   const handleQuickRead = () => {
     setIsTypingEffect(false)
@@ -116,7 +117,7 @@ Power up! discover the winning edge, it’s in you`
   }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90">
+    <div className="min-h-screen bg-gradient-to-br from-[#e0c3fc]/80 via-[#8ec5fc]/70 to-[#ffffff]/80 backdrop-blur-2xl backdrop-saturate-200">
       <div className="container mx-auto px-4 py-20">
         <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.5 }}>
           <Link
@@ -129,14 +130,19 @@ Power up! discover the winning edge, it’s in you`
           </Link>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="space-y-12">
+          {/* Image Section - Now at the top */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="space-y-6"
+            className="flex flex-col items-center space-y-6"
           >
-            <div className="relative">
+            <h1 className="flex items-center gap-2 text-3xl md:text-4xl font-bold font-[Montserrat] bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600 text-center">
+              Our Brand Story <Gem className="w-8 h-8 text-white drop-shadow-lg" />
+            </h1>
+
+            <div className="relative max-w-4xl w-full">
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 rounded-[2.5rem] blur-xl opacity-20" />
               <div className="relative overflow-hidden rounded-[2.5rem] border-2 border-white/20 shadow-2xl bg-white/10 backdrop-blur-sm">
                 {loading ? (
@@ -177,17 +183,14 @@ Power up! discover the winning edge, it’s in you`
             </div>
           </motion.div>
 
+          {/* Content Section - Now below the image */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="space-y-6"
+            className="max-w-6xl mx-auto"
           >
-            <h1 className="flex items-center gap-2 text-3xl md:text-4xl font-bold font-[Montserrat] bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600">
-              Our Brand Story <Gem className="w-8 h-8 text-white drop-shadow-lg" />
-            </h1>
-
-            <div className="font-playfair max-w-[6000px]">
+            <div className="font-playfair">
               {isTypingEffect ? (
                 <div className="min-h-[600px]">
                   <TypeAnimation

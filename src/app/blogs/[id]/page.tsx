@@ -89,7 +89,7 @@ export default function BlogPost() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#e0c3fc]/80 via-[#8ec5fc]/70 to-[#ffffff]/80 backdrop-blur-2xl backdrop-saturate-200">
         <div className="flex flex-col items-center gap-4">
           <Loader2 className="h-10 w-10 animate-spin text-purple-700" />
           <p className="text-purple-900 font-medium animate-pulse">Loading article...</p>
@@ -104,7 +104,7 @@ export default function BlogPost() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 pb-16 relative"
+      className="min-h-screen bg-gradient-to-br from-[#e0c3fc]/80 via-[#8ec5fc]/70 to-[#ffffff]/80 backdrop-blur-2xl backdrop-saturate-200 pb-16 relative"
     >
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         <motion.div

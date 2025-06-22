@@ -107,7 +107,7 @@ export default function OurStoryPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90">
+    <div className="min-h-screen bg-gradient-to-br from-[#e0c3fc]/80 via-[#8ec5fc]/70 to-[#ffffff]/80 backdrop-blur-2xl backdrop-saturate-200">
       <ToastContainer
         position="top-right"
         autoClose={3000}

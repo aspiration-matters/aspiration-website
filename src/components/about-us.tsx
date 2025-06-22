@@ -55,8 +55,9 @@ const About = () => {
     <section
       id="about"
       ref={ref}
-      className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm overflow-hidden"
+      className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#e0c3fc]/80 via-[#8ec5fc]/70 to-[#ffffff]/80 backdrop-blur-2xl backdrop-saturate-200 backdrop-blur-sm overflow-hidden"
     >
+      {/* className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm overflow-hidden" */}
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
@@ -112,16 +113,14 @@ const About = () => {
                 className="text-gray-800 leading-relaxed text-base sm:text-lg md:text-xl text-justify"
                 style={{ textAlign: "justify" }}
               />
-
             </div>
-
             <div className="pt-2 sm:pt-4">
               <Link href="/about">
                 <button
-                  className="flex items-center justify-center w-32 sm:w-36 h-9 sm:h-10 bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
-      hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
-      text-white font-bold text-sm sm:text-base rounded-lg transition-all duration-300
-      shadow-[0_4px_20px_-4px_rgba(147,51,234,0.6)] hover:shadow-[0_8px_25px_-5px_rgba(147,51,234,0.9)]"
+                  className="cursor-pointer flex items-center justify-center w-32 sm:w-36 h-9 sm:h-10 bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
+    hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
+    text-white font-bold text-sm sm:text-base rounded-lg transition-all duration-300
+    shadow-[0_4px_20px_-4px_rgba(147,51,234,0.6)] hover:shadow-[0_8px_25px_-5px_rgba(147,51,234,0.9)]"
                 >
                   <span className="flex items-center gap-x-1 sm:gap-x-2">
                     Read More <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />

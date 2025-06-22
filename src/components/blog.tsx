@@ -111,68 +111,68 @@ export default function Blog() {
   const handleSelect = (index: number) => api?.scrollTo(index)
 
   return (
-    <main>
-      <section
-        id="blogs"
-        className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm py-12"
-      >
-        <div className="relative inline-block pb-1 mb-4 mt-0">
-          <h2
-            className={`${workSans.className} text-3xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 flex items-center gap-3`}
-          >
-            Food For Thought
-            <Sprout className="w-7 h-7 text-purple-500 animate-spin-slow" />
-          </h2>
 
-          {/* Purple gradient line below */}
-          <div className="absolute bottom-[-2px] left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
-        </div>
+    <section
+      id="blogs"
+      className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#e0c3fc]/80 via-[#8ec5fc]/70 to-[#ffffff]/80 backdrop-blur-2xl backdrop-saturate-200 backdrop-blur-sm py-12"
+    >
+      <div className="relative inline-block pb-1 mb-4 mt-0">
+        <h2
+          className={`${workSans.className} text-3xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 flex items-center gap-3`}
+        >
+          Food For Thought
+          <Sprout className="w-7 h-7 text-purple-500 animate-spin-slow" />
+        </h2>
 
-        <div className="w-full max-w-7xl mx-auto relative px-4">
-          {loading ? (
-            <Spinner />
-          ) : (
-            <>
-              <Carousel setApi={setApi} opts={{ align: "start", loop: true }} className="w-full">
-                <CarouselContent className="-ml-2 md:-ml-4">
-                  {blogs.map((blog) => (
-                    <CarouselItem key={blog.id} className="pl-2 md:pl-4 lg:basis-1/3 md:basis-1/2 basis-full">
-                      <BlogCard blog={blog} />
-                    </CarouselItem>
-                  ))}
+        {/* Purple gradient line below */}
+        <div className="absolute bottom-[-2px] left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
+      </div>
 
-                </CarouselContent>
-
-                <Button
-                  variant="ghost"
-                  className="absolute left-4 top-1/2 -translate-y-1/2 z-30 h-10 w-10 rounded-full bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 shadow-sm"
-                  onClick={handlePrevious}
-                >
-                  <ChevronLeft className="h-5 w-5" />
-                </Button>
-
-                <Button
-                  variant="ghost"
-                  className="absolute right-4 top-1/2 -translate-y-1/2 z-30 h-10 w-10 rounded-full bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 shadow-sm"
-                  onClick={handleNext}
-                >
-                  <ChevronRight className="h-5 w-5" />
-                </Button>
-              </Carousel>
-
-              <div className="flex justify-center gap-2 mt-6">
-                {blogs.map((_, index) => (
-                  <button
-                    key={index}
-                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${currentSlide === index ? "bg-purple-600" : "bg-gray-300 hover:bg-gray-400"}`}
-                    onClick={() => handleSelect(index)}
-                  />
+      <div className="w-full max-w-7xl mx-auto relative px-4">
+        {loading ? (
+          <Spinner />
+        ) : (
+          <>
+            <Carousel setApi={setApi} opts={{ align: "start", loop: true }} className="w-full">
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {blogs.map((blog) => (
+                  <CarouselItem key={blog.id} className="pl-2 md:pl-4 lg:basis-1/3 md:basis-1/2 basis-full">
+                    <BlogCard blog={blog} />
+                  </CarouselItem>
                 ))}
-              </div>
-            </>
-          )}
-        </div>
-      </section>
-    </main>
+
+              </CarouselContent>
+
+              <Button
+                variant="ghost"
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-30 h-10 w-10 rounded-full bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 shadow-sm"
+                onClick={handlePrevious}
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </Button>
+
+              <Button
+                variant="ghost"
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-30 h-10 w-10 rounded-full bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 shadow-sm"
+                onClick={handleNext}
+              >
+                <ChevronRight className="h-5 w-5" />
+              </Button>
+            </Carousel>
+
+            <div className="flex justify-center gap-2 mt-6">
+              {blogs.map((_, index) => (
+                <button
+                  key={index}
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${currentSlide === index ? "bg-purple-600" : "bg-gray-300 hover:bg-gray-400"}`}
+                  onClick={() => handleSelect(index)}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    </section>
+
   )
 }

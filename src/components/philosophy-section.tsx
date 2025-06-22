@@ -54,7 +54,7 @@ const Philosophy = () => {
     <section
       id="philosophy"
       ref={ref}
-      className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-200/90 via-blue-200/80 to-white/90 backdrop-blur-sm"
+      className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#e0c3fc]/80 via-[#8ec5fc]/70 to-[#ffffff]/80 backdrop-blur-2xl backdrop-saturate-200 backdrop-blur-sm"
     >
       <div className="container mx-auto px-4 py-20">
         <div className="grid md:grid-cols-2 gap-12 items-center">
