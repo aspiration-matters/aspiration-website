@@ -1,16 +1,15 @@
-import { Anton } from "next/font/google";
-import { Poppins } from "next/font/google";
 
-export const anton = Anton({
-    weight: "400",
+
+import { Space_Grotesk, Inter } from "next/font/google";
+
+export const spaceGrotesk = Space_Grotesk({
     subsets: ["latin"],
-    variable: "--font-anton",
+    weight: ["400", "500", "700"],
+    variable: "--font-space-grotesk",
 });
 
-
-
-export const poppins = Poppins({
-    weight: ["400", "700"],
+export const inter = Inter({
     subsets: ["latin"],
-    variable: "--font-poppins",
+    weight: ["400", "600", "700"],
+    variable: "--font-inter",
 });

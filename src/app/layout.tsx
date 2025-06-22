@@ -33,6 +33,8 @@
 //     </html>
 //   )
 // }
+
+
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { CartProvider } from "@/context/cart-context"
