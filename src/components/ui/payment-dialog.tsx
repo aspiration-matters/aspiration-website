@@ -307,181 +307,175 @@
 
 //new
 
+// "use client"
 
+// import { useState } from "react"
+// import { useRouter } from "next/navigation"
+// import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
+// import { Button } from "@/components/ui/button"
+// import { Input } from "@/components/ui/input"
+// import { Label } from "@/components/ui/label"
+// import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+// import { toast } from "sonner"
+// import { useCart } from "@/context/cart-context"
+// import { courses as allCourses } from "@/data/courses"
 
+// interface PaymentDialogProps {
+//   open: boolean
+//   onOpenChange: (open: boolean) => void
+//   amount: number
+// }
 
+// export function PaymentDialog({ open, onOpenChange, amount }: PaymentDialogProps) {
+//   const router = useRouter()
+//   const { cartItems, removeFromCart } = useCart()
+//   const [paymentMethod, setPaymentMethod] = useState("card")
+//   const [isProcessing, setIsProcessing] = useState(false)
 
+//   const handlePayment = () => {
+//     setIsProcessing(true)
 
+//     // Simulate payment processing
+//     setTimeout(() => {
+//       // Mark purchased courses in localStorage
+//       const purchasedCourses = JSON.parse(localStorage.getItem("purchasedCourses") || "[]")
+//       const newPurchasedCourses = [...purchasedCourses]
 
-"use client"
+//       cartItems.forEach((item) => {
+//         if (!purchasedCourses.includes(item.id)) {
+//           newPurchasedCourses.push(item.id)
+//         }
+//         removeFromCart(item.id)
+//       })
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { toast } from "sonner"
-import { useCart } from "@/context/cart-context"
-import { courses as allCourses } from "@/data/courses"
+//       localStorage.setItem("purchasedCourses", JSON.stringify(newPurchasedCourses))
 
-interface PaymentDialogProps {
-  open: boolean
-  onOpenChange: (open: boolean) => void
-  amount: number
-}
+//       // Update courses data with purchased status
+//       allCourses.forEach((course) => {
+//         if (newPurchasedCourses.includes(course.id)) {
+//           course.purchased = true
+//         }
+//       })
 
-export function PaymentDialog({ open, onOpenChange, amount }: PaymentDialogProps) {
-  const router = useRouter()
-  const { cartItems, removeFromCart } = useCart()
-  const [paymentMethod, setPaymentMethod] = useState("card")
-  const [isProcessing, setIsProcessing] = useState(false)
+//       setIsProcessing(false)
+//       onOpenChange(false)
 
-  const handlePayment = () => {
-    setIsProcessing(true)
+//       toast.success("Payment successful!", {
+//         description: "Your courses are now available in My Learning",
+//       })
 
-    // Simulate payment processing
-    setTimeout(() => {
-      // Mark purchased courses in localStorage
-      const purchasedCourses = JSON.parse(localStorage.getItem("purchasedCourses") || "[]")
-      const newPurchasedCourses = [...purchasedCourses]
+//       router.push("/my-learning")
+//     }, 2000)
+//   }
 
-      cartItems.forEach((item) => {
-        if (!purchasedCourses.includes(item.id)) {
-          newPurchasedCourses.push(item.id)
-        }
-        removeFromCart(item.id)
-      })
+//   return (
+//     <Dialog open={open} onOpenChange={onOpenChange}>
+//       <DialogContent className="sm:max-w-[500px]">
+//         <DialogHeader>
+//           <DialogTitle>Complete your purchase</DialogTitle>
+//         </DialogHeader>
 
-      localStorage.setItem("purchasedCourses", JSON.stringify(newPurchasedCourses))
+//         <div className="space-y-6 py-4">
+//           <div className="space-y-2">
+//             <Label>Payment Method</Label>
+//             <RadioGroup value={paymentMethod} onValueChange={setPaymentMethod}>
+//               <div className="flex items-center space-x-2 border rounded-md p-3">
+//                 <RadioGroupItem value="card" id="card" />
+//                 <Label htmlFor="card" className="flex-1 cursor-pointer">
+//                   Credit/Debit Card
+//                 </Label>
+//               </div>
+//               <div className="flex items-center space-x-2 border rounded-md p-3">
+//                 <RadioGroupItem value="upi" id="upi" />
+//                 <Label htmlFor="upi" className="flex-1 cursor-pointer">
+//                   UPI
+//                 </Label>
+//               </div>
+//               <div className="flex items-center space-x-2 border rounded-md p-3">
+//                 <RadioGroupItem value="netbanking" id="netbanking" />
+//                 <Label htmlFor="netbanking" className="flex-1 cursor-pointer">
+//                   Net Banking
+//                 </Label>
+//               </div>
+//             </RadioGroup>
+//           </div>
 
-      // Update courses data with purchased status
-      allCourses.forEach((course) => {
-        if (newPurchasedCourses.includes(course.id)) {
-          course.purchased = true
-        }
-      })
+//           {paymentMethod === "card" && (
+//             <div className="space-y-4">
+//               <div className="space-y-2">
+//                 <Label htmlFor="cardNumber">Card Number</Label>
+//                 <Input id="cardNumber" placeholder="1234 5678 9012 3456" />
+//               </div>
+//               <div className="grid grid-cols-2 gap-4">
+//                 <div className="space-y-2">
+//                   <Label htmlFor="expiry">Expiry Date</Label>
+//                   <Input id="expiry" placeholder="MM/YY" />
+//                 </div>
+//                 <div className="space-y-2">
+//                   <Label htmlFor="cvv">CVV</Label>
+//                   <Input id="cvv" placeholder="123" type="password" />
+//                 </div>
+//               </div>
+//               <div className="space-y-2">
+//                 <Label htmlFor="name">Name on Card</Label>
+//                 <Input id="name" placeholder="John Doe" />
+//               </div>
+//             </div>
+//           )}
 
-      setIsProcessing(false)
-      onOpenChange(false)
+//           {paymentMethod === "upi" && (
+//             <div className="space-y-2">
+//               <Label htmlFor="upiId">UPI ID</Label>
+//               <Input id="upiId" placeholder="yourname@upi" />
+//             </div>
+//           )}
 
-      toast.success("Payment successful!", {
-        description: "Your courses are now available in My Learning",
-      })
+//           {paymentMethod === "netbanking" && (
+//             <div className="space-y-2">
+//               <Label>Select Bank</Label>
+//               <RadioGroup defaultValue="sbi">
+//                 <div className="flex items-center space-x-2 border rounded-md p-3">
+//                   <RadioGroupItem value="sbi" id="sbi" />
+//                   <Label htmlFor="sbi" className="flex-1 cursor-pointer">
+//                     State Bank of India
+//                   </Label>
+//                 </div>
+//                 <div className="flex items-center space-x-2 border rounded-md p-3">
+//                   <RadioGroupItem value="hdfc" id="hdfc" />
+//                   <Label htmlFor="hdfc" className="flex-1 cursor-pointer">
+//                     HDFC Bank
+//                   </Label>
+//                 </div>
+//                 <div className="flex items-center space-x-2 border rounded-md p-3">
+//                   <RadioGroupItem value="icici" id="icici" />
+//                   <Label htmlFor="icici" className="flex-1 cursor-pointer">
+//                     ICICI Bank
+//                   </Label>
+//                 </div>
+//               </RadioGroup>
+//             </div>
+//           )}
 
-      router.push("/my-learning")
-    }, 2000)
-  }
+//           <div className="border-t pt-4">
+//             <div className="flex justify-between font-medium">
+//               <span>Total Amount</span>
+//               <span>₹{amount}</span>
+//             </div>
+//           </div>
+//         </div>
 
-  return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[500px]">
-        <DialogHeader>
-          <DialogTitle>Complete your purchase</DialogTitle>
-        </DialogHeader>
-
-        <div className="space-y-6 py-4">
-          <div className="space-y-2">
-            <Label>Payment Method</Label>
-            <RadioGroup value={paymentMethod} onValueChange={setPaymentMethod}>
-              <div className="flex items-center space-x-2 border rounded-md p-3">
-                <RadioGroupItem value="card" id="card" />
-                <Label htmlFor="card" className="flex-1 cursor-pointer">
-                  Credit/Debit Card
-                </Label>
-              </div>
-              <div className="flex items-center space-x-2 border rounded-md p-3">
-                <RadioGroupItem value="upi" id="upi" />
-                <Label htmlFor="upi" className="flex-1 cursor-pointer">
-                  UPI
-                </Label>
-              </div>
-              <div className="flex items-center space-x-2 border rounded-md p-3">
-                <RadioGroupItem value="netbanking" id="netbanking" />
-                <Label htmlFor="netbanking" className="flex-1 cursor-pointer">
-                  Net Banking
-                </Label>
-              </div>
-            </RadioGroup>
-          </div>
-
-          {paymentMethod === "card" && (
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="cardNumber">Card Number</Label>
-                <Input id="cardNumber" placeholder="1234 5678 9012 3456" />
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="expiry">Expiry Date</Label>
-                  <Input id="expiry" placeholder="MM/YY" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="cvv">CVV</Label>
-                  <Input id="cvv" placeholder="123" type="password" />
-                </div>
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="name">Name on Card</Label>
-                <Input id="name" placeholder="John Doe" />
-              </div>
-            </div>
-          )}
-
-          {paymentMethod === "upi" && (
-            <div className="space-y-2">
-              <Label htmlFor="upiId">UPI ID</Label>
-              <Input id="upiId" placeholder="yourname@upi" />
-            </div>
-          )}
-
-          {paymentMethod === "netbanking" && (
-            <div className="space-y-2">
-              <Label>Select Bank</Label>
-              <RadioGroup defaultValue="sbi">
-                <div className="flex items-center space-x-2 border rounded-md p-3">
-                  <RadioGroupItem value="sbi" id="sbi" />
-                  <Label htmlFor="sbi" className="flex-1 cursor-pointer">
-                    State Bank of India
-                  </Label>
-                </div>
-                <div className="flex items-center space-x-2 border rounded-md p-3">
-                  <RadioGroupItem value="hdfc" id="hdfc" />
-                  <Label htmlFor="hdfc" className="flex-1 cursor-pointer">
-                    HDFC Bank
-                  </Label>
-                </div>
-                <div className="flex items-center space-x-2 border rounded-md p-3">
-                  <RadioGroupItem value="icici" id="icici" />
-                  <Label htmlFor="icici" className="flex-1 cursor-pointer">
-                    ICICI Bank
-                  </Label>
-                </div>
-              </RadioGroup>
-            </div>
-          )}
-
-          <div className="border-t pt-4">
-            <div className="flex justify-between font-medium">
-              <span>Total Amount</span>
-              <span>₹{amount}</span>
-            </div>
-          </div>
-        </div>
-
-        <DialogFooter>
-          <Button variant="outline" onClick={() => onOpenChange(false)}>
-            Cancel
-          </Button>
-          <Button onClick={handlePayment} disabled={isProcessing}>
-            {isProcessing ? "Processing..." : `Pay ₹${amount}`}
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-  )
-}
+//         <DialogFooter>
+//           <Button variant="outline" onClick={() => onOpenChange(false)}>
+//             Cancel
+//           </Button>
+//           <Button onClick={handlePayment} disabled={isProcessing}>
+//             {isProcessing ? "Processing..." : `Pay ₹${amount}`}
+//           </Button>
+//         </DialogFooter>
+//       </DialogContent>
+//     </Dialog>
+//   )
+// }
 
 
 

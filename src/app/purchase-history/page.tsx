@@ -7,12 +7,10 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { Calendar, Clock, ExternalLink } from "lucide-react"
-import Image from "next/image"
+import { Calendar } from "lucide-react"
 import Link from "next/link"
 import { jwtDecode } from "jwt-decode"
 import { toast } from "sonner"
-import { courses } from "@/data/courses"
 import { API_BASE_URL } from "@/lib/api"
 
 interface PurchaseRecord {
@@ -21,18 +19,10 @@ interface PurchaseRecord {
   date: string
   amount: number
   paymentMethod: string
-  course?: CourseDetails
 }
 
 interface DecodedToken {
   user_id: string
-}
-
-interface CourseDetails {
-  title: string
-  instructor: string
-  duration: string
-  thumbnail: string
 }
 
 interface RawPurchase {
@@ -67,21 +57,17 @@ export default function PurchaseHistory() {
         const json: PurchaseApiResponse = await res.json()
         const data = json.data || []
 
-        const enrichedData: PurchaseRecord[] = data.map((record: RawPurchase) => {
-          const course = courses.find((c) => c.id === record.course_id)
-          return {
-            id: record.id,
-            courseId: record.course_id,
-            date: record.date,
-            amount: record.amount,
-            paymentMethod: record.payment_method,
-            course,
-          }
-        })
+        const records: PurchaseRecord[] = data.map((record) => ({
+          id: record.id,
+          courseId: record.course_id,
+          date: record.date,
+          amount: record.amount,
+          paymentMethod: record.payment_method,
+        }))
 
-        enrichedData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        records.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
-        setPurchaseHistory(enrichedData)
+        setPurchaseHistory(records)
       } catch (err) {
         const message = err instanceof Error ? err.message : "Something went wrong"
         toast.error(message)
@@ -137,73 +123,41 @@ export default function PurchaseHistory() {
           <div className="space-y-6">
             {purchaseHistory.map((purchase) => (
               <Card key={purchase.id} className="overflow-hidden">
-                <CardContent className="p-0">
-                  <div className="p-6">
-                    <div className="flex justify-between items-start mb-4">
-                      <div>
-                        <h3 className="font-medium text-lg text-purple-600">Order #{purchase.id}</h3>
-                        <div className="flex items-center text-sm text-muted-foreground">
-                          <Calendar className="h-4 w-4 mr-1" />
-                          <span>{formatDate(purchase.date)}</span>
-                        </div>
+                <CardContent className="p-6">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 className="font-medium text-lg text-purple-600">Order #{purchase.id}</h3>
+                      <div className="flex items-center text-sm text-muted-foreground">
+                        <Calendar className="h-4 w-4 mr-1" />
+                        <span>{formatDate(purchase.date)}</span>
                       </div>
-                      <Badge className="text-purple-700 border border-purple-600 bg-purple-100">
-                        Completed
-                      </Badge>
                     </div>
-
-                    <div className="flex justify-between items-center text-sm mb-2">
-                      <span className="text-muted-foreground">Payment Method</span>
-                      <span>{purchase.paymentMethod}</span>
-                    </div>
-
-                    <div className="flex justify-between items-center text-sm">
-                      <span className="text-muted-foreground">Amount</span>
-                      <span className="font-medium">₹{purchase.amount}</span>
-                    </div>
+                    <Badge className="text-purple-700 border border-purple-600 bg-purple-100">
+                      Completed
+                    </Badge>
                   </div>
 
-                  <Separator />
+                  <div className="flex justify-between items-center text-sm mb-2">
+                    <span className="text-muted-foreground">Payment Method</span>
+                    <span>{purchase.paymentMethod}</span>
+                  </div>
 
-                  {purchase.course && (
-                    <div className="p-6">
-                      <div className="flex gap-4">
-                        <div className="relative w-32 h-20 flex-shrink-0">
-                          <Image
-                            src={purchase.course.thumbnail || "/placeholder.svg"}
-                            alt={purchase.course.title}
-                            fill
-                            className="object-cover rounded-md"
-                          />
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-medium text-purple-600 mb-1">
-                            {purchase.course.title}
-                          </h4>
-                          <p className="text-sm text-muted-foreground mb-2">
-                            {purchase.course.instructor}
-                          </p>
-                          <div className="flex items-center text-xs text-muted-foreground">
-                            <Clock className="h-3 w-3 mr-1" />
-                            <span>{purchase.course.duration}</span>
-                          </div>
-                        </div>
-                      </div>
+                  <div className="flex justify-between items-center text-sm mb-4">
+                    <span className="text-muted-foreground">Amount</span>
+                    <span className="font-medium">₹{purchase.amount}</span>
+                  </div>
 
-                      <div className="flex justify-between mt-4">
-                        <Button
-                          size="sm"
-                          asChild
-                          className="bg-purple-600 hover:bg-purple-700 text-white"
-                        >
-                          <Link href={`/course/${purchase.courseId}`}>
-                            <ExternalLink className="h-4 w-4 mr-2" />
-                            View Course
-                          </Link>
-                        </Button>
-                      </div>
-                    </div>
-                  )}
+                  <Separator className="my-4" />
+
+                  <Button
+                    size="sm"
+                    asChild
+                    className="bg-purple-600 hover:bg-purple-700 text-white"
+                  >
+                    <Link href={`/course/${purchase.courseId}`}>
+                      <span>View Course</span>
+                    </Link>
+                  </Button>
                 </CardContent>
               </Card>
             ))}
