@@ -14,9 +14,13 @@ const inter = Inter({ subsets: ["latin"] })
 const playfair = Playfair_Display({ variable: "--font-playfair", subsets: ["latin"] }) // ✅ ADD THIS
 
 export const metadata: Metadata = {
-  title: "Course Platform",
-  description: "Learn new skills with our online courses",
+  title: "Aspiration Matters",
+  description: "Empowering Aspirations. Discover. Learn. Grow.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 }
+
 
 export default function RootLayout({
   children,
