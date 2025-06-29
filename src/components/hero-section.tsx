@@ -27,10 +27,15 @@ export default function HeroSectionAlternative() {
     }
 
     return (
+        // <div className="relative w-full min-h-screen overflow-hidden">
         <div className="relative w-full min-h-screen overflow-hidden">
+
             {/* Background Effects */}
             <div className="absolute inset-0 z-0">
-                <div className="w-full min-h-screen bg-gradient-to-br from-[#e0c3fc]/90 via-[#8ec5fc]/80 to-[#ffffff]/90 backdrop-blur-2xl backdrop-saturate-200">
+                {/* <div className="w-full min-h-screen bg-gradient-to-br from-[#e0c3fc]/90 via-[#8ec5fc]/80 to-[#ffffff]/90 backdrop-blur-2xl backdrop-saturate-200"> */}
+                <div className="w-full min-h-screen bg-gradient-to-br from-[#e0c3fc] via-[#8ec5fc] to-[#ffffff]">
+
+
                     <div className="absolute inset-0 z-0 mt-10">
                         <BackgroundBeamsWithCollision>
                             <></>
@@ -51,7 +56,12 @@ export default function HeroSectionAlternative() {
 
 
             {/* Content Layer - Above all backgrounds */}
-            <div className="relative z-50 flex flex-col items-center justify-center text-center px-6 sm:px-10 py-24 min-h-screen pointer-events-none">
+            {/* <div className="relative z-50 flex flex-col items-center justify-center text-center px-6 sm:px-10 py-24 min-h-screen pointer-events-none"> */}
+
+            <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 sm:px-10 py-24 min-h-screen">
+
+
+
 
                 <TypewriterEffect
                     words={words}
@@ -71,16 +81,7 @@ export default function HeroSectionAlternative() {
 
                 {/* CTA Button - Separate layer with pointer events enabled */}
                 <div className="mt-20 pointer-events-auto">
-                    {/* <Button
-                        onClick={handleGetStartedClick}
-                        className="w-full max-w-[200px] text-base sm:text-lg md:text-xl px-6 sm:px-8 md:px-10 py-4 sm:py-5 rounded-lg 
-                      bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 
-                      hover:from-purple-700 hover:via-purple-500 hover:to-purple-900 
-                      text-white font-bold transition-all duration-300
-                      shadow-[0_4px_20px_-4px_rgba(147,51,234,0.6)] 
-                      hover:shadow-[0_8px_25px_-5px_rgba(147,51,234,0.9)]
-                      flex items-center justify-center mx-auto cursor-pointer"
-                    > */}
+
                     <Button
                         onClick={handleGetStartedClick}
                         className="w-full max-w-[200px] text-base sm:text-lg md:text-xl px-6 sm:px-8 md:px-10 py-4 sm:py-5 md:py-[1.35rem] lg:py-[1.45rem] rounded-lg 

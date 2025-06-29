@@ -15,6 +15,9 @@ import { BorderBeam } from "@/components/magicui/border-beam"
 import { toast } from "sonner"
 import { Loader2 } from "lucide-react"
 import { API_BASE_URL } from "@/lib/api";
+
+import { jwtDecode } from "jwt-decode"
+
 export default function LoginPage() {
   const router = useRouter()
   const [formData, setFormData] = useState({
@@ -28,12 +31,41 @@ export default function LoginPage() {
   const [errorMessage, setErrorMessage] = useState("")
 
 
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token")
+  //   if (token) {
+  //     router.push("/course-platform")
+  //   }
+  // }, [router])
+
+  interface DecodedToken {
+    exp: number
+  }
+
   useEffect(() => {
     const token = localStorage.getItem("token")
-    if (token) {
-      router.push("/course-platform")
+    if (!token) return
+
+    try {
+      const decoded: DecodedToken = jwtDecode(token)
+      const now = Math.floor(Date.now() / 1000)
+
+      if (decoded.exp > now) {
+        router.push("/course-platform")
+      } else {
+
+        localStorage.removeItem("token")
+        toast.error("Session expired. Please log in again.")
+      }
+    } catch {
+
+      localStorage.removeItem("token")
+      toast.error("Invalid session. Please log in again.")
     }
   }, [router])
+
+
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -49,7 +81,6 @@ export default function LoginPage() {
     setLoading(true)
 
     if (isLoggedIn) {
-      // ✅ OTP verification
       try {
         const response = await fetch(`${API_BASE_URL}/user/verify-otp`, {
           method: "POST",
@@ -77,7 +108,7 @@ export default function LoginPage() {
         setErrorMessage("Error verifying OTP")
       }
     } else {
-      // ✅ Send OTP
+
       try {
         const response = await fetch(`${API_BASE_URL}/user/send-otp`, {
           method: "POST",
