@@ -93,8 +93,8 @@ export default function PurchaseHistory() {
   return (
     <CourseLayout>
       <div className="container mx-auto px-4 py-6">
-        <h2 className="text-2xl font-bold text-purple-600 mb-2">Purchase History</h2>
-        <p className="text-muted-foreground mb-6">View your course purchase records</p>
+        <h2 className="text-2xl font-bold text-transparent bg-gradient-to-r from-purple-300 via-white to-purple-400 bg-clip-text text-transparent  drop-shadow-[0_0_6px_rgba(168,85,247,0.6)] mb-2">Purchase History</h2>
+        <p className=" text-white/100 mb-6">View your course purchase records</p>
 
         {loading ? (
           <div className="space-y-4">
@@ -111,13 +111,37 @@ export default function PurchaseHistory() {
           </div>
         ) : purchaseHistory.length === 0 ? (
           <div className="text-center py-12 bg-muted/30 rounded-lg">
-            <h3 className="text-xl font-medium text-purple-600 mb-2">No purchase history</h3>
-            <p className="text-muted-foreground mb-6">
+            <h3 className="text-xl font-medium text-transparent bg-gradient-to-r from-purple-300 via-white to-purple-400 bg-clip-text text-transparent  drop-shadow-[0_0_6px_rgba(168,85,247,0.6)]  mb-2">No purchase history</h3>
+            <p className="text-white/100 mb-6">
               You haven&apos;t purchased any courses yet
             </p>
-            <Button asChild className="bg-purple-600 hover:bg-purple-700 text-white">
+            {/* <Button asChild className="bg-purple-600 hover:bg-purple-700 text-white">
               <Link href="/course-platform">Browse Courses</Link>
-            </Button>
+            </Button> */}
+            <div className="flex justify-center w-full">
+
+              <Link href="/course-platform">
+
+                <button
+                  className="cursor-pointer flex items-center justify-center w-40 sm:w-46 lg:w-46 xl:w-50
+h-9 sm:h-10 
+bg-white text-purple-600 font-bold text-sm sm:text-base rounded-lg transition-all duration-300
+border border-purple-300 shadow-[0_0_15px_rgba(168,85,247,0.4)]
+hover:bg-gradient-to-r hover:from-purple-600 hover:via-purple-500 hover:to-violet-600
+hover:text-white hover:shadow-[0_12px_40px_-8px_rgba(147,51,234,1)]
+backdrop-blur-sm hover:scale-105 active:scale-95
+relative overflow-hidden group"
+                >
+                  {/* Button shine effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 group-hover:animate-pulse" />
+                  <span className="flex items-center gap-x-1 sm:gap-x-2 relative z-10">
+                    Browse Courses
+                  </span>
+                </button>
+
+              </Link>
+            </div>
+
           </div>
         ) : (
           <div className="space-y-6">

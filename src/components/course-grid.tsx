@@ -105,8 +105,8 @@ export function CourseGrid({ searchQuery = "", customFetchUrl }: CourseGridProps
   if (filteredCourses?.length === 0) {
     return (
       <div className="text-center py-12">
-        <h3 className="text-xl font-medium mb-2 text-purple-600">No courses found</h3>
-        <p className="text-muted-foreground">
+        <h3 className="text-xl font-medium mb-2 text-transparent bg-gradient-to-r from-purple-300 via-white to-purple-400 bg-clip-text text-transparent  drop-shadow-[0_0_6px_rgba(168,85,247,0.6)]">No courses found</h3>
+        <p className="text-muted-foreground text-white/100">
           {searchQuery
             ? `No results for "${searchQuery}". Try a different search term.`
             : "No courses available at the moment."}

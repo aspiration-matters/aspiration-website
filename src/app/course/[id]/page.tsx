@@ -122,7 +122,7 @@ export default function CoursePage() {
   return (
     <CourseLayout>
       <div className="container mx-auto px-4 py-6">
-        <div className="flex items-center gap-2 mb-4">
+        <div className="flex items-center text-white/100 gap-2 mb-4">
           <Button variant="ghost" size="sm" asChild>
             <Link href="/course-platform">
               <ChevronLeft className="h-4 w-4 mr-1" />
@@ -131,17 +131,17 @@ export default function CoursePage() {
           </Button>
         </div>
 
-        <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-800 to-purple-500 bg-clip-text text-transparent">
+        <h1 className="text-4xl font-bold mb-4 text-transparent bg-gradient-to-r from-purple-300 via-white to-purple-400 bg-clip-text text-transparent  drop-shadow-[0_0_6px_rgba(168,85,247,0.6)]">
           {course.title}
         </h1>
 
         <div className="flex items-center gap-4 text-sm text-muted-foreground mb-6">
-          <div className="flex items-center gap-1">
+          <div className="flex items-center text-white/100 gap-1">
             <Clock className="h-4 w-4 text-purple-500" />
             <span>{course.duration}</span>
           </div>
-          <div className="flex items-center gap-1">
-            <BookOpen className="h-4 w-4 text-purple-500" />
+          <div className="flex items-center  text-white/100 gap-1">
+            <BookOpen className="h-4 w-4 text-purple-500 " />
             <span>By {course.instructor}</span>
           </div>
           {course.purchased && (

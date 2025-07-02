@@ -40,10 +40,10 @@ export default function MyLearning() {
   return (
     <CourseLayout onSearch={handleSearch}>
       <div className="container mx-auto px-4 py-6">
-        <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700 mb-2">
+        <h2 className="text-2xl font-bold text-transparent bg-gradient-to-r from-purple-300 via-white to-purple-400 bg-clip-text text-transparent  drop-shadow-[0_0_6px_rgba(168,85,247,0.6)] mb-2">
           My Learning
         </h2>
-        <p className="text-muted-foreground mb-6">Continue learning where you left off</p>
+        <p className="text-muted-foreground text-white/100 mb-6">Continue learning where you left off</p>
 
         {/* 👇 Only show the CourseGrid when userCourseUrl is ready */}
         {userCourseUrl && (
