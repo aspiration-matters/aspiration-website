@@ -19,23 +19,79 @@ import { Work_Sans } from "next/font/google"
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["600"] })
 
 export default function OurStoryPage() {
+  
+
   const storyContent = useMemo(
     () => [
-      `"I didn't know what I was meant to become but I knew I was not meant to stay the same."`,
-      `Neelima Kumari's story isn't just one of success it's a journey of becoming. A journey born from the heart of an ordinary girl with extraordinary dreams.`,
-      `That one thought became the compass guiding her forward not through shortcuts or overnight success, but through quiet resilience, relentless self-growth, and an unwavering belief in the power of aspiration, confidence, and conviction.`,
-      `She began her career as a passionate school teacher, finding joy in nurturing young minds. Over the years, her drive to create meaningful change propelled her into leadership roles where she embraced challenges, shaped systems, and discovered her strength in building visions from the ground up.`,
-      `Yet, as she progressed professionally, a deeper realization emerged. She observed a growing disconnect in many environments a subtle erosion of empathy, self-awareness, and emotional intelligence. The news headlines, the workplace politics, the wasted potential of youth it all became too loud to ignore. It wasn't about blame. It was about awakening. Neelima saw brilliant people struggling to connect, lead with purpose, or truly thrive. And that deeply moved her, it sparked something greater.`,
-      `With a heart full of purpose, she transitioned into entrepreneurship not just to start a business, but to start a movement. She founded Aspiration Matters Training & Consulting with a mission to help individuals lead with authenticity, grow with integrity, and become catalysts for positive change within themselves and their organizations.`,
-      `Neelima's sessions are not just about transferring knowledge. They're about awakening potential. Her work inspires reflection, fosters accountability, and builds personal leadership from the inside out.`,
-      `Organizations that collaborate with Aspiration Matters don't just witness transformation they experience impact. Elevated productivity, renewed energy, and a cultural shift that uplifts people and strengthens the brand from within.`,
-      `Her ultimate goal? To shape ecosystems where people feel ignited, supported, and inspired to grow not just professionally, but as human beings.`,
-      `Because Neelima believes `,
-      `When aspiration becomes action, life becomes unstoppable.`,
-      `And that is exactly why `,
-      `Aspiration Matters.`,
+      <strong key="h1">My Story   The Heart Behind Aspiration Matters</strong>,
+      "By Neelima Kumari, Founder & Lead Trainer",
+
+      <strong key="h2">A Mission Born from Struggle</strong>,
+      "I didn’t start Aspiration Matters Training & Consultancy just to run a business. I started it to spark a movement. A movement of transformation, where every professional discovers their true potential, and no individual is left behind in the race of academic excellence without the human skills needed to live a meaningful, confident, and purpose-driven life.",
+
+      <strong key="h3">The Reality Behind the Success Mask</strong>,
+      "In today’s world, academic brilliance is seen as the ultimate milestone of success. But I’ve witnessed – and lived – the truth behind it. Even highly intellectual individuals suffer silently from:",
+      "• Self-doubt",
+      "• Lack of confidence",
+      "• Fear of taking risks",
+      "• Poor interpersonal skills",
+      "",
+      'They chase goals without ever asking:',
+      '"What am I contributing? Does this truly fulfill me?"',
+      "",
+      "They succeed on paper, but fail to connect with purpose.",
+      "They know how to code, present, or manage tasks—but struggle to collaborate, lead, or inspire.",
+
+      <strong key="h4">From Self-Doubt to Self-Discovery</strong>,
+      "As a young woman, I was shy, unclear, and unsure.",
+      "I lacked the voice, the visibility, and most painfully, the clarity of my professional growth trajectory. I watched others play the game of life with strategy and confidence while I stood on the sidelines, confused and overwhelmed.",
+      "",
+      "But every failure, rejection, and unfair experience became a turning point.",
+      "",
+      "I didn’t let them break me.",
+      "I let them build me.",
+      "",
+      "From that chaos rose the clarity.",
+      "From every closed door, I created my own windows.",
+      "From being overlooked, I learned to own my space.",
+
+      <strong key="h5">The Spark That Lit Aspiration Matters</strong>,
+      "That personal transformation gave birth to my life’s calling—to become a trainer, coach, and catalyst of change for others like me.",
+      "",
+      "Aspiration Matters was founded to address the missing link in our educational and professional systems — human skills:",
+      "• Emotional intelligence",
+      "• Confidence building",
+      "• Purpose alignment",
+      "• Communication & collaboration",
+      "• Leadership with integrity",
+      "",
+      "My vision is to blend academic & technical skills with essential soft skills to build thriving professionals and inspired communities.",
+
+      <strong key="h6">What Drives Me Every Day</strong>,
+      "Every session I conduct, every workshop I lead, and every life I touch is rooted in one belief:",
+      '"When we uplift one individual, we set off a rippling effect of growth, goodness, and greatness."',
+      "",
+      "I want to help people unlock their peak, not just for personal gain but for collective progress.",
+      'To shift from “me” to “we.”',
+      "To thrive with purpose, agility, resilience, and joy.",
+
+      <strong key="h7">Let’s Create a World of Meaningful Success</strong>,
+      "Today, I stand not just as a speaker or trainer, but as a beacon of real-life transformation. My story is not about overnight success. It’s about:",
+      "• Inner breakthroughs",
+      "• Persistent growth",
+      "• Resilient mindsets",
+      "• Leadership from the heart",
+      "",
+      "If you’ve ever felt lost in the crowd of achievers, know this:",
+      <strong key="h8">You are not alone. You are not behind. You are just one insight away from your own breakthrough.</strong>,
+
+      <strong key="h9">Join the Aspiration Movement</strong>,
+      "Let’s build a world where professionals don’t just work—they inspire, collaborate, grow, and lead with impact.",
+      "",
+      "At Aspiration Matters, we don’t just train minds.",
+      "We ignite hearts. We shape leaders. We build legacies.",
     ],
-    [],
+    []
   )
 
   const [imageUrl, setImageUrl] = useState<string | null>(null)
@@ -63,6 +119,8 @@ export default function OurStoryPage() {
   }, [])
 
   return (
+
+
     <div
       className="relative min-h-screen flex flex-col overflow-hidden
           bg-gradient-to-br from-[#1a0033] via-[#2d1b69] via-[#4c1d95] via-[#6b21a8] to-[#7c3aed]
@@ -70,6 +128,7 @@ export default function OurStoryPage() {
           after:absolute after:inset-0 after:bg-[radial-gradient(ellipse_at_top_left,_rgba(139,92,246,0.3)_0%,_rgba(168,85,247,0.15)_25%,_transparent_50%)]
           backdrop-blur-3xl backdrop-saturate-[2]"
     >
+
       <div className="absolute inset-0 opacity-40 pointer-events-none">
         {/* Diagonal white shimmer */}
         <div className="absolute top-0 -left-4 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 animate-pulse" />
@@ -186,6 +245,8 @@ export default function OurStoryPage() {
                 >
                   {paragraph}
                 </p>
+
+
               ))}
             </div>
           </motion.div>

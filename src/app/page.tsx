@@ -82,15 +82,19 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-100/80 to-white">
       <header
+
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-          "bg-transparent shadow-none border-none",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-none shadow-md",
+          "bg-gradient-to-r from-[#8b3aed] via-[#5b2185] to-[#8b3aed]"
         )}
+      // className={cn(
+      //   "fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-none shadow-md",
+      //   "bg-gradient-to-r from-[#4b0082] via-[#7b2cbf] to-[#a855f7]"
+      // )}
       >
         <div className="container mx-auto px-3 sm:px-4 lg:px-6">
           <div className="flex h-16 sm:h-18 md:h-20 items-center">
-            {/* Three-column layout for perfect centering */}
-            {/* Left Column - Logo */}
+
             <div className="flex-shrink-0 w-auto">
               <Image
                 src="/aspirationlogo2.png"
