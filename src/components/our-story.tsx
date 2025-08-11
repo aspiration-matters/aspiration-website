@@ -24,7 +24,7 @@ const StorySection = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const router = useRouter()
 
-  const ourStory = `Our journey began with a simple vision to create innovative solutions that transform the way people interact with technology. Founded in 2015, we've grown from a small team of passionate individuals to a thriving company with global reach. We believe in pushing boundaries, challenging conventions, and creating experiences that inspire and delight. Every day, we work to build a future where technology enhances human potential and creates meaningful connections.`
+  const ourStory = `Our journey began with a simple vision to create innovative solutions that transform the way people interact with technology. Founded in 2022, we've grown from a small team of passionate individuals to a thriving company with global reach. We believe in pushing boundaries, challenging conventions, and creating experiences that inspire and delight. Every day, we work to build a future where technology enhances human potential and creates meaningful connections.`
 
   useEffect(() => {
     router.prefetch("/our-story")
