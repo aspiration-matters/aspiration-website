@@ -73,6 +73,18 @@ export default function ContactPage() {
     }
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
   // Handle WhatsApp form input changes
   const handleWhatsappChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target

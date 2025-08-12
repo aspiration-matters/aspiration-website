@@ -17,6 +17,8 @@ interface EnquiryModalProps {
     courseName: string
 }
 
+
+
 export function EnquiryModal({ isOpen, onClose, courseName }: EnquiryModalProps) {
     const [formData, setFormData] = useState({
         courseName: courseName,
