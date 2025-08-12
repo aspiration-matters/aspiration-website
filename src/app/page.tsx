@@ -16,6 +16,8 @@ import OurStory from "@/components/our-story"
 import Philosophy from "@/components/philosophy-section"
 import About from "@/components/about-us"
 import HeroSection from "@/components/hero-section"
+
+import OurClients from "@/components/our-clients"
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -263,6 +265,10 @@ export default function Home() {
 
       <section id="gallery">
         <EventGallery />
+      </section>
+
+      <section id="clients">
+        <OurClients />
       </section>
 
       <section id="blogs">
