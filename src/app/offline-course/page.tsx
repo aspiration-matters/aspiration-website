@@ -1203,7 +1203,7 @@ export default function OfflineCoursesPage() {
                                     <div className={`bg-gradient-to-r ${course.gradient} p-6 text-white relative overflow-hidden`}>
                                         <div className="absolute inset-0 bg-gradient-to-br from-black/5 via-transparent to-black/10"></div>
                                         <div className="absolute right-4 top-4 md:right-16 md:top-1/2 md:transform md:-translate-y-1/2 z-20">
-                                            <img
+                                            <Image
                                                 src="/aspirationlogo2.png"
                                                 alt="Aspiration Logo"
                                                 className="h-16 md:h-30 w-auto opacity-80"

@@ -109,7 +109,7 @@ const OurClients = () => {
                         className="text-center mt-8 xs:mt-10 sm:mt-12 md:mt-16 lg:mt-20"
                     >
                         <p className="text-white/80 text-sm xs:text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-                            Trusted by industry leaders worldwide. We're proud to partner with these amazing organizations to deliver
+                            Trusted by industry leaders worldwide. We&apos;re proud to partner with these amazing organizations to deliver
                             exceptional results and drive innovation forward.
                         </p>
                     </motion.div>
