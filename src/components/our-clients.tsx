@@ -1,3 +1,4 @@
+
 "use client"
 
 import { motion } from "framer-motion"
@@ -83,13 +84,13 @@ const OurClients = () => {
                             >
                                 <Card className="relative p-4 xs:p-5 sm:p-6 md:p-7 lg:p-8 overflow-hidden rounded-xl xs:rounded-2xl sm:rounded-[1.5rem] lg:rounded-[2rem] bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl shadow-purple-500/25 transition-all duration-300 hover:shadow-purple-500/40 hover:scale-105 hover:bg-white/15 cursor-pointer">
                                     <div className="relative z-10 aspect-square flex items-center justify-center">
-                                        <div className="relative w-full h-full max-w-[120px] max-h-[120px] group-hover:scale-110 transition-transform duration-300">
+                                        <div className="relative w-full h-full max-w-[120px] max-h-[120px] bg-white rounded-lg p-4 group-hover:scale-110 transition-transform duration-300">
                                             <Image
                                                 src={client.src || "/placeholder.svg"}
                                                 alt={`${client.name} logo`}
                                                 fill
                                                 sizes="(max-width: 640px) 45vw, (max-width: 768px) 30vw, (max-width: 1024px) 22vw, 15vw"
-                                                className="object-contain filter brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all duration-300"
+                                                className="object-contain transition-all duration-300"
                                             />
                                         </div>
                                     </div>
@@ -109,8 +110,8 @@ const OurClients = () => {
                         className="text-center mt-8 xs:mt-10 sm:mt-12 md:mt-16 lg:mt-20"
                     >
                         <p className="text-white/80 text-sm xs:text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-                            Trusted by industry leaders worldwide. We&apos;re proud to partner with these amazing organizations to deliver
-                            exceptional results and drive innovation forward.
+                            Trusted by industry leaders worldwide. We&apos;re proud to partner with these amazing organizations to
+                            deliver exceptional results and drive innovation forward.
                         </p>
                     </motion.div>
                 </div>
