@@ -16,6 +16,9 @@ import OurStory from "@/components/our-story"
 import Philosophy from "@/components/philosophy-section"
 import About from "@/components/about-us"
 import HeroSection from "@/components/hero-section"
+import MediaPage from "@/components/media-update"
+import VideoTestimonials from "@/components/video-testimonial"
+
 
 import OurClients from "@/components/our-clients"
 import {
@@ -89,10 +92,7 @@ export default function Home() {
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-none shadow-md",
           "bg-gradient-to-r from-[#8b3aed] via-[#5b2185] to-[#8b3aed]"
         )}
-      // className={cn(
-      //   "fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-none shadow-md",
-      //   "bg-gradient-to-r from-[#4b0082] via-[#7b2cbf] to-[#a855f7]"
-      // )}
+ 
       >
         <div className="container mx-auto px-3 sm:px-4 lg:px-6">
           <div className="flex h-16 sm:h-18 md:h-20 items-center">
@@ -279,8 +279,15 @@ export default function Home() {
         <CoursePage />
       </section>
 
+      <section id="media">
+        < MediaPage />
+      </section>
+
       <section id="testimonials">
         <TestimonialsSection />
+      </section>
+      <section id="video-testi">
+        <VideoTestimonials />
       </section>
 
       <section id="contact">

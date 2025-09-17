@@ -74,17 +74,6 @@ export default function ContactPage() {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
   // Handle WhatsApp form input changes
   const handleWhatsappChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target
@@ -690,6 +679,11 @@ export default function ContactPage() {
                       Our Story
                     </a>
                   </li>
+                  <li>
+                    <a href="#clients" className="text-purple-200 hover:text-white transition-colors max-sm:text-base">
+                      Clients
+                    </a>
+                  </li>
                 </ul>
               </div>
               <div>
@@ -715,6 +709,11 @@ export default function ContactPage() {
                       className="text-purple-200 hover:text-white transition-colors max-sm:text-base"
                     >
                       Testimonials
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#media" className="text-purple-200 hover:text-white transition-colors max-sm:text-base">
+                      media
                     </a>
                   </li>
                 </ul>
