@@ -246,7 +246,9 @@ export default function MediaPage() {
                                                     initial={{ opacity: 0, x: 10 }}
                                                     animate={{ opacity: 1, x: 0 }}
                                                     transition={{ delay: index * 0.1 }}
-                                                    className="flex items-center justify-center lg:justify-start space-x-3"
+                                                    // className="flex items-center justify-center lg:justify-start space-x-3"
+                                                    className="flex items-start justify-start space-x-3 text-left w-full"
+
                                                 >
                                                     <div className="w-2 h-2 bg-purple-300 rounded-full flex-shrink-0 shadow-lg shadow-purple-300/50" />
                                                     <span className="text-white text-xs sm:text-sm">{highlight}</span>
@@ -309,3 +311,5 @@ export default function MediaPage() {
         </section>
     )
 }
+
+
