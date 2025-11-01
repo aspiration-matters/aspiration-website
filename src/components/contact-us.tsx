@@ -14,6 +14,8 @@ import { Loader2 } from "lucide-react"
 import { Work_Sans } from "next/font/google"
 import { BorderBeam } from "@/components/magicui/border-beam"
 import { Spotlight } from "@/components/ui/spotlight"
+
+
 import {
   FaInstagram,
   FaLinkedin,
@@ -570,12 +572,17 @@ export default function ContactPage() {
                 </Tabs>
               </CardContent>
             </Card>
+
           </div>
         </div>
 
-        {/* Removed social media icons section */}
-        <div className="w-full mt-8"></div>
+
+
+
+
+
       </section>
+
 
       {/* Enhanced Premium Footer Section - Updated to match new background */}
       <footer className="w-full bg-gradient-to-br from-[#0a0015] via-[#1a0033] via-[#2d1b69] to-[#0a0015] text-white shadow-2xl border-t border-purple-400/30">
@@ -601,6 +608,7 @@ export default function ContactPage() {
                 </h3>
                 <p className="text-purple-200 text-sm max-sm:text-center">Empowering minds, transforming futures</p>
               </div>
+
 
               {/* Social Media Icons - Mobile Optimized */}
               <div className="flex space-x-4 mt-1 mb-4 sm:mb-0 translate-y-[-24px] max-sm:translate-y-0 max-sm:mt-4 max-sm:justify-center">
@@ -724,7 +732,7 @@ export default function ContactPage() {
             <div className="flex flex-col justify-between mt-4 sm:mt-0 max-sm:items-center max-sm:mt-6">
               <div>
                 <p className="text-purple-200 text-sm max-sm:text-center">
-                  © {new Date().getFullYear()} Aspiration Matters. All rights reserved.
+                  © {new Date().getFullYear()} Aspiration Matters .
                 </p>
                 <p className="text-purple-300 text-sm mt-2 max-sm:text-center max-sm:text-xs">
                   DNo. 47-9-14, Dwarka Nagar, Visakhapatnam - 530016

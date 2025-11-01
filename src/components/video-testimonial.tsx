@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card"
 import { Work_Sans } from "next/font/google"
 import { Play } from "lucide-react"
 import Image from "next/image";
+import Script from "next/script"
 
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["600"] })
 
@@ -133,8 +134,20 @@ const VideoTestimonials = () => {
                         ))}
                     </div>
 
+
+
+
+                    <div className="w-full flex justify-center py-10">
+                        <Script
+                            src="https://static.elfsight.com/platform/platform.js"
+                            data-use-service-core
+                            defer
+                        />
+                        <div className="elfsight-app-395f52d1-be99-4400-904a-89feb66c8ed3" data-elfsight-app-lazy></div>
+                    </div>
+
                     {/* Bottom decorative text */}
-                    <motion.div
+                    {/* <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={inView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6, delay: 0.8 }}
@@ -146,7 +159,7 @@ const VideoTestimonials = () => {
                                 testimonials showcase the real impact we&apos;ve made.
                             </p>
                         </div>
-                    </motion.div>
+                    </motion.div> */}
                 </div>
             </div>
         </section>

@@ -11,9 +11,89 @@ import { Work_Sans } from "next/font/google"
 
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["600"] })
 
+// const mediaContent = [
+//     {
+//         id: 1,
+//         heading: "How to Build Confidence and Public Speaking Skills in Just Two Days",
+//         subheading: "Aspiration Matters transforms young minds at Vshreshtha Academy, Vizag",
+//         content:
+//             "Aspiration Matters, under the expert facilitation of renowned corporate trainer Neelima Kumari, recently conducted a power-packed two-day program on confidence building and public speaking at Vshreshtha Academy, Vizag. Students who once felt shy and hesitant to even stand on stage delivered powerful and confident speeches by the end of the program. With a unique blend of experiential learning, inner well-being alignment, and fun-filled activities, the session empowered participants to break their limiting beliefs and speak with authenticity and clarity.",
+//         highlights: [
+//             "Boosted confidence",
+//             "Powerful stage presence",
+//             "Inner clarity and self-belief",
+//             "Overwhelming feedback and glowing smiles",
+//         ],
+//     },
+//     {
+//         id: 2,
+//         heading: "Building High-Performing Teams Through High-Impact OBT",
+//         subheading:
+//             "Aspiration Matters empowers Gumtree-Traps Pvt Ltd with a transformational outbound training experience in Goa",
+//         content:
+//             "Aspiration Matters recently conducted a high-energy Outbound Training (OBT) session for the dynamic team of Gumtree-Traps Pvt Ltd in the scenic location of Goa. The session was powerfully facilitated by Neelima Kumari, celebrated corporate trainer and motivational speaker, known for her experiential and results-driven training style.",
+//         highlights: [
+//             "Inhibitions broken, confidence boosted",
+//             "Creative problem-solving through fun and purposeful games",
+//             "Leadership qualities activated in real-time challenges",
+//             "Stronger team bonds, trust, and collaboration",
+//         ],
+//     },
+//     {
+//         id: 3,
+//         heading: "High-Impact Team Building & Outbound Training for a Reputed Pan-India Brand",
+//         subheading: "Transforming Teams – Building Leaders",
+//         content:
+//             "Aspiration Matters Training & Consulting, led by Neelima Kumari (Certified Corporate Trainer, Motivational Speaker, and Team Building Expert), successfully conducted a high-energy Team Building and Outbound Training session for a reputed Pan-India brand. This corporate training event was designed to enhance employee engagement, leadership development, collaboration, workplace synergy, and high-performing team culture.",
+//         highlights: [
+//             "Experiential Learning Activities",
+//             "Leadership Development Modules",
+//             "Employee Engagement Strategies",
+//             "Outbound Training Excellence",
+//         ],
+//     },
+//     {
+//         id: 4,
+//         heading: "Beyond the Boardroom: High-Impact Outbound Training Redefining Leadership & Teamwork",
+//         subheading: "A Leadership Experience Beyond the Ordinary",
+//         content:
+//             "Aspiration Matters Training & Consulting, led by Neelima Kumari (Corporate Trainer, Motivational Speaker, and Team Building Expert), conducted a high-impact Outbound Training (OBT) program for a group of senior executives. Rather than a routine corporate event, this program became a transformative leadership experience — designed to ignite purpose, strengthen ownership, build accountability, enhance executive presence, and deepen team bonding.",
+//         highlights: [
+//             "Purpose, Ownership, Accountability, Leadership",
+//             "Executive Presence & Team Bonding in Action",
+//             "High Engagement, High Impact",
+//             "Overwhelming Feedback",
+//         ],
+//     },
+// ]
+
 const mediaContent = [
     {
         id: 1,
+        heading: "Outdoor Team Building & Experiential Learning",
+        subheading: "Creating United and Ignited Teams",
+        content:
+            "Our recent Outdoor Team Building (OBT) session was all about energy, synergy, and teamwork. Each experiential activity brought the team together—creating excitement, learning, and alignment toward a common purpose. The program helped participants understand that great teams don’t just work together—they grow together. When teams are united, productivity, morale, and creativity naturally rise.",
+        highlights: [
+            "Engaging experiential games that built collaboration",
+            "Activities enhancing trust, communication, and problem-solving",
+            "Refreshing learning that ignited unity and purpose"
+        ],
+    },
+    {
+        id: 2,
+        heading: "Business Communication for Managers",
+        subheading: "Leadership Communication Training",
+        content:
+            "It was an incredible experience conducting a Business Communication Training for Managers, focused on assertiveness, influence, and effective communication strategies. Through interactive activities and experiential learning games, participants discovered how to communicate with clarity and confidence, influence with empathy, and build meaningful connections across teams.",
+        highlights: [
+            "Clear and confident communication",
+            "Influencing decisions with empathy and purpose",
+            "Building meaningful team communication culture"
+        ],
+    },
+    {
+        id: 3,
         heading: "How to Build Confidence and Public Speaking Skills in Just Two Days",
         subheading: "Aspiration Matters transforms young minds at Vshreshtha Academy, Vizag",
         content:
@@ -26,7 +106,7 @@ const mediaContent = [
         ],
     },
     {
-        id: 2,
+        id: 4,
         heading: "Building High-Performing Teams Through High-Impact OBT",
         subheading:
             "Aspiration Matters empowers Gumtree-Traps Pvt Ltd with a transformational outbound training experience in Goa",
@@ -40,7 +120,7 @@ const mediaContent = [
         ],
     },
     {
-        id: 3,
+        id: 5,
         heading: "High-Impact Team Building & Outbound Training for a Reputed Pan-India Brand",
         subheading: "Transforming Teams – Building Leaders",
         content:
@@ -53,7 +133,7 @@ const mediaContent = [
         ],
     },
     {
-        id: 4,
+        id: 6,
         heading: "Beyond the Boardroom: High-Impact Outbound Training Redefining Leadership & Teamwork",
         subheading: "A Leadership Experience Beyond the Ordinary",
         content:
@@ -65,7 +145,20 @@ const mediaContent = [
             "Overwhelming Feedback",
         ],
     },
+];
+
+
+
+const images = [
+    "/mediaimage1.jpg",
+    "/mediaimage2.jpg",
+    "/mediaimage3.jpg",
+    "/mediaimage4.jpg",
+    "/mediaimage5.jpg",
+    "/mediaimage6.jpg",
+    "/mediaimage7.jpg", // add more here
 ]
+
 
 export default function MediaPage() {
     const [currentMedia, setCurrentMedia] = useState(0)
@@ -73,7 +166,9 @@ export default function MediaPage() {
 
     useEffect(() => {
         const imageInterval = setInterval(() => {
-            setCurrentImage((prev) => (prev + 1) % 6)
+            // setCurrentImage((prev) => (prev + 1) % 6)
+            setCurrentImage((prev) => (prev + 1) % images.length)
+
         }, 5000)
 
         return () => clearInterval(imageInterval)
@@ -147,6 +242,8 @@ export default function MediaPage() {
                         <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-purple-500" />
                     </Button>
 
+
+
                     <Card className="relative rounded-2xl sm:rounded-3xl bg-black/10 backdrop-blur-xl border border-white/20 shadow-2xl shadow-purple-500/25 overflow-hidden mx-4 sm:mx-8 md:mx-12 lg:mx-16">
                         <div className="p-2 sm:p-3 lg:p-4">
                             <div className="flex flex-col lg:flex-row gap-2 sm:gap-3 justify-center mb-3 sm:mb-4">
@@ -175,7 +272,9 @@ export default function MediaPage() {
 
                                     {/* Image Indicators */}
                                     <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                                        {Array.from({ length: 6 }).map((_, index) => (
+                                        {/* {Array.from({ length: 6 }).map((_, index) => ( */}
+                                        {Array.from({ length: images.length }).map((_, index) => (
+
                                             <div
                                                 key={index}
                                                 className={`w-2 h-2 rounded-full transition-all duration-500 ${index === currentImage ? "bg-white shadow-lg" : "bg-white/60"
@@ -201,7 +300,9 @@ export default function MediaPage() {
                                             className="absolute inset-0"
                                         >
                                             <Image
-                                                src={`/mediaimage${((currentImage + 1) % 6) + 1}.jpg`}
+                                                // src={`/mediaimage${((currentImage + 1) % 6) + 1}.jpg`}
+                                                src={`/mediaimage${((currentImage + 1) % images.length) + 1}.jpg`}
+
                                                 alt={`Media Image ${((currentImage + 1) % 6) + 1}`}
                                                 fill
                                                 className="object-cover"
