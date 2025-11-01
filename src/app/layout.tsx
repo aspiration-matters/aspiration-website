@@ -154,7 +154,7 @@ export const metadata: Metadata = {
     url: "https://aspirationmatters.com",
     siteName: "Aspiration Matters",
     type: "website",
-    images: "/og-cover1.jpg",
+    images: "/og-cover.jpg",
   },
   alternates: {
     canonical: "https://aspirationmatters.com",
