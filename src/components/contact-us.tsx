@@ -321,7 +321,7 @@ export default function ContactPage() {
                         [@media(min-width:1024px)_and_(max-width:1280px)_and_(max-height:800px)]:text-sm
                         max-sm:text-sm"
                     >
-                      aspirationmatters@gmail.com
+                      neelima@aspirationmatters.com
                     </p>
                   </div>
                 </div>
