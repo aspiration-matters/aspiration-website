@@ -11,6 +11,7 @@ import Image from "next/image"
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["600"] })
 
 const clientLogos = [
+    { name: "logo", src: "/firstlogo.png" },
     { name: "Asian", src: "/asian.png" },
     { name: "Corno", src: "/corno.png" },
     { name: "EGS", src: "/egs.png" },
