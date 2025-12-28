@@ -524,6 +524,13 @@ const images = [
     "/mediaimage5.jpg",
     "/mediaimage6.jpg",
     "/mediaimage7.jpg",
+    "/mediaimage8.jpg",
+    "/mediaimage9.jpg",
+    "/mediaimage10.jpg",
+    "/mediaimage11.jpg",
+    "/mediaimage12.jpg",
+    "/mediaimage13.jpg",
+    "/mediaimage15.jpg",
 ]
 
 export default function MediaPage() {
