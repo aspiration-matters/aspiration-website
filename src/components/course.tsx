@@ -326,7 +326,7 @@ export default function CoursePage() {
                 <div className="relative w-32 h-40 mb-4 instructor-image">
                   <Image src="/instructor.png" alt="Neelima Kumari" fill className="object-contain" priority />
                 </div>
-                <Link href="" className="group transition-all duration-300">
+                <Link href="/founder" className="group transition-all duration-300">
                   <h3 className="text-xl font-bold text-center mb-2 text-white/100 bg-gradient-to-r from-purple-300 via-white to-purple-400 bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(168,85,247,0.6)] group-hover:text-purple-300">
                     Neelima Kumari
                   </h3>
@@ -416,7 +416,7 @@ export default function CoursePage() {
                 <div className="relative w-40 h-52 md:w-48 md:h-64 mb-6 instructor-image">
                   <Image src="/instructor.png" alt="Neelima Kumari" fill className="object-contain" priority />
                 </div>
-                <Link href="" className="group transition-all duration-300">
+                <Link href="/founder" className="group transition-all duration-300">
                   <h3 className="text-xl md:text-2xl font-bold text-center mb-2 text-white/100 bg-gradient-to-r from-purple-300 via-white to-purple-400 bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(168,85,247,0.6)] group-hover:text-purple-300">
                     Neelima Kumari
                   </h3>
