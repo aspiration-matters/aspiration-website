@@ -301,7 +301,11 @@ const FounderSection = () => {
                             </ul>
                         </div>
 
-                        <p className="text-lg sm:text-xl font-semibold text-white pt-4">Why This Work Matters Today</p>
+                        {/* <p className="text-lg sm:text-xl font-semibold text-white pt-4">Why This Work Matters Today</p> */}
+                        <h2 className="text-lg sm:text-xl font-semibold text-white pt-4">
+                            Why This Work Matters Today
+                        </h2>
+
                         <p>
                             The future of work demands emotionally intelligent leaders, self-aware professionals, collaborative teams,
                             and purpose-driven cultures. Organizations that invest in people development don't just grow faster—they

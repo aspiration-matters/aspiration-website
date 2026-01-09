@@ -64,28 +64,52 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Aspiration Matters",
-  "url": "https://aspirationmatters.com",
-  "logo": "https://aspirationmatters.com/logo.png",
-  "founder": "Neelima Kumari",
-  "description": "Corporate training company offering leadership development, soft skills, team building & professional development programs.",
-  "sameAs": [
-    "https://www.instagram.com/aspirationmatters",
-    "https://www.youtube.com/@CorporateTrainerNeelimaKumari",
-    "https://www.linkedin.com/in/kumarineelima/"
-  ],
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "DNo. 47-9-14, Dwarka Nagar",
-    "addressLocality": "Visakhapatnam",
-    "postalCode": "530016",
-    "addressCountry": "IN"
-  }
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://aspirationmatters.com/#organization",
+      "name": "Aspiration Matters",
+      "url": "https://aspirationmatters.com",
+      "logo": "https://aspirationmatters.com/logo.png",
+      "description": "Corporate training company offering leadership development, soft skills, team building & professional development programs.",
+      "founder": {
+        "@id": "https://aspirationmatters.com/#neelima-kumari"
+      },
+      "sameAs": [
+        "https://www.instagram.com/aspirationmatters",
+        "https://www.youtube.com/@CorporateTrainerNeelimaKumari",
+        "https://www.linkedin.com/in/kumarineelima/"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "DNo. 47-9-14, Dwarka Nagar",
+        "addressLocality": "Visakhapatnam",
+        "postalCode": "530016",
+        "addressCountry": "IN"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://aspirationmatters.com/#neelima-kumari",
+      "name": "Neelima Kumari",
+      "image": "https://aspirationmatters.com/images/neelima.png",
+      "jobTitle": "Corporate Trainer & Leadership Coach",
+      "worksFor": {
+        "@id": "https://aspirationmatters.com/#organization"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/kumarineelima/",
+        "https://www.instagram.com/aspirationmatters",
+        "https://www.youtube.com/@CorporateTrainerNeelimaKumari"
+      ]
+    }
+  ]
 }
-            `,
+    `,
           }}
         />
+
+
       </head>
 
       <body className={`${geistSans.variable} ${geistMono.variable} ${inter.className} ${playfair.variable} antialiased`}>
