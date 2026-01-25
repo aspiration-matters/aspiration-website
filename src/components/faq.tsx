@@ -111,6 +111,61 @@ const faqSections = [
             },
         ],
     },
+    {
+        category: "Looking to design impactful OBT and leadership programs for your manufacturing teams in Visakhapatnam or Pan India?",
+        categoryId: "manufacturing-obt",
+        items: [
+            {
+                id: "m1",
+                question: "What is Outbound Training (OBT) for manufacturing teams?",
+                answer:
+                    "Outbound Training (OBT) for manufacturing teams is an experiential learning program where employees participate in structured outdoor activities designed to improve teamwork, leadership, communication, safety awareness, accountability, and problem-solving. These programs help teams learn through real-time experiences and guided reflection, making learning practical and long-lasting.",
+            },
+            {
+                id: "m2",
+                question: "How does Outbound Training benefit manufacturing plants in Visakhapatnam?",
+                answer:
+                    "Outbound Training helps manufacturing plants in Visakhapatnam strengthen shop-floor communication, team coordination, leadership behaviour, safety mindset, and ownership. It leads to improved productivity, stronger collaboration between departments, and a positive workplace culture aligned with organizational goals.",
+            },
+            {
+                id: "m3",
+                question: "Is Outbound Training suitable for supervisors and shop-floor workers?",
+                answer:
+                    "Yes, Outbound Training is highly effective for supervisors, line managers, engineers, and shop-floor workers. The activities remove hierarchy and encourage participants to experience leadership, responsibility, and teamwork beyond job titles, building mutual respect and trust.",
+            },
+            {
+                id: "m4",
+                question: "How is Outbound Training different from classroom training?",
+                answer:
+                    "Classroom training focuses mainly on knowledge transfer, while Outbound Training focuses on behavioural change. In OBT programs, participants learn by doing, reflecting on their experiences, and connecting insights to real workplace challenges, resulting in deeper learning and faster application on the job.",
+            },
+            {
+                id: "m5",
+                question: "How often should manufacturing organisations conduct Outbound Training programs?",
+                answer:
+                    "Manufacturing organisations typically benefit from Outbound Training programs annually or during critical phases such as leadership transitions, plant expansion, culture transformation initiatives, safety improvement drives, or performance enhancement programs.",
+            },
+            {
+                id: "m6",
+                question: "Who should facilitate Outbound Training programs for manufacturing teams?",
+                answer:
+                    "Outbound Training programs should be facilitated by experienced corporate trainers who understand manufacturing environments, shop-floor dynamics, leadership behaviour, and experiential learning methodologies. This ensures that learning is meaningful, safe, and sustainable for long-term impact.",
+            },
+            {
+                id: "m7",
+                question: "Does Outbound Training help in leadership development for manufacturing plants?",
+                answer:
+                    "Yes, Outbound Training naturally develops leadership skills such as decision-making, accountability, emotional intelligence, communication, collaboration, and ownership. It helps identify and nurture leaders at all levels within manufacturing teams.",
+            },
+            {
+                id: "m8",
+                question: "Are Outbound Training programs available in Visakhapatnam and Pan India?",
+                answer:
+                    "Yes, Aspiration Matters conducts Outbound Training and leadership development programs in Visakhapatnam (Vizag), across Andhra Pradesh, and Pan India. Programs are customized for manufacturing organizations and delivered at safe, well-equipped outdoor locations.",
+            },
+        ],
+    }
+
 ]
 
 const FAQPage = () => {
