@@ -25,7 +25,8 @@ const clientLogos = [
     { name: "Verse", src: "/verse.png" },
     { name: "XYZ", src: "/xyz.png" },
     { name: "gayathre", src: "/gayathree.png" },
-    { name: "canara-bank", src: "/canara.png" }
+    { name: "canara-bank", src: "/canara.png" },
+    { name: "alpaah-png", src: "/alphaa.png" }
 ]
 
 const OurClients = () => {

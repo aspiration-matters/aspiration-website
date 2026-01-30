@@ -1,421 +1,4 @@
 
-// "use client"
-
-// import { ArrowLeft, Loader2 } from "lucide-react"
-// import { useRouter, useParams } from "next/navigation"
-// import { Button } from "@/components/ui/button"
-// import { Card } from "@/components/ui/card"
-// import { useEffect, useState } from "react"
-// import { motion } from "framer-motion"
-// import { toast } from "sonner"
-// import { API_BASE_URL } from "@/lib/api"
-// import Image from "next/image"
-// import { Spotlight } from "@/components/ui/spotlight"
-
-// interface BlogData {
-//   id: string
-//   title: string
-//   description: string
-//   image_url: string
-//   content: string
-//   date: string
-// }
-
-// export default function BlogPost() {
-//   const router = useRouter()
-//   const params = useParams()
-//   const [blog, setBlog] = useState<BlogData | null>(null)
-//   const [loading, setLoading] = useState(true)
-//   const [text, setText] = useState("")
-
-//   useEffect(() => {
-//     const fetchBlog = async () => {
-//       try {
-//         const res = await fetch(`${API_BASE_URL}/blog/${params.id}`, {
-//           method: "GET",
-//         })
-//         if (!res.ok) {
-//           throw new Error("Failed to fetch blog")
-//         }
-//         const result = await res.json()
-//         setBlog(result.data)
-//         setText(result.data.content)
-//       } catch {
-//         toast.error("Failed to load blog post. Please try again later.")
-//       } finally {
-//         setLoading(false)
-//       }
-//     }
-
-//     fetchBlog()
-//   }, [params.id])
-
-//   useEffect(() => {
-//     if (blog?.content) {
-//       setText(blog.content)
-//     }
-//   }, [blog])
-
-//   const formatDate = (dateString: string) => {
-//     return new Date(dateString).toLocaleDateString("en-US", {
-//       year: "numeric",
-//       month: "long",
-//       day: "numeric",
-//     })
-//   }
-
-//   if (loading) {
-//     return (
-//       <div
-//         className="min-h-screen flex items-center justify-center 
-//                       bg-gradient-to-br from-[#1a0033] via-[#2d1b69] via-[#4c1d95] via-[#6b21a8] to-[#7c3aed]
-//                       before:absolute before:inset-0 before:bg-gradient-to-tr before:from-[#8b5cf6]/20 before:via-transparent before:to-[#a855f7]/30
-//                       after:absolute after:inset-0 after:bg-[radial-gradient(ellipse_at_top_left,_rgba(139,92,246,0.3)_0%,_rgba(168,85,247,0.15)_25%,_transparent_50%)]
-//                       backdrop-blur-3xl backdrop-saturate-[2]"
-//       >
-//         <div className="flex flex-col items-center gap-4">
-//           <Loader2 className="h-10 w-10 animate-spin text-purple-300" />
-//           <p className="text-white/90 font-medium animate-pulse">Loading article...</p>
-//         </div>
-//       </div>
-//     )
-//   }
-
-//   if (!blog) return null
-
-//   return (
-//     <motion.div
-//       initial={{ opacity: 0 }}
-//       animate={{ opacity: 1 }}
-//       className="relative min-h-screen 
-//                  bg-gradient-to-br from-[#1a0033] via-[#2d1b69] via-[#4c1d95] via-[#6b21a8] to-[#7c3aed]
-//                  before:absolute before:inset-0 before:bg-gradient-to-tr before:from-[#8b5cf6]/20 before:via-transparent before:to-[#a855f7]/30
-//                  after:absolute after:inset-0 after:bg-[radial-gradient(ellipse_at_top_left,_rgba(139,92,246,0.3)_0%,_rgba(168,85,247,0.15)_25%,_transparent_50%)]
-//                  backdrop-blur-3xl backdrop-saturate-[2] pb-16 overflow-hidden"
-//     >
-//       {/* Spotlight Effects */}
-//       <Spotlight className="top-1/4 left-10 z-10 opacity-100" fill="rgb(248, 246, 246)" />
-//       <Spotlight className="top-1/2 right-100 z-60 opacity-100" fill="rgb(253, 7, 241)" />
-
-//       {/* Shimmer Effects */}
-//       <div className="absolute inset-0 opacity-40 pointer-events-none">
-//         <div className="absolute top-0 -left-4 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 animate-pulse" />
-//         <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-purple-400/20 via-transparent to-transparent animate-pulse delay-1000" />
-//       </div>
-
-//       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 relative z-10">
-//         <motion.div
-//           initial={{ opacity: 0, y: -10 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           transition={{ duration: 0.4 }}
-//           className="flex items-center justify-between mb-6"
-//         >
-//           <Button
-//             variant="ghost"
-//             className="hover:bg-white/20 text-white font-medium rounded-full backdrop-blur-sm border border-white/20"
-//             onClick={() => router.back()}
-//           >
-//             <ArrowLeft className="mr-2 h-4 w-4" />
-//             Back to Blogs
-//           </Button>
-//           <motion.div
-//             initial={{ opacity: 0 }}
-//             animate={{ opacity: 1 }}
-//             transition={{ delay: 0.2 }}
-//             className="text-sm font-medium text-white bg-white/20 px-4 py-1.5 rounded-full shadow-sm backdrop-blur-sm border border-white/20"
-//           >
-//             {formatDate(blog.date)}
-//           </motion.div>
-//         </motion.div>
-
-//         <motion.div
-//           initial={{ opacity: 0, y: 20 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           transition={{ duration: 0.6 }}
-//           className="w-full overflow-hidden rounded-2xl shadow-xl mb-0"
-//         >
-//           <div className="relative h-[450px] w-full">
-//             <Image src={blog.image_url || "/placeholder.svg"} alt={blog.title} fill className="object-cover" />
-//             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/0" />
-//             <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-12">
-//               <motion.h1
-//                 initial={{ opacity: 0, y: 20 }}
-//                 animate={{ opacity: 1, y: 0 }}
-//                 transition={{ delay: 0.4, duration: 0.6 }}
-//                 className="text-4xl sm:text-5xl font-bold text-white mb-4 leading-tight tracking-tight"
-//               >
-//                 {blog.title}
-//               </motion.h1>
-//               <motion.p
-//                 initial={{ opacity: 0 }}
-//                 animate={{ opacity: 1 }}
-//                 transition={{ delay: 0.6, duration: 0.6 }}
-//                 className="text-white/90 text-lg max-w-3xl"
-//               >
-//                 {blog.description}
-//               </motion.p>
-//             </div>
-//           </div>
-//         </motion.div>
-
-//         <motion.div
-//           initial={{ opacity: 0, y: 30 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           transition={{ delay: 0.2, duration: 0.6 }}
-//           className="mt-8 relative"
-//         >
-//           <Card className="overflow-hidden backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl shadow-purple-500/25 rounded-2xl p-8 sm:p-10">
-//             <div className="prose max-w-none">
-//               <div className="text-white/95 leading-relaxed text-lg font-normal tracking-wide space-y-2">
-//                 {text
-//                   .replace(/\\n/g, "\n")
-//                   .split("\n")
-//                   .map((line, index) => {
-//                     const trimmed = line.trim()
-//                     const isSubheading =
-//                       trimmed.length > 0 && trimmed.length < 80 && /^[A-Z]/.test(trimmed) && !/[.":]/.test(trimmed) // excludes quotes and periods
-//                     return (
-//                       <p
-//                         key={index}
-//                         className={`mb-4 text-justify ${isSubheading
-//                           ? "text-white font-semibold text-xl bg-gradient-to-r from-purple-300 via-white to-purple-400 bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(168,85,247,0.6)]"
-//                           : "text-white/95 font-normal"
-//                           }`}
-//                       >
-//                         {trimmed}
-//                       </p>
-//                     )
-//                   })}
-//               </div>
-//             </div>
-//           </Card>
-//         </motion.div>
-//       </div>
-//     </motion.div>
-//   )
-// }
-
-
-// "use client"
-
-// import { ArrowLeft, Loader2 } from "lucide-react"
-// import { useRouter, useParams } from "next/navigation"
-// import { Button } from "@/components/ui/button"
-// import { Card } from "@/components/ui/card"
-// import { useEffect, useState } from "react"
-// import { motion } from "framer-motion"
-// import { toast } from "sonner"
-// import { API_BASE_URL } from "@/lib/api"
-// import Image from "next/image"
-// import { Spotlight } from "@/components/ui/spotlight"
-// import type { ReactNode } from "react"
-
-
-// interface BlogData {
-//   id: string
-//   title: string
-//   description: string
-//   image_url: string
-//   content: string
-//   date: string
-// }
-
-// export default function BlogPost() {
-//   const router = useRouter()
-//   const params = useParams()
-//   const [blog, setBlog] = useState<BlogData | null>(null)
-//   const [loading, setLoading] = useState(true)
-
-//   useEffect(() => {
-//     const fetchBlog = async () => {
-//       try {
-//         const res = await fetch(`${API_BASE_URL}/blog/${params.id}`)
-//         if (!res.ok) throw new Error()
-//         const result = await res.json()
-//         setBlog(result.data)
-//       } catch {
-//         toast.error("Failed to load blog post")
-//       } finally {
-//         setLoading(false)
-//       }
-//     }
-//     fetchBlog()
-//   }, [params.id])
-
-//   const formatDate = (dateString: string) =>
-//     new Date(dateString).toLocaleDateString("en-US", {
-//       year: "numeric",
-//       month: "long",
-//       day: "numeric",
-//     })
-
-//   /* ---------------- SEO AWARE CONTENT RENDERER ---------------- */
-//   const renderContent = (content: string) => {
-//     const lines = content.replace(/\\n/g, "\n").split("\n")
-//     const elements: ReactNode[] = []
-
-//     let listBuffer: string[] = []
-//     let headingUsed = false
-
-//     const flushList = () => {
-//       if (listBuffer.length > 0) {
-//         elements.push(
-//           <ul key={elements.length} className="list-disc pl-6 mb-6 text-white/95">
-//             {listBuffer.map((item, i) => (
-//               <li key={i} className="mb-2">
-//                 {item}
-//               </li>
-//             ))}
-//           </ul>
-//         )
-//         listBuffer = []
-//       }
-//     }
-
-//     for (let i = 0; i < lines.length; i++) {
-//       const raw = lines[i]
-//       const trimmed = raw.trim()
-
-//       if (!trimmed) {
-//         flushList()
-//         continue
-//       }
-
-//       /* ---------- LIST HANDLING ---------- */
-//       if (trimmed.startsWith("- ")) {
-//         listBuffer.push(trimmed.slice(2))
-//         continue
-//       }
-
-//       if (listBuffer.length > 0) {
-//         listBuffer.push(trimmed)
-//         continue
-//       }
-
-//       flushList()
-
-//       /* ---------- FIRST HEADING (FORCED) ---------- */
-//       if (!headingUsed) {
-//         headingUsed = true
-//         elements.push(
-//           <h2
-//             key={elements.length}
-//             className="mt-6 mb-6 text-2xl font-bold text-white"
-//           >
-//             {trimmed}
-//           </h2>
-//         )
-//         continue
-//       }
-
-//       /* ---------- OTHER HEADINGS ---------- */
-//       const isHeading =
-//         trimmed.length < 100 &&
-//         /^[A-Z]/.test(trimmed) &&
-//         !trimmed.endsWith(".")
-
-//       if (isHeading) {
-//         elements.push(
-//           <h2
-//             key={elements.length}
-//             className="mt-10 mb-4 text-2xl font-bold
-//                      bg-gradient-to-r from-purple-300 via-white to-purple-400
-//                      bg-clip-text text-transparent"
-//           >
-//             {trimmed}
-//           </h2>
-//         )
-//         continue
-//       }
-
-//       /* ---------- PARAGRAPH ---------- */
-//       elements.push(
-//         <p
-//           key={elements.length}
-//           className="mb-4 text-justify text-white/95 leading-relaxed text-lg"
-//         >
-//           {trimmed}
-//         </p>
-//       )
-//     }
-
-//     flushList()
-//     return elements
-//   }
-
-//   /* ---------------- LOADING ---------------- */
-//   if (loading) {
-//     return (
-//       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#1a0033] via-[#2d1b69] to-[#7c3aed]">
-//         <div className="flex flex-col items-center gap-4">
-//           <Loader2 className="h-10 w-10 animate-spin text-purple-300" />
-//           <p className="text-white/90">Loading article...</p>
-//         </div>
-//       </div>
-//     )
-//   }
-
-//   if (!blog) return null
-
-//   /* ---------------- PAGE ---------------- */
-//   return (
-//     <motion.div
-//       initial={{ opacity: 0 }}
-//       animate={{ opacity: 1 }}
-//       className="relative min-h-screen bg-gradient-to-br from-[#1a0033] via-[#2d1b69] to-[#7c3aed] pb-16 overflow-hidden"
-//     >
-//       <Spotlight className="top-1/4 left-10" fill="white" />
-//       <Spotlight className="top-1/2 right-20" fill="rgb(253,7,241)" />
-
-//       <div className="max-w-5xl mx-auto px-4 pt-8 relative z-10">
-//         {/* Header */}
-//         <div className="flex justify-between items-center mb-6">
-//           <Button
-//             variant="ghost"
-//             className="text-white border border-white/20 rounded-full"
-//             onClick={() => router.back()}
-//           >
-//             <ArrowLeft className="mr-2 h-4 w-4" />
-//             Back
-//           </Button>
-
-//           <span className="text-white/90 text-sm bg-white/20 px-4 py-1.5 rounded-full">
-//             {formatDate(blog.date)}
-//           </span>
-//         </div>
-
-//         {/* Hero */}
-//         <div className="rounded-2xl overflow-hidden shadow-xl">
-//           <div className="relative h-[450px]">
-//             <Image
-//               src={blog.image_url || "/placeholder.svg"}
-//               alt={blog.title}
-//               fill
-//               className="object-cover"
-//             />
-//             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-//             <div className="absolute bottom-0 p-10">
-//               <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-//                 {blog.title}
-//               </h1>
-//               <p className="text-white/90 text-lg max-w-3xl">
-//                 {blog.description}
-//               </p>
-//             </div>
-//           </div>
-//         </div>
-
-//         {/* Content */}
-//         <Card className="mt-10 p-8 sm:p-10 bg-white/10 border border-white/20 rounded-2xl backdrop-blur-xl">
-//           <article className="max-w-none">
-//             {renderContent(blog.content)}
-//           </article>
-//         </Card>
-//       </div>
-//     </motion.div>
-//   )
-// }
-
 
 "use client"
 
@@ -427,8 +10,9 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { toast } from "sonner"
 import { API_BASE_URL } from "@/lib/api"
-import Image from "next/image"
 import { Spotlight } from "@/components/ui/spotlight"
+import { TracingBeam } from "@/components/ui/tracing-beam"
+import { PixelImage } from "@/components/pixel-image"
 import type { ReactNode } from "react"
 
 /* ---------------- TYPES ---------------- */
@@ -483,16 +67,20 @@ export default function BlogPost() {
     const flushList = () => {
       if (listBuffer.length > 0) {
         elements.push(
-          <ul
+          <motion.ul
             key={elements.length}
-            className="list-disc pl-6 mb-6 text-white/95"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="list-disc pl-4 sm:pl-6 mb-4 sm:mb-8 space-y-1.5 sm:space-y-2"
           >
             {listBuffer.map((item, i) => (
-              <li key={i} className="mb-2">
+              <li key={i} className="text-gray-700 leading-relaxed text-xs sm:text-sm md:text-base text-justify word-spacing-normal">
                 {item}
               </li>
             ))}
-          </ul>
+          </motion.ul>
         )
         listBuffer = []
       }
@@ -523,12 +111,16 @@ export default function BlogPost() {
       if (!headingUsed) {
         headingUsed = true
         elements.push(
-          <h2
+          <motion.h2
             key={elements.length}
-            className="mt-6 mb-6 text-2xl font-bold text-white"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="mt-6 sm:mt-8 md:mt-10 mb-3 sm:mb-4 md:mb-5 text-lg sm:text-xl md:text-2xl font-bold text-purple-700 leading-tight"
           >
             {trimmed}
-          </h2>
+          </motion.h2>
         )
         continue
       }
@@ -541,26 +133,32 @@ export default function BlogPost() {
 
       if (isHeading) {
         elements.push(
-          <h2
+          <motion.h3
             key={elements.length}
-            className="mt-10 mb-4 text-2xl font-bold
-              bg-gradient-to-r from-purple-300 via-white to-purple-400
-              bg-clip-text text-transparent"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="mt-4 sm:mt-6 md:mt-8 mb-2 sm:mb-3 md:mb-4 text-base sm:text-lg md:text-xl font-bold text-purple-700 leading-tight"
           >
             {trimmed}
-          </h2>
+          </motion.h3>
         )
         continue
       }
 
       /* ---------- PARAGRAPH ---------- */
       elements.push(
-        <p
+        <motion.p
           key={elements.length}
-          className="mb-4 text-justify text-white/95 leading-relaxed text-lg"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="mb-3 sm:mb-4 md:mb-6 text-gray-700 leading-relaxed text-xs sm:text-sm md:text-base text-justify word-spacing-normal"
         >
           {trimmed}
-        </p>
+        </motion.p>
       )
     }
 
@@ -611,52 +209,185 @@ export default function BlogPost() {
           animate-pulse delay-1000" />
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 pt-8 relative z-10">
-        {/* Header */}
-        <div className="flex justify-between items-center mb-6">
-          <Button
-            variant="ghost"
-            className="text-white border border-white/20 rounded-full"
-            onClick={() => router.back()}
+      <TracingBeam className="hidden md:block">
+        <div className="w-full max-w-5xl mx-auto px-2 sm:px-3 md:px-4 pt-8 relative z-10">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex justify-between items-center mb-8"
           >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back
-          </Button>
+            <Button
+              variant="ghost"
+              className="text-white border border-white/30 rounded-full hover:bg-white/10 transition-all duration-300"
+              onClick={() => router.back()}
+            >
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back
+            </Button>
 
-          <span className="text-white/90 text-sm bg-white/20 px-4 py-1.5 rounded-full">
-            {formatDate(blog.date)}
-          </span>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-white/80 text-xs sm:text-sm bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20"
+            >
+              {formatDate(blog.date)}
+            </motion.span>
+          </motion.div>
+
+          {/* Content Card with Image */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <Card className="overflow-hidden p-0
+              bg-white/95 backdrop-blur-xl border-0 rounded-2xl sm:rounded-3xl
+              shadow-2xl shadow-purple-500/25 hover:shadow-purple-500/35
+              transition-all duration-300">
+
+              {/* Hero Image - 16:9 Aspect Ratio with Pixel Effect */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6 }}
+                className="overflow-hidden w-full flex items-center justify-center bg-gradient-to-b from-gray-100 to-gray-50"
+              >
+                <div className="relative w-full aspect-video flex items-center justify-center">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <PixelImage
+                      src={blog.image_url || "/placeholder.svg"}
+                      grid="8x8"
+                    />
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Premium Title & Description Card - Grey Rounded */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="px-6 sm:px-8 md:px-10 lg:px-12 py-8"
+              >
+                <div className="bg-gradient-to-br from-gray-100/80 to-gray-200/60 backdrop-blur-md rounded-2xl p-6 sm:p-7 md:p-8 lg:p-9 border border-gray-300/40 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <h1 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 leading-tight text-balance text-center">
+                    {blog.title}
+                  </h1>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed md:leading-7 font-medium text-center text-pretty">
+                    {blog.description}
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Article Content Section */}
+              <div className="px-6 sm:px-8 md:px-10 lg:px-12 py-8">
+                <div className="bg-gradient-to-br from-gray-50/80 to-gray-100/60 backdrop-blur-md rounded-2xl p-6 sm:p-7 md:p-8 lg:p-9 border border-gray-200/50 shadow-md">
+                  <article className="max-w-none space-y-4">
+                    {renderContent(blog.content)}
+                  </article>
+                </div>
+              </div>
+            </Card>
+          </motion.div>
+
+          {/* Bottom Spacing */}
+          <div className="h-10" />
         </div>
+      </TracingBeam>
 
-        {/* Hero */}
-        <div className="rounded-2xl overflow-hidden shadow-xl">
-          <div className="relative h-[450px]">
-            <Image
-              src={blog.image_url || "/placeholder.svg"}
-              alt={blog.title}
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-            <div className="absolute bottom-0 p-10">
-              <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-                {blog.title}
-              </h1>
-              <p className="text-white/90 text-lg max-w-3xl">
-                {blog.description}
-              </p>
-            </div>
-          </div>
+      {/* Mobile Wrapper (without TracingBeam) */}
+      <div className="md:hidden w-full max-w-5xl mx-auto px-3 sm:px-4 pt-8 relative z-10">
+        <div className="w-full max-w-5xl mx-auto px-0 pt-0 relative z-10">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex justify-between items-center mb-8"
+          >
+            <Button
+              variant="ghost"
+              className="text-white border border-white/30 rounded-full hover:bg-white/10 transition-all duration-300"
+              onClick={() => router.back()}
+            >
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back
+            </Button>
+
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-white/80 text-xs sm:text-sm bg-white/10 backdrop-blur-md px-3 py-2 rounded-full border border-white/20"
+            >
+              {formatDate(blog.date)}
+            </motion.span>
+          </motion.div>
+
+          {/* Content Card with Image */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <Card className="overflow-hidden p-0
+              bg-white/95 backdrop-blur-xl border-0 rounded-xl sm:rounded-2xl
+              shadow-2xl shadow-purple-500/25 hover:shadow-purple-500/35
+              transition-all duration-300">
+
+              {/* Hero Image - 16:9 Aspect Ratio with Pixel Effect */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6 }}
+                className="overflow-hidden w-full flex items-center justify-center bg-gradient-to-b from-gray-100 to-gray-50"
+              >
+                <div className="relative w-full aspect-video flex items-center justify-center">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <PixelImage
+                      src={blog.image_url || "/placeholder.svg"}
+                      grid="8x8"
+                    />
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Premium Title & Description Card - Grey Rounded */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="px-4 sm:px-6 py-6"
+              >
+                <div className="bg-gradient-to-br from-gray-100/80 to-gray-200/60 backdrop-blur-md rounded-xl p-4 sm:p-5 md:p-6 border border-gray-300/40 shadow-lg">
+                  <h1 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 leading-tight text-balance text-center">
+                    {blog.title}
+                  </h1>
+                  <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-medium text-center text-pretty">
+                    {blog.description}
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Article Content Section */}
+              <div className="px-4 sm:px-6 py-6">
+                <div className="bg-gradient-to-br from-gray-50/80 to-gray-100/60 backdrop-blur-md rounded-xl p-4 sm:p-5 md:p-6 border border-gray-200/50 shadow-md">
+                  <article className="max-w-none space-y-3">
+                    {renderContent(blog.content)}
+                  </article>
+                </div>
+              </div>
+            </Card>
+          </motion.div>
+
+          {/* Bottom Spacing */}
+          <div className="h-10" />
         </div>
-
-        {/* Content */}
-        <Card className="mt-10 p-8 sm:p-10
-          bg-white/10 border border-white/20 rounded-2xl
-          backdrop-blur-xl shadow-2xl shadow-purple-500/25">
-          <article className="max-w-none">
-            {renderContent(blog.content)}
-          </article>
-        </Card>
       </div>
     </motion.div>
   )
