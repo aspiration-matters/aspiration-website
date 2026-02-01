@@ -127,26 +127,31 @@
 
 
 import React from "react"
-import type { Metadata } from 'next'
-import { Geist, Geist_Mono, Inter, Playfair_Display } from 'next/font/google'
-import { ThemeProvider } from '@/components/theme-provider'
-import { CartProvider } from '@/context/cart-context'
-import { Toaster } from 'sonner'
-import './globals.css'
+// app/layout.tsx
+import "./globals.css"
+import { ThemeProvider } from "@/components/theme-provider"
+import { CartProvider } from "@/context/cart-context"
+import { Toaster } from "sonner"
+import type { Metadata } from "next"
+import { Inter, Geist, Geist_Mono, Playfair_Display } from "next/font/google"
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
-const inter = Inter({ subsets: ['latin'] })
-const playfair = Playfair_Display({ variable: '--font-playfair', subsets: ['latin'] })
+// Fonts
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] })
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"] })
+const playfair = Playfair_Display({ variable: "--font-playfair", subsets: ["latin"] })
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://aspirationmatters.com"),
+
   title: {
     default: "Aspiration Matters – Corporate Training | Leadership & Soft Skills | Neelima Kumari",
     template: "%s | Aspiration Matters",
   },
+
   description:
     "Aspiration Matters is a premier corporate training & leadership development organization led by Neelima Kumari. We empower professionals, leaders, and teams through transformational learning, soft-skills, leadership development, behavioral training & corporate workshops.",
+
   keywords: [
     "Aspiration Matters",
     "Corporate Training India",
@@ -159,9 +164,11 @@ export const metadata: Metadata = {
     "Corporate Motivational Speaker",
     "Neelima Kumari",
   ],
+
   icons: {
     icon: "/favicon.ico",
   },
+
   openGraph: {
     title: "Aspiration Matters – Corporate & Leadership Training",
     description:
@@ -169,17 +176,23 @@ export const metadata: Metadata = {
     url: "https://aspirationmatters.com",
     siteName: "Aspiration Matters",
     type: "website",
+    images: [],
   },
+
+  twitter: {
+    card: "summary",
+    title: "Aspiration Matters – Corporate & Leadership Training",
+    description:
+      "Empowering professionals and organizations through transformational learning & leadership development.",
+  },
+
   alternates: {
     canonical: "https://aspirationmatters.com",
   },
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -237,7 +250,7 @@ export default function RootLayout({
         />
       </head>
 
-      <body className={`${inter.className} ${playfair.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${inter.className} ${playfair.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="light">
           <CartProvider>
             {children}
@@ -248,3 +261,5 @@ export default function RootLayout({
     </html>
   )
 }
+
+
