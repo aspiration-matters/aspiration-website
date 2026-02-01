@@ -16,6 +16,7 @@ import { BorderBeam } from "@/components/magicui/border-beam"
 import { Spotlight } from "@/components/ui/spotlight"
 
 
+
 import {
   FaInstagram,
   FaLinkedin,
@@ -670,59 +671,86 @@ export default function ContactPage() {
                     </Link>
                   </li>
                   <li>
-                    <a href="#about" className="text-purple-200 hover:text-white transition-colors max-sm:text-base">
+                    {/* <a href="#about" className="text-purple-200 hover:text-white transition-colors max-sm:text-base">
                       About Us
-                    </a>
+                    </a> */}
+                    <Link href="/#about" className="text-purple-200 hover:text-white transition-colors">
+                      About Us
+                    </Link>
                   </li>
                   <li>
-                    <a
+                    {/* <a
                       href="#philosophy"
                       className="text-purple-200 hover:text-white transition-colors max-sm:text-base"
                     >
                       Philosophy
-                    </a>
+                    </a> */}
+                    <Link href="/#philosophy" className="text-purple-200 hover:text-white transition-colors">
+                      Philosophy
+                    </Link>
                   </li>
                   <li>
-                    <a href="#story" className="text-purple-200 hover:text-white transition-colors max-sm:text-base">
+                    {/* <a href="#story" className="text-purple-200 hover:text-white transition-colors max-sm:text-base">
                       Our Story
-                    </a>
+                    </a> */}
+                    <Link href="/#story" className="text-purple-200 hover:text-white transition-colors">
+                      Our Story
+                    </Link>
                   </li>
                   <li>
-                    <a href="#clients" className="text-purple-200 hover:text-white transition-colors max-sm:text-base">
+                    {/* <a href="#clients" className="text-purple-200 hover:text-white transition-colors max-sm:text-base">
                       Clients
-                    </a>
+                    </a> */}
+                    <Link href="/#clients" className="text-purple-200 hover:text-white transition-colors">
+                      Clients
+                    </Link>
                   </li>
                 </ul>
               </div>
               <div>
                 <ul className="space-y-2 max-sm:space-y-3">
                   <li>
-                    <a href="#gallery" className="text-purple-200 hover:text-white transition-colors max-sm:text-base">
+                    {/* <a href="#gallery" className="text-purple-200 hover:text-white transition-colors max-sm:text-base">
                       Event Gallery
-                    </a>
+                    </a> */}
+                    <Link href="/#gallery" className="text-purple-200 hover:text-white transition-colors">
+                      Event Gallery
+                    </Link>
                   </li>
                   <li>
-                    <a href="#blogs" className="text-purple-200 hover:text-white transition-colors max-sm:text-base">
+                    {/* <a href="#blogs" className="text-purple-200 hover:text-white transition-colors max-sm:text-base">
                       Blogs
-                    </a>
+                    </a> */}
+                    <Link href="/#blogs" className="text-purple-200 hover:text-white transition-colors">
+                      Blogs
+                    </Link>
                   </li>
                   <li>
-                    <a href="#courses" className="text-purple-200 hover:text-white transition-colors max-sm:text-base">
+                    {/* <a href="#courses" className="text-purple-200 hover:text-white transition-colors max-sm:text-base">
                       Courses
-                    </a>
+                    </a> */}
+                    <Link href="/#courses" className="text-purple-200 hover:text-white transition-colors">
+                      Courses
+                    </Link>
                   </li>
                   <li>
-                    <a
+                    {/* <a
                       href="#testimonials"
                       className="text-purple-200 hover:text-white transition-colors max-sm:text-base"
                     >
                       Testimonials
-                    </a>
+                    </a> */}
+                    <Link href="/#testimonials" className="text-purple-200 hover:text-white transition-colors">
+                      Testimonials
+                    </Link>
                   </li>
                   <li>
-                    <a href="#media" className="text-purple-200 hover:text-white transition-colors max-sm:text-base">
+                    {/* <a href="#media" className="text-purple-200 hover:text-white transition-colors max-sm:text-base">
                       media
-                    </a>
+                    </a> */}
+                    <Link href="/#media" className="text-purple-200 hover:text-white transition-colors">
+                      Media
+                    </Link>
                   </li>
                 </ul>
               </div>
