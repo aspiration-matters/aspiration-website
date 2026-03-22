@@ -136,17 +136,6 @@ const VideoTestimonials = () => {
 
 
 
-
-                    {/* <div className="w-full flex justify-center py-10">
-                        <Script
-                            src="https://static.elfsight.com/platform/platform.js"
-                            data-use-service-core
-                            defer
-                        />
-                        <div className="elfsight-app-395f52d1-be99-4400-904a-89feb66c8ed3" data-elfsight-app-lazy></div>
-                    </div> */}
-
-                    {/* Bottom decorative text */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={inView ? { opacity: 1, y: 0 } : {}}

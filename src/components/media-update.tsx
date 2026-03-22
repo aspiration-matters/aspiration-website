@@ -325,14 +325,6 @@ export default function MediaPage() {
                                             }}
                                             className="absolute inset-0"
                                         >
-                                            {/* <Image
-                                                // src={`/mediaimage${((currentImage + 1) % 6) + 1}.jpg`}
-                                                src={`/mediaimage${((currentImage + 1) % images.length) + 1}.jpg`}
-                                                alt={`Media Image ${((currentImage + 1) % 6) + 1}`}
-                                                fill
-                                                className="object-cover"
-                                                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 384px"
-                                            /> */}
                                             <Image
                                                 src={images[(currentImage + 1) % images.length]}
                                                 alt={`Media Image ${((currentImage + 1) % images.length) + 1}`}
@@ -452,6 +444,7 @@ export default function MediaPage() {
         </section>
     )
 }
+
 
 
 
