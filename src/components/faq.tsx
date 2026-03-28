@@ -164,6 +164,48 @@ const faqSections = [
                     "Yes, Aspiration Matters conducts Outbound Training and leadership development programs in Visakhapatnam (Vizag), across Andhra Pradesh, and Pan India. Programs are customized for manufacturing organizations and delivered at safe, well-equipped outdoor locations.",
             },
         ],
+    },
+    {
+        category: "Employee Growth and Low Attrition Insights",
+        categoryId: "low-attrition",
+        items: [
+            {
+                id: "l1",
+                question: "Why can low attrition be a hidden risk?",
+                answer:
+                    "Low attrition can mask deeper issues like lack of employee growth, disengagement, and stagnation, which impact long-term performance.",
+            },
+            {
+                id: "l2",
+                question: "How does learning and development impact employee retention?",
+                answer:
+                    "Effective L&D not only improves retention but enhances engagement, innovation, and overall productivity.",
+            },
+            {
+                id: "l3",
+                question: "What happens when loyal employees are not developed?",
+                answer:
+                    "They may become disengaged, reduce effort, and stop contributing beyond basic responsibilities.",
+            },
+            {
+                id: "l4",
+                question: "How can organizations leverage a stable workforce?",
+                answer:
+                    "By investing in continuous learning, leadership development, and creating opportunities for growth and innovation.",
+            },
+            {
+                id: "l5",
+                question: "What type of training programs drives real transformation?",
+                answer:
+                    "Experiential, behaviour-focused programs that align personal growth with organizational goals create the most impact.",
+            },
+            {
+                id: "l6",
+                question: "Work With Neelima Kumari",
+                answer:
+                    "If this insight resonates with your organization — it’s time to move from awareness to action. Connect with us to design impactful learning and development interventions.",
+            },
+        ],
     }
 
 ]
