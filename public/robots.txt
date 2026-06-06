@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://aspirationmatters.com
+
+# Sitemaps
+Sitemap: https://aspirationmatters.com/sitemap.xml
