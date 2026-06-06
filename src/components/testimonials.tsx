@@ -86,7 +86,8 @@ export default function TestimonialsSection() {
   }, [testimonials.length])
 
   const safeItemsPerPage = Math.max(1, itemsPerPage)
-  const totalPages = Math.ceil(testimonials.length / safeItemsPerPage)
+  // const totalPages = Math.ceil(testimonials.length / safeItemsPerPage)
+  const totalPages = Math.max(1, Math.ceil(testimonials.length / safeItemsPerPage))
 
   const nextSlide = () => {
     setActiveIndex((prev) => (prev === totalPages - 1 ? 0 : prev + 1))

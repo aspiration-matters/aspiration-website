@@ -78,17 +78,41 @@ export default function ContactPage() {
 
 
   // Handle WhatsApp form input changes
-  const handleWhatsappChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  // const handleWhatsappChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  //   const { id, value } = e.target
+  //   setWhatsappForm((prev) => ({
+  //     ...prev,
+  //     [id === "whatsapp-name"
+  //       ? "name"
+  //       : id === "whatsapp-number"
+  //         ? "phone"
+  //         : id === "whatsapp-type"
+  //           ? "type"
+  //           : "message"]: value,
+  //   }))
+  // }
+
+  const handleWhatsappChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { id, value } = e.target
-    setWhatsappForm((prev) => ({
-      ...prev,
-      [id === "whatsapp-name"
+
+    const key =
+      id === "whatsapp-name"
         ? "name"
         : id === "whatsapp-number"
           ? "phone"
           : id === "whatsapp-type"
             ? "type"
-            : "message"]: value,
+            : id === "whatsapp-message"
+              ? "message"
+              : null
+
+    if (!key) return
+
+    setWhatsappForm((prev) => ({
+      ...prev,
+      [key]: value,
     }))
   }
 

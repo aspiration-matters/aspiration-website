@@ -16,6 +16,8 @@ import { API_BASE_URL } from "@/lib/api"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { Spotlight } from "@/components/ui/spotlight"
+import { slugify } from "@/lib/slugify"
+
 
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["600"] })
 
@@ -31,10 +33,19 @@ const BlogCard = ({ blog }: { blog: Blog }) => {
     <motion.div whileHover={{ scale: 1.01 }} transition={{ type: "spring", stiffness: 200 }} className="h-full">
       <Card className="overflow-hidden bg-white/10 backdrop-blur-xl border border-white/20 hover:shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 h-full flex flex-col p-0">
         <div className="relative h-64 overflow-hidden flex-shrink-0 w-full">
+          {/* <Image
+            src={blog.image_url || "/placeholder.svg"}
+            alt={blog.title}
+            fill
+            className="object-cover transform hover:scale-105 transition-transform duration-500"
+          /> */}
           <Image
             src={blog.image_url || "/placeholder.svg"}
             alt={blog.title}
             fill
+            sizes="(max-width: 768px) 100vw, 
+         (max-width: 1024px) 50vw, 
+         33vw"
             className="object-cover transform hover:scale-105 transition-transform duration-500"
           />
         </div>
@@ -48,7 +59,13 @@ const BlogCard = ({ blog }: { blog: Blog }) => {
             {blog.description}
           </p>
 
-          <Link href={`/blogs/${blog.id}`} passHref>
+          {/* <Link href={`/blogs/${blog.id}`} passHref> */}
+
+          <Link
+            href={`/blogs/${blog.id}/${slugify(blog.title)}`}
+            passHref
+          >
+
             <div
               className="mt-auto w-full flex items-center justify-center py-3 px-4 
                 bg-white text-purple-600 font-bold rounded-lg transition-all duration-300
@@ -82,9 +99,11 @@ export default function Blog() {
     if (blogs.length) {
       blogs.forEach((blog) => {
         router.prefetch(`/blogs/${blog.id}`)
+
       })
     }
   }, [blogs, router])
+
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/blog/`)

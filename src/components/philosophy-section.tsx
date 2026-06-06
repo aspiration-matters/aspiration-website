@@ -85,12 +85,18 @@ const Philosophy = () => {
                     Loading...
                   </div>
                 ) : (
+                  // <Image
+                  //   src={imageUrl || "/fallback.jpg"}
+                  //   alt="Philosophy"
+                  //   layout="fill"
+                  //   objectFit="cover"
+                  //   className="transform group-hover:scale-105 transition duration-500"
+                  // />
                   <Image
                     src={imageUrl || "/fallback.jpg"}
                     alt="Philosophy"
-                    layout="fill"
-                    objectFit="cover"
-                    className="transform group-hover:scale-105 transition duration-500"
+                    fill
+                    className="object-cover transform group-hover:scale-105 transition duration-500"
                   />
                 )}
               </div>

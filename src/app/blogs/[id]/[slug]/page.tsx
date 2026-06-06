@@ -6,6 +6,7 @@ import { useRouter, useParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { useEffect, useState } from "react"
+
 import { motion } from "framer-motion"
 import { toast } from "sonner"
 import { API_BASE_URL } from "@/lib/api"
@@ -30,18 +31,42 @@ interface BlogData {
 /* ---------------- COMPONENT ---------------- */
 export default function BlogPost() {
   const router = useRouter()
+  // const params = useParams()
   const params = useParams()
+
+  const id = Array.isArray(params.id) ? params.id[0] : params.id
+  const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug
   const [blog, setBlog] = useState<BlogData | null>(null)
   const [loading, setLoading] = useState(true)
   const [currentUrl, setCurrentUrl] = useState("")
   const [shareMenuOpen, setShareMenuOpen] = useState(false)
 
   useEffect(() => {
-    setCurrentUrl(window.location.href)
+    // setCurrentUrl(window.location.href)
+    if (typeof window !== "undefined") {
+      setCurrentUrl(window.location.href)
+    }
   }, [])
 
   /* ---------------- FETCH ---------------- */
+  // useEffect(() => {
+  //   const fetchBlog = async () => {
+  //     try {
+  //       const res = await fetch(`${API_BASE_URL}/blog/${params.id}`)
+  //       if (!res.ok) throw new Error()
+  //       const result = await res.json()
+  //       setBlog(result.data)
+  //     } catch {
+  //       toast.error("Failed to load blog post")
+  //     } finally {
+  //       setLoading(false)
+  //     }
+  //   }
+  //   fetchBlog()
+  // }, [params.id])
   useEffect(() => {
+    if (!params?.id) return
+
     const fetchBlog = async () => {
       try {
         const res = await fetch(`${API_BASE_URL}/blog/${params.id}`)
@@ -54,8 +79,9 @@ export default function BlogPost() {
         setLoading(false)
       }
     }
+
     fetchBlog()
-  }, [params.id])
+  }, [params?.id])
 
   const formatDate = (dateString: string) =>
     new Date(dateString).toLocaleDateString("en-US", {
@@ -70,6 +96,10 @@ export default function BlogPost() {
     const description = blog?.description || "Check out this amazing blog post!"
     const url = currentUrl
     const imageUrl = blog?.image_url
+
+    await navigator.clipboard.writeText(
+      `${title}\n${description}\n${url}\n${imageUrl ?? ""}`
+    )
 
     if (navigator.share && !platform) {
       try {
@@ -265,9 +295,13 @@ export default function BlogPost() {
                 url: `https://aspirationmatters.com/logo.png`,
               },
             },
+            // mainEntityOfPage: {
+            //   "@type": "WebPage",
+            //   "@id": `https://aspirationmatters.com/blog/${params.id}`,
+            // },
             mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": `https://aspirationmatters.com/blog/${params.id}`,
+              "@id": `https://aspirationmatters.com/blogs/${params.id}/${params.slug}`,
             },
           }),
         }}

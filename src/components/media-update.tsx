@@ -139,7 +139,7 @@ const images = [
     "/mediaimage5.jpg", "/mediaimage6.jpg", "/mediaimage7.jpg", "/mediaimage8.jpg",
     "/mediaimage9.jpg", "/mediaimage10.jpg", "/mediaimage11.jpg", "/mediaimage12.jpg",
     "/mediaimage13.jpg", "/mediaimage15.jpg", "/mediaimage14.jpg",
-    "/d1f623d2-2609-477e-86af-8c6ea4b6ade7.jpeg", "/88c190cf-f7c3-4aab-bad0-d0ddf2c1c7e1.jpeg",
+    "/mediaimage17.jpg", "/mediaimage16.jpg",
 ]
 
 function ImageMosaic({

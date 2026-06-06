@@ -114,7 +114,7 @@ const StorySection = () => {
                       src={images[0] || "/fallback.jpg"}
                       alt="Our Story"
                       fill
-                      sizes="(max-width: 640px) 45vw, (max-width: 1024px) 35vw, 20vw"
+                      sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 50vw"
                       className="object-cover transform group-hover:scale-105 transition duration-500"
                     />
                   )}
@@ -143,7 +143,7 @@ const StorySection = () => {
                       src={images[1] || "/fallback.jpg"}
                       alt="Our Story"
                       fill
-                      sizes="(max-width: 640px) 45vw, (max-width: 1024px) 35vw, 20vw"
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 30vw, 20vw"
                       className="object-cover transform group-hover:scale-105 transition duration-500"
                     />
                   )}

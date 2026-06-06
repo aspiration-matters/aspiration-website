@@ -88,12 +88,19 @@ const About = () => {
                     Loading...
                   </div>
                 ) : (
+                  // <Image
+                  //   src={imageUrl || "/fallback.jpg"}
+                  //   alt="Team working together"
+                  //   layout="fill"
+                  //   objectFit="cover"
+                  //   className="transform group-hover:scale-105 transition duration-500"
+                  // />
                   <Image
                     src={imageUrl || "/fallback.jpg"}
                     alt="Team working together"
-                    layout="fill"
-                    objectFit="cover"
-                    className="transform group-hover:scale-105 transition duration-500"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover transform group-hover:scale-105 transition duration-500"
                   />
                 )}
               </div>

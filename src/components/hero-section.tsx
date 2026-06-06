@@ -428,7 +428,7 @@ export default function HomePage() {
     return (
         <div className="relative w-full min-h-screen overflow-hidden">
 
-            {/* Background */}
+
             <BackgroundBeamsWithCollision className="absolute inset-0 w-full min-h-screen bg-gradient-to-br from-[#1a0033] via-[#2d1b69] via-[#4c1d95] via-[#6b21a8] to-[#7c3aed] before:absolute before:inset-0 before:bg-gradient-to-tr before:from-[#8b5cf6]/20 before:via-transparent before:to-[#a855f7]/30 after:absolute after:inset-0 after:bg-[radial-gradient(ellipse_at_top_left,_rgba(139,92,246,0.3)_0%,_rgba(168,85,247,0.15)_25%,_transparent_50%)]">
                 <div className="absolute inset-0 opacity-40 pointer-events-none z-10">
                     <div className="absolute top-0 -left-4 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 animate-pulse" />
