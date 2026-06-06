@@ -58,17 +58,19 @@ export function PointerHighlight({
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
           <motion.div
+
             className={cn(
-              "absolute inset-0 border border-neutral-800 dark:border-neutral-200",
+              "absolute -inset-x-2 -inset-y-2 border border-neutral-800 dark:border-neutral-200",
               rectangleClassName,
             )}
             initial={{
               width: 0,
               height: 0,
             }}
+
             whileInView={{
-              width: dimensions.width,
-              height: dimensions.height,
+              width: dimensions.width + 12,
+              height: dimensions.height + 20,
             }}
             transition={{
               duration: 1,
