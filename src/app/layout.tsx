@@ -1,5 +1,5 @@
 
-import React from "react"
+// import React from "react"
 // app/layout.tsx
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -14,56 +14,70 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 const inter = Inter({ subsets: ["latin"] })
 const playfair = Playfair_Display({ variable: "--font-playfair", subsets: ["latin"] })
 
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://aspirationmatters.com"),
 
   title: {
-    default: "Aspiration Matters – Corporate Training | Leadership & Soft Skills | Neelima Kumari",
+    default:
+      "Aspiration Matters | Corporate Training, Leadership Development & Soft Skills by Neelima Kumari",
     template: "%s | Aspiration Matters",
   },
 
   description:
-    "Aspiration Matters is a premier corporate training & leadership development organization led by Neelima Kumari. We empower professionals, leaders, and teams through transformational learning, soft-skills, leadership development, behavioral training & corporate workshops.",
+    "Aspiration Matters is a leading corporate training and leadership development company founded by Neelima Kumari. We specialize in soft skills training, executive coaching, managerial development, team building, and behavioral transformation programs across India.",
 
   keywords: [
     "Aspiration Matters",
-    "Corporate Training India",
-    "Leadership Development",
-    "Soft Skills Training",
-    "Team Building Workshops",
-    "Executive Coaching",
-    "Behavioral Training",
-    "Outbound Training",
-    "Corporate Motivational Speaker",
     "Neelima Kumari",
+    "Corporate Training India",
+    "Leadership Development Programs",
+    "Soft Skills Training",
+    "Executive Coaching India",
+    "Managerial Development",
+    "Team Building Workshops",
+    "Behavioural Training",
+    "Corporate Trainer India",
+    "Motivational Speaker Neelima Kumari",
+    "Professional Development Programs",
   ],
 
-  icons: {
-    icon: "/favicon.ico",
-  },
+  authors: [{ name: "Neelima Kumari", url: "https://aspirationmatters.com" }],
+
+  creator: "Neelima Kumari",
+  publisher: "Aspiration Matters",
 
   openGraph: {
-    title: "Aspiration Matters – Corporate & Leadership Training",
+    title:
+      "Aspiration Matters | Corporate Training & Leadership Development by Neelima Kumari",
     description:
-      "Empowering professionals and organizations through transformational learning, leadership development & corporate behavioral training.",
+      "Transforming professionals through leadership development, soft skills training, executive coaching, and behavioural transformation programs.",
     url: "https://aspirationmatters.com",
     siteName: "Aspiration Matters",
     type: "website",
-    images: [],
+    images: [
+      {
+        url: "https://aspirationmatters.com/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Aspiration Matters - Neelima Kumari Corporate Training",
+      },
+    ],
   },
 
   twitter: {
-    card: "summary",
-    title: "Aspiration Matters – Corporate & Leadership Training",
+    card: "summary_large_image",
+    title: "Aspiration Matters | Leadership Training by Neelima Kumari",
     description:
-      "Empowering professionals and organizations through transformational learning & leadership development.",
+      "Corporate training, leadership development & soft skills programs by Neelima Kumari.",
+    images: ["https://aspirationmatters.com/og-image.jpg"],
+    creator: "@aspirationmatters",
   },
 
   alternates: {
     canonical: "https://aspirationmatters.com",
   },
 }
-
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

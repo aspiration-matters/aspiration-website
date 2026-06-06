@@ -98,7 +98,8 @@ export default function Blog() {
   useEffect(() => {
     if (blogs.length) {
       blogs.forEach((blog) => {
-        router.prefetch(`/blogs/${blog.id}`)
+        // router.prefetch(`/blogs/${blog.id}`)
+        router.prefetch(`/blogs/${blog.id}/${slugify(blog.title)}`)
 
       })
     }

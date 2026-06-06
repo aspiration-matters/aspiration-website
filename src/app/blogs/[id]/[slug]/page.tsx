@@ -64,6 +64,9 @@ export default function BlogPost() {
   //   }
   //   fetchBlog()
   // }, [params.id])
+
+
+
   useEffect(() => {
     if (!params?.id) return
 
@@ -92,27 +95,44 @@ export default function BlogPost() {
 
 
   const handleShare = async (platform?: string) => {
-    const title = blog?.title || "Check out this blog post"
-    const description = blog?.description || "Check out this amazing blog post!"
-    const url = currentUrl
-    const imageUrl = blog?.image_url
+    // const title = blog?.title || ""
+    // const description = blog?.description || ""
+    // const url = currentUrl
+    // const imageUrl = blog?.image_url
 
-    await navigator.clipboard.writeText(
-      `${title}\n${description}\n${url}\n${imageUrl ?? ""}`
-    )
+    // await navigator.clipboard.writeText(
+    //   `${title}\n${description}\n${url}\n${imageUrl ?? ""}`
+    // )
+
+    // if (navigator.share && !platform) {
+    //   try {
+    //     await navigator.share({
+    //       title,
+    //       text: description,
+    //       url,
+    //     })
+    //   } catch {
+    //     // user cancelled
+    //   }
+    //   return
+    // }
+    const title = blog?.title || ""
+    const description = blog?.description || ""
+    const url = currentUrl
+
+    if (platform === "copy") {
+      await navigator.clipboard.writeText(`${title}\n${description}\n${url}`)
+      toast.success("Copied!")
+      return
+    }
 
     if (navigator.share && !platform) {
       try {
-        await navigator.share({
-          title,
-          text: description,
-          url,
-        })
-      } catch {
-        // user cancelled
-      }
-      return
+        await navigator.share({ title, text: description, url })
+        return
+      } catch { }
     }
+
 
 
     // DESKTOP / FALLBACK
@@ -270,35 +290,35 @@ export default function BlogPost() {
   return (
 
     <>
+
+
       <Script
         id="blog-jsonld"
         type="application/ld+json"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BlogPosting",
             headline: blog.title,
             description: blog.description,
-            image: blog.image_url ? [blog.image_url] : undefined,
+            image: blog.image_url ? [blog.image_url] : [],
             datePublished: blog.date,
             dateModified: blog.date,
+
             author: {
-              "@type": "Organization",
-              name: "Aspiration Matters",
+              "@type": "Person",
+              name: "Neelima Kumari",
             },
+
             publisher: {
               "@type": "Organization",
               name: "Aspiration Matters",
               logo: {
                 "@type": "ImageObject",
-                url: `https://aspirationmatters.com/logo.png`,
+                url: "https://aspirationmatters.com/logo.png",
               },
             },
-            // mainEntityOfPage: {
-            //   "@type": "WebPage",
-            //   "@id": `https://aspirationmatters.com/blog/${params.id}`,
-            // },
+
             mainEntityOfPage: {
               "@type": "WebPage",
               "@id": `https://aspirationmatters.com/blogs/${params.id}/${params.slug}`,

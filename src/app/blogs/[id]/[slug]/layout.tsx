@@ -1,5 +1,4 @@
 
-
 import React from "react"
 import type { Metadata } from "next"
 import { API_BASE_URL } from "@/lib/api"
@@ -24,27 +23,27 @@ export async function generateMetadata({
     const baseUrl =
         process.env.NEXT_PUBLIC_BASE_URL ?? "https://aspirationmatters.com"
 
+    const url = `${baseUrl}/blogs/${id}/${slug}`
+
     try {
         const res = await fetch(`${API_BASE_URL}/blog/${id}`, {
             cache: "no-store",
         })
 
-        const url = `${baseUrl}/blogs/${id}/${slug}`
-
         if (!res.ok) {
             return {
                 metadataBase: new URL(baseUrl),
 
-                title: "Blog Post | Aspiration Matters",
+                title: "Blogs | Aspiration Matters",
                 description:
-                    "Read our latest blog post on corporate training and leadership development",
+                    "Corporate training, leadership development and soft skills insights from Aspiration Matters",
 
                 alternates: {
-                    canonical: url,
+                    canonical: `${baseUrl}/blogs`,
                 },
 
                 robots: {
-                    index: true,
+                    index: false,   // ✅ IMPORTANT FIX
                     follow: true,
                 },
 
@@ -68,8 +67,6 @@ export async function generateMetadata({
             ? blog.image_url
             : `${baseUrl}${blog.image_url.startsWith("/") ? "" : "/"}${blog.image_url}`
 
-        const canonicalUrl = url
-
         return {
             metadataBase: new URL(baseUrl),
 
@@ -77,7 +74,7 @@ export async function generateMetadata({
             description: blog.description,
 
             alternates: {
-                canonical: canonicalUrl,
+                canonical: url,
             },
 
             robots: {
@@ -87,7 +84,7 @@ export async function generateMetadata({
 
             openGraph: {
                 type: "article",
-                url: canonicalUrl,
+                url,
                 title: blog.title,
                 description: blog.description,
                 siteName: "Aspiration Matters",
@@ -114,27 +111,25 @@ export async function generateMetadata({
             },
         }
     } catch (error) {
-        const fallbackUrl = `${baseUrl}/blogs`
-
         return {
             metadataBase: new URL(baseUrl),
 
-            title: "Blog Post | Aspiration Matters",
+            title: "Blogs | Aspiration Matters",
             description:
-                "Read our latest blog post on corporate training and leadership development",
+                "Corporate training, leadership development and soft skills insights from Aspiration Matters",
 
             alternates: {
-                canonical: fallbackUrl,
+                canonical: `${baseUrl}/blogs`,
             },
 
             robots: {
-                index: true,
+                index: false,   // ✅ IMPORTANT FIX
                 follow: true,
             },
 
             openGraph: {
-                type: "article",
-                url: fallbackUrl,
+                type: "website",
+                url: `${baseUrl}/blogs`,
                 siteName: "Aspiration Matters",
                 images: [],
             },
