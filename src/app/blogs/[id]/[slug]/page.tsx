@@ -95,27 +95,7 @@ export default function BlogPost() {
 
 
   const handleShare = async (platform?: string) => {
-    // const title = blog?.title || ""
-    // const description = blog?.description || ""
-    // const url = currentUrl
-    // const imageUrl = blog?.image_url
 
-    // await navigator.clipboard.writeText(
-    //   `${title}\n${description}\n${url}\n${imageUrl ?? ""}`
-    // )
-
-    // if (navigator.share && !platform) {
-    //   try {
-    //     await navigator.share({
-    //       title,
-    //       text: description,
-    //       url,
-    //     })
-    //   } catch {
-    //     // user cancelled
-    //   }
-    //   return
-    // }
     const title = blog?.title || ""
     const description = blog?.description || ""
     const url = currentUrl
