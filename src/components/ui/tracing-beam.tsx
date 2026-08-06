@@ -70,9 +70,13 @@ export const TracingBeam = ({
               duration: 0.2,
               delay: 0.5,
             }}
+            // animate={{
+            //   backgroundColor: scrollYProgress.get() > 0 ? "white" : "#10b981",
+            //   borderColor: scrollYProgress.get() > 0 ? "white" : "#059669",
+            // }}
             animate={{
-              backgroundColor: scrollYProgress.get() > 0 ? "white" : "#10b981",
-              borderColor: scrollYProgress.get() > 0 ? "white" : "#059669",
+              backgroundColor: scrollYProgress.get() > 0 ? "#ffffff" : "#10b981",
+              borderColor: scrollYProgress.get() > 0 ? "#ffffff" : "#059669",
             }}
             className="h-2 w-2 rounded-full border border-neutral-300 bg-white"
           />

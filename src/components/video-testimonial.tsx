@@ -103,6 +103,7 @@ const VideoTestimonials = () => {
                                             alt={`${testimonial.title} - Video testimonial`}
                                             className="object-cover object-center transition-transform duration-500 group-hover:scale-110"
                                             fill
+                                            sizes="(max-width: 768px) 100vw, 384px"
                                         />
 
 

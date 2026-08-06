@@ -1,3 +1,5 @@
+
+
 "use client"
 
 import { ArrowLeft, Share2, Mail, PenLine } from "lucide-react"
@@ -10,6 +12,11 @@ import { toast } from "sonner"
 import { Spotlight } from "@/components/ui/spotlight"
 import { TracingBeam } from "@/components/ui/tracing-beam"
 import { PixelImage } from "@/components/pixel-image"
+import {
+    FaWhatsapp,
+    FaLinkedinIn,
+    FaLink,
+} from "react-icons/fa6";
 
 interface BlogData {
     id: string
@@ -139,6 +146,116 @@ export default function BlogPostClient({ blog }: { blog: BlogData }) {
         return elements
     }
 
+    // Extracted so it can render EITHER wrapped in TracingBeam (desktop)
+    // OR in a plain div (mobile). Previously this whole block lived
+    // inside <TracingBeam className="hidden md:block">, which meant
+    // display:none on any screen under 768px — hiding the ENTIRE post,
+    // not just the beam graphic. That was why nothing opened on mobile.
+    const content = (
+        <div className="w-full max-w-5xl mx-auto px-4 pt-8 relative z-10">
+            <div className="flex justify-between items-center mb-8">
+                <Button
+                    variant="ghost"
+                    className="text-white border border-white/30 rounded-full hover:bg-white/10"
+                    onClick={() => router.back()}
+                >
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    Back
+                </Button>
+                <span className="text-white/80 text-sm bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
+                    {formatDate(blog.date)}
+                </span>
+            </div>
+
+            <Card className="overflow-hidden p-0 bg-white/95 backdrop-blur-xl border-0 rounded-3xl shadow-2xl">
+                <div className="relative w-full aspect-video flex items-center justify-center bg-gray-100">
+                    <PixelImage src={blog.image_url || "/placeholder.svg"} grid="8x8" />
+                </div>
+
+                <div className="px-8 md:px-12 py-8">
+                    <div className="bg-gradient-to-br from-gray-100/80 to-gray-200/60 rounded-2xl p-8 border border-gray-300/40">
+                        <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 text-center">
+                            {blog.title}
+                        </h1>
+                        <p className="text-sm md:text-base text-gray-700 leading-relaxed text-center">
+                            {blog.description}
+                        </p>
+                        <div className="flex justify-center sm:justify-end mt-5">
+                            <div className="flex items-center gap-2 text-purple-700 text-sm font-bold">
+                                <PenLine className="h-4 w-4 text-black" />
+                                <span>Neelima Kumari</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="px-8 md:px-12 py-8">
+                    <div className="bg-gradient-to-br from-gray-50/80 to-gray-100/60 rounded-2xl p-8 border border-gray-200/50">
+                        <article className="max-w-none space-y-4">{renderContent(blog.content)}</article>
+                    </div>
+                </div>
+
+                <div className="px-8 md:px-12 py-8">
+                    <div className="flex flex-col gap-6 justify-center items-center">
+                        <div className="group relative flex gap-2 bg-white/50 border border-purple-200/50 rounded-full px-4 py-2">
+
+                            <button
+                                onClick={() => {
+                                    if (typeof navigator.share === "function") {
+                                        handleShare(); // Native share sheet on phones
+                                    } else {
+                                        setShareMenuOpen((prev) => !prev);
+                                    }
+                                }}
+                                aria-label="Share"
+                            >
+                                <Share2 className="h-4 w-4 text-purple-600" />
+                            </button>
+
+                            <div
+                                className={`absolute right-1/2 translate-x-1/2 bottom-full mb-2
+    flex gap-2 bg-white rounded-full p-3 shadow-lg border border-gray-200 transition-all duration-200
+    ${shareMenuOpen
+                                        ? "opacity-100 visible scale-100"
+                                        : "opacity-0 invisible scale-95"
+                                    }`}
+                            >
+                                <button
+                                    onClick={() => handleShare("whatsapp")}
+                                    className="flex h-10 w-10 items-center justify-center rounded-full bg-[#25D366] hover:bg-[#1da851] transition"
+                                    title="WhatsApp"
+                                >
+                                    <FaWhatsapp className="h-5 w-5 text-white" />
+                                </button>
+
+                                <button
+                                    onClick={() => handleShare("linkedin")}
+                                    className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0A66C2] hover:bg-[#084c94] transition"
+                                    title="LinkedIn"
+                                >
+                                    <FaLinkedinIn className="h-4 w-4 text-white" />
+                                </button>
+
+                                <button
+                                    onClick={() => handleShare("copy")}
+                                    className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-600 hover:bg-gray-700 transition"
+                                    title="Copy Link"
+                                >
+                                    <FaLink className="h-4 w-4 text-white" />
+                                </button>
+                            </div>
+                        </div>
+                        <Button onClick={() => router.push("/contact")} className="bg-purple-600 hover:bg-purple-700 text-white rounded-full px-8 py-2">
+                            <Mail className="h-4 w-4 mr-2" />
+                            Contact Us
+                        </Button>
+                    </div>
+                </div>
+            </Card>
+            <div className="h-10" />
+        </div>
+    )
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -148,72 +265,11 @@ export default function BlogPostClient({ blog }: { blog: BlogData }) {
             <Spotlight className="top-1/4 left-10" fill="white" />
             <Spotlight className="top-1/2 right-20" fill="rgb(253,7,241)" />
 
-            <TracingBeam className="hidden md:block">
-                <div className="w-full max-w-5xl mx-auto px-4 pt-8 relative z-10">
-                    <div className="flex justify-between items-center mb-8">
-                        <Button
-                            variant="ghost"
-                            className="text-white border border-white/30 rounded-full hover:bg-white/10"
-                            onClick={() => router.back()}
-                        >
-                            <ArrowLeft className="mr-2 h-4 w-4" />
-                            Back
-                        </Button>
-                        <span className="text-white/80 text-sm bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
-                            {formatDate(blog.date)}
-                        </span>
-                    </div>
-
-                    <Card className="overflow-hidden p-0 bg-white/95 backdrop-blur-xl border-0 rounded-3xl shadow-2xl">
-                        <div className="relative w-full aspect-video flex items-center justify-center bg-gray-100">
-                            <PixelImage src={blog.image_url || "/placeholder.svg"} grid="8x8" />
-                        </div>
-
-                        <div className="px-8 md:px-12 py-8">
-                            <div className="bg-gradient-to-br from-gray-100/80 to-gray-200/60 rounded-2xl p-8 border border-gray-300/40">
-                                <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 text-center">
-                                    {blog.title}
-                                </h1>
-                                <p className="text-sm md:text-base text-gray-700 leading-relaxed text-center">
-                                    {blog.description}
-                                </p>
-                                <div className="flex justify-center sm:justify-end mt-5">
-                                    <div className="flex items-center gap-2 text-purple-700 text-sm font-bold">
-                                        <PenLine className="h-4 w-4 text-black" />
-                                        <span>Neelima Kumari</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="px-8 md:px-12 py-8">
-                            <div className="bg-gradient-to-br from-gray-50/80 to-gray-100/60 rounded-2xl p-8 border border-gray-200/50">
-                                <article className="max-w-none space-y-4">{renderContent(blog.content)}</article>
-                            </div>
-                        </div>
-
-                        <div className="px-8 md:px-12 py-8">
-                            <div className="flex flex-col gap-6 justify-center items-center">
-                                <div className="group relative flex gap-2 bg-white/50 border border-purple-200/50 rounded-full px-4 py-2">
-                                    <button onClick={() => handleShare()} aria-label="Share">
-                                        <Share2 className="h-4 w-4 text-purple-600" />
-                                    </button>
-                                    <div className="absolute right-1/2 translate-x-1/2 bottom-full mb-2 flex gap-2 bg-white rounded-full p-3 shadow-lg border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                                        <button onClick={() => handleShare("whatsapp")} className="w-10 h-10 rounded-full bg-green-500 hover:bg-green-600" title="WhatsApp" />
-                                        <button onClick={() => handleShare("linkedin")} className="w-10 h-10 rounded-full bg-blue-600 hover:bg-blue-700" title="LinkedIn" />
-                                        <button onClick={() => handleShare("copy")} className="w-10 h-10 rounded-full bg-gray-500 hover:bg-gray-600" title="Copy Link" />
-                                    </div>
-                                </div>
-                                <Button onClick={() => router.push("/contact")} className="bg-purple-600 hover:bg-purple-700 text-white rounded-full px-8 py-2">
-                                    <Mail className="h-4 w-4 mr-2" />
-                                    Contact Us
-                                </Button>
-                            </div>
-                        </div>
-                    </Card>
-                    <div className="h-10" />
-                </div>
-            </TracingBeam>
+            {/* Desktop: beam graphic wraps content. Mobile: plain div, same content, always visible. */}
+            <div className="hidden md:block">
+                <TracingBeam>{content}</TracingBeam>
+            </div>
+            <div className="md:hidden">{content}</div>
         </motion.div>
     )
 }

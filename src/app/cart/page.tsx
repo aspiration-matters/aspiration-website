@@ -1,5 +1,16 @@
 import { CourseLayout } from "@/components/course-layout"
 import { CartItems } from "@/components/cart-items"
+import type { Metadata } from "next"
+
+
+export const metadata: Metadata = {
+  title: "My Cart",
+  robots: {
+    index: false,
+    follow: false,
+  },
+}
+
 
 export default function Cart() {
   return (

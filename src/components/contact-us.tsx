@@ -77,20 +77,6 @@ export default function ContactPage() {
   }
 
 
-  // Handle WhatsApp form input changes
-  // const handleWhatsappChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-  //   const { id, value } = e.target
-  //   setWhatsappForm((prev) => ({
-  //     ...prev,
-  //     [id === "whatsapp-name"
-  //       ? "name"
-  //       : id === "whatsapp-number"
-  //         ? "phone"
-  //         : id === "whatsapp-type"
-  //           ? "type"
-  //           : "message"]: value,
-  //   }))
-  // }
 
   const handleWhatsappChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -791,12 +777,14 @@ export default function ContactPage() {
                 </p>
                 {/* MSME Registration Info - Mobile Optimized */}
                 <div className="flex items-center gap-2 mt-3 max-sm:flex-col max-sm:items-center max-sm:gap-3">
+
                   <Image
                     src="/msme.png"
                     alt="MSME Registration"
                     width={140}
                     height={100}
-                    className="object-contain max-sm:w-32 max-sm:h-auto"
+                    className="object-contain w-[140px] max-sm:w-32"
+                    style={{ height: "auto" }}
                   />
                   <p className="text-purple-300 text-xs max-sm:text-center max-sm:text-xs">
                     MSME & GST Registered OPC Pvt. Ltd.
